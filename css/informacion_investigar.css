@@ -39,17 +39,17 @@ section div div.alerta{
     padding: 10px;
 }
 
-section div#formulario_reportar {
+section div#formulario_infInvestigar_Consultor {
     padding: 10px;
     margin: 10px;
-    border: 1px solid #6162636e;
+    border: 1px solid #1826356e;
     border-radius: 50px 0px 50px 0px; 
     -moz-border-radius: 50px 0px 50px 0px; 
     -webkit-border-radius: 50px 0px 50px 0px; 
     background: #ffffff;
 }
 
-section div#formulario_reportar #dia, section div#formulario_reportar #hora {
+section div#formulario_infInvestigar_Consultor #dia, section div#formulario_infInvestigar_Consultor #hora {
     border: 1px solid rgb(11, 70, 197);
     background-color: rgba(255, 255, 255, .0);
     pointer-events: none;
@@ -63,22 +63,24 @@ section div#formulario_reportar #dia, section div#formulario_reportar #hora {
     font-size: 20px;
 }
 
-section div#formulario_reportar div#encabezado {
+section div#formulario_infInvestigar_Consultor div#encabezado {
     margin: 0 auto;
     max-width: 750px;
 }
 
-section div#formulario_reportar #hora {
+section div#formulario_infInvestigar_Consultor #hora {
     float: right;
 }
 
-section div#formulario_reportar #dia {
+section div#formulario_infInvestigar_Consultor #dia {
     float: left;
 }
 
-section div#formulario_reportar #id {
+section div#formulario_infInvestigar_Consultor #registro {
     display: block;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
     border: 1px solid rgb(11, 70, 197);
     background-color: rgba(255, 255, 255, .0);
     pointer-events: none;
@@ -93,7 +95,7 @@ section div#formulario_reportar #id {
 section form {
     text-align: initial;
     padding: 10px;
-    max-width: 800px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -10,9 +10,9 @@
 <head>
 	<title>Ingreso Gestion</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	<script src="js/kitawesome.js"></script>
+	<script src="sistema/js/libs/kitawesome.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -31,7 +31,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Usuario</h5>
-           		   		<input type="text" name="usernames" class="input">
+           		   		<input type="text" name="username" class="input">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -50,6 +50,6 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="sistema/js/libs/main.js"></script>
 </body>
 </html>
