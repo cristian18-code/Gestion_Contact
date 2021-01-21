@@ -38,7 +38,7 @@ section img:hover  {
 }
 
 section div span b {
-    color: red;
+    color: rgb(185, 1, 1);
     font-weight: 900;
 }
 
