@@ -32,14 +32,12 @@
     <link rel="stylesheet" href="css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="css/libs/reset.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/informacion_investigar.css">
 <!-- Estilos css -->
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Scripts -->
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
-    <script src="sistema/js/getTime.js"></script>
 <!-- Scripts -->    
     <title>Informacion a investigar Fono - Gestion Contact</title>
 </head>
