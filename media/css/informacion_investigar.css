@@ -47,6 +47,7 @@ section div#formulario_infInvestigar_Consultor {
     -moz-border-radius: 50px 0px 50px 0px; 
     -webkit-border-radius: 50px 0px 50px 0px; 
     background: #ffffff;
+    box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 section img:hover {

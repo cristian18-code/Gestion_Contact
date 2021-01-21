@@ -11,8 +11,8 @@
 
     <li class="principal"> <a href="#"> <span class="icon-user-tie"></span> Fonoplus </a>
       <ul>
-        <li><a href="./infInvestigar_Consultor.php"> <span class="icon-wrench"> </span> Datos consultor  </a></li>
-        <li><a href="./tabla_infInvestigar.php?tabla=fono">  <span class="icon-eye"> </span> Registros </a></li>
+        <li><a href="./infInvestigar_Consultor.php"> <span class="icon-wrench"> </span> inf. investigar Crear </a></li>
+        <li><a href="./tabla_infInvestigar.php?tabla=fono">  <span class="icon-eye"> </span> inf. investigar Tabla </a></li>
       </ul>
     </li>
 <!--/.Navbar -->
