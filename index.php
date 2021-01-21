@@ -10,20 +10,20 @@
 <head>
 	<title>Ingreso Gestion</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="media/css/login.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="sistema/js/libs/kitawesome.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<img class="wave" src="img/wave.png">
+	<img class="wave" src="media/img/wave.png">
 	<div class="container">
 		<div class="img">
-			<img src="img/bg.svg">
+			<img src="media/img/bg.svg">
 		</div>
 		<div class="login-content">
 			<form method="POST" action="#">
-				<img src="img/avatar.svg">
+				<img src="media/img/avatar.svg">
 				<h2 class="title">Bienvenidos</h2>
            		<div class="input-div one">
            		   <div class="i">

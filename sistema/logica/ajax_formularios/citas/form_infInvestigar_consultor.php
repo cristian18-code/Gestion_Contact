@@ -12,8 +12,8 @@
             $alert='<p class="msg_error"> Todos los campos son Obligatorios </p>';
     } else {
         
-        require('../../../config/db.php');
-        require('../../../config/conexion.php');
+        require('../../../../config/db.php');
+        require('../../../../config/conexion.php');
 
         $userRegistra = $_POST['user'];
         $fechaRegistro = $_POST['dia'];

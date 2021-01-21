@@ -2,7 +2,7 @@
     include('config/session.php');
     include('config/conexion.php');
 
-    	
+    // valida si el usuario tiene permisos concedidos
 	$permisoQsql = $con->query("SELECT inf_InvestigarConsultor
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'");
 
@@ -29,12 +29,12 @@
 <html lang="es">
 <head>
 <!-- Estilos css -->
-    <link rel="stylesheet" href="css/libs/bootstrap.min.css">
-    <link rel="stylesheet" href="css/libs/reset.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/informacion_investigar.css">
+    <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="media/css/libs/reset.css">
+    <link rel="stylesheet" href="media/css/header.css">
+    <link rel="stylesheet" href="media/css/informacion_investigar.css">
 <!-- Estilos css -->
-    <link rel="shortcut icon" href="media/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="media/img/favicon.png" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Scripts -->
@@ -68,7 +68,7 @@
                 <br>
                 <div id="encabezado" class="form-group">
                     <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-                    <img src="img/investigar.png" alt="anadir" width="80px">
+                    <img src="media/img/investigar.png" alt="anadir" width="80px">
                     <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
                     <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
                 </div>
@@ -180,6 +180,6 @@
 
     </section>
     <script src="sistema/js/libs/sweetalert2.js"></script>
-    <script src="sistema/js/ajax_formularios/form_infInvestigar_consultor.js"></script>
+    <script src="sistema/js/ajax_formularios/citas/form_infInvestigar_consultor.js"></script>
 </body>
 </html>

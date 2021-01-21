@@ -100,7 +100,7 @@ $(document).ready(function(){
 
         $.ajax({
             data:parametros,
-            url:"././sistema/logica/ajax_formularios/form_infInvestigar_consultor.php",
+            url:"./././sistema/logica/ajax_formularios/citas/form_infInvestigar_consultor.php",
             type:"POST",
             contentType:false,
             processData:false,

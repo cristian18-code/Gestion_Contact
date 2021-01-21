@@ -8,9 +8,10 @@
           <li><a href="#"> <span class="icon-wrench"> </span> informaciona a investigar </a>
             <ul>
               <li><a href="./infInvestigar_Consultor.php"> <span class="icon-wrench"> </span> Datos consultor  </a></li>
+              <li><a href="./Tinf_investigar_citas.php">  <span class="icon-eye"> </span> Registros </a></li>
             </ul>
           </li>
-          <li><a href="./seguimiento_ticket.php">  <span class="icon-eye"> </span> Seguimiento </a></li>
+          <li><a href="./">  <span class="icon-eye"> </span> Seguimiento </a></li>
         </ul>
       </li>
    <?php } ?>
