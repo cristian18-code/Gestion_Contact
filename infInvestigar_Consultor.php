@@ -15,6 +15,14 @@
     if($permiso = 0){ // Valida si ya hay una sesion iniciada
         header("location: principal.php");
     }
+
+    /* Trae el ultimo registro creado */
+    $traerDatos = "SELECT max(id_registro) FROM inf_investigar";
+    $ver = $con->query($traerDatos) or die ("No se obtuvieron datos en la consulta");
+
+    if ($row = mysqli_fetch_row($ver)) {
+        $id = $row[0];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +63,7 @@
             <form method="post" name="form_infInvestigarConsultor" id="form_infInvestigarConsultor">
                 <div class="form-group" id="cont-registro" style="text-align: center;">
                 <label for="registro" style="font-weight: 700;">Registro N°</label>
-                <input type="text" class="form-control" name="registro" id="registro" readonly value="1"> <!-- Muestra el numero del registro a crear -->
+                <input type="text" class="form-control" name="registro" id="registro" readonly value="<?php echo $id ?>"> <!-- Muestra el numero del registro a crear -->
                 </div>
                 <br>
                 <div id="encabezado" class="form-group">
@@ -171,6 +179,7 @@
         </div>            
 
     </section>
+    <script src="sistema/js/libs/sweetalert2.js"></script>
     <script src="sistema/js/ajax_formularios/form_infInvestigar_consultor.js"></script>
 </body>
 </html>
