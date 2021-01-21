@@ -31,7 +31,7 @@
         $ciudad = $_POST['ciudad'];
         $detalle = $_POST['detalle'];
 
-        $insertSsql = "INSERT INTO inf_investigar (id_tipificacionEstado,
+        $insertSsql = "INSERT INTO inf_investigar_citas (id_tipificacionEstado,
                                     fechaRegistro,
                                     horaRegistro,
                                     documento,
