@@ -8,6 +8,10 @@
     
     $tabla = $_GET['tabla'];
 
+    if ($tabla != 'citas' && $tabla != 'fono') {
+        header("location: principal.php");
+    }
+
     /* Traer los tickets pendientes */
     $ssql = "SELECT investigar.id_registro,
                     usuarios.username,
@@ -36,7 +40,7 @@
 <link rel="stylesheet" href="media/css/libs/bootstrap5.min.css">
     <link rel="stylesheet" href="media/css/header.css">
     <link rel="stylesheet" href="media/icons/style.css">
-    <link rel="stylesheet" href="media/css/tabla_infInvestigar_citas.css">
+    <link rel="stylesheet" href="media/css/tabla_infInvestigar.css">
     <link rel="stylesheet" href="media/css/libs/dataTables.bootstrap5.min.css"> <!-- estilo de la tabla -->
 <!-- Estilos css -->
     <link rel="shortcut icon" href="media/img/favicon.png" type="image/x-icon">
@@ -65,9 +69,9 @@
     <section>
 
         <div>   
-        <span class=""><h2>Registros <b>Informacion a investigar <?php echo strtoupper($tabla);?></b></h2></span>
+        <span class=""><h2>Registros Informacion a investigar <b> <?php echo strtoupper($tabla);?></b></h2></span>
         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-        <img src="media/img/<?php echo $img;?>" alt="Citas" width="120px">
+        <img src="media/img/<?php echo $img;?>" alt="<?php echo $tabla?>" width="120px">
         <input type="text" name="hora" id="hora" value="" readonly>  <!-- Muestra la hora actual en tiempo real -->
         </div>
 

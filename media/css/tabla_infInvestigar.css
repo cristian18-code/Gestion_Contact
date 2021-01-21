@@ -37,6 +37,11 @@ section img:hover  {
     transition: 1s;
 }
 
+section div span b {
+    color: red;
+    font-weight: 900;
+}
+
 section .subtitulo { 
     font-family: century;
     font-size: 3rem;
