@@ -49,6 +49,14 @@ section div#formulario_infInvestigar_Consultor {
     background: #ffffff;
 }
 
+section img:hover {
+    -webkit-transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: 1s;
+}
+
 section div#formulario_infInvestigar_Consultor #dia, section div#formulario_infInvestigar_Consultor #hora {
     border: 1px solid rgb(11, 70, 197);
     background-color: rgba(255, 255, 255, .0);

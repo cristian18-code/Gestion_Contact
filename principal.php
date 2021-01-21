@@ -12,16 +12,8 @@
         header("location: principal.php");
     }
 
-    if($permiso = 0){ // Valida si ya hay una sesion iniciada
+    if ($permiso = 0){ // Valida si ya hay una sesion iniciada
         header("location: principal.php");
-    }
-
-    /* Trae el ultimo registro creado */
-    $traerDatos = "SELECT max(id_registro) FROM inf_investigar";
-    $ver = $con->query($traerDatos) or die ("No se obtuvieron datos en la consulta");
-
-    if ($row = mysqli_fetch_row($ver)) {
-        $id = $row[0];
     }
 ?>
 
