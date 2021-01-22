@@ -7,6 +7,7 @@ section {
     grid-column: 1/2;
     justify-content: center;
     text-align: center;
+    font-family: 'Open Sans';
 }
 
 section form label {
@@ -83,7 +84,7 @@ section div#formulario_infInvestigar_Consultor #registro {
     font-weight: 800;
     padding: 5px;
     width: 180px;
-    font-size: 16px;  
+    font-size: 20px;  
 }
 
 section form {
