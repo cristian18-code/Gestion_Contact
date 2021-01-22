@@ -194,7 +194,6 @@
                         <textarea name="detalle" id="detalle" class="form-control" style="resize:none; text-align: center;" placeholder="Servicio solicitado" required></textarea>
                     </div>
                 </div>
-                <div style="text-align: center;" class="alerta"></div>  
                 <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarConsultor" name="btnEnviar_infInvestigarConsultor" value="Guardar"></center>
             </form>
         </div>            

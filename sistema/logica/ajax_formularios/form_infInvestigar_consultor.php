@@ -1,15 +1,33 @@
 <?php 
 
     if ( empty($_POST['user']) || empty($_POST['tabla']) ) {
-        $alert='<p class="msg_error"> Error en la sesión </p>';
+        $alert="<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error en la sesion!'
+        })
+        </script>";
     }
     else if (empty($_POST['dia']) || empty($_POST['hora']) || empty($_POST['registro'])) {
-            $alert='<p class="msg_error"> Error en la sesión </p>';
+        $alert="<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error en la sesion!'
+        })
+        </script>";
     }
     else if (empty($_POST['estado']) || empty($_POST['documento']) || empty($_POST['contrato']) || empty($_POST['nombres'])
                 || empty($_POST['causal']) || empty($_POST['correo']) || empty($_POST['persona']) || empty($_POST['telefono'])
                 || empty($_POST['celular']) || empty($_POST['ciudad']) || empty($_POST['detalle'])) {                
-            $alert='<p class="msg_error"> Todos los campos son Obligatorios </p>';
+                    $alert="<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Todos los campos son obligatorios!'
+                    })
+                    </script>";
     } else {
         
         require('../../../config/db.php');
@@ -64,9 +82,23 @@
         $insertQslq = $con -> query($insertSsql);
             
         if($insertQslq){
-            $alert='<p class="msg_save"> Registro N°'. $registro .' creado en '.$tabla.' Correctamente</p>';
+            $alert="<script>
+                    var id = $registro;
+                    Swal.fire(
+                        'Registro Creado',
+                        'Se ha a guardado el registro No: '+ id +'',
+                        'success'
+                    ) 
+                    </script>";
         }else{
-            $alert='<p class="msg_error"> error al crear el Registro</p>';    
+            $alert="<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+
+                    })
+                    </script>";
         }
            
         mysqli_close($con);

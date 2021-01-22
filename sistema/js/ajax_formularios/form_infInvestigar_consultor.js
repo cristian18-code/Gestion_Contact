@@ -98,55 +98,89 @@ $(document).ready(function(){
             return
         }
 
-        $.ajax({
-            data:parametros,
-            url:"././sistema/logica/ajax_formularios/form_infInvestigar_consultor.php",
-            type:"POST",
-            contentType:false,
-            processData:false,
-            beforeSend: function(){
-                btnEnviar.val("Guardando.."); // Para input de tipo button
-                btnEnviar.attr("disabled","disabled");
+        // tabla en que se guardara
+        var tabla = $("#tabla").val();
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
             },
-            success: function(data){
-                btnEnviar.val("Enviado"); // Para input de tipo button
-                $(".alerta").append(data);
-            },
-            error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
-                                                    // ejecutara alguna de las siguientes alertas de acuerdo error
-            if (jqXHR.status === 0) {
+            buttonsStyling: true
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: '¿Estas seguro?',
+            text: "Crear registro en "+tabla +", despues de guardar no se podra reversar",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Guardar',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
 
-            alert('Not connect: Verify Network.');
+            $.ajax({
+                data:parametros,
+                url:"././sistema/logica/ajax_formularios/form_infInvestigar_consultor.php",
+                type:"POST",
+                contentType:false,
+                processData:false,
+                beforeSend: function(){
+                    btnEnviar.val("Guardando.."); // Para input de tipo button
+                    btnEnviar.attr("disabled","disabled");
+                },
+                success: function(data){
+                    btnEnviar.val("Enviado"); // Para input de tipo button
+                    $("body").append(data);
+                    setTimeout(function () {
+                      location.reload("./././infInvestigar_Consultor.php");
+                    }, 5000); //hace redireccion despues de 3 segundos
+                },
+                error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
+                                                        // ejecutara alguna de las siguientes alertas de acuerdo error
+                if (jqXHR.status === 0) {
 
-            } else if (jqXHR.status == 404) {
+                alert('Not connect: Verify Network.');
 
-            alert('Requested page not found [404]');
+                } else if (jqXHR.status == 404) {
 
-            } else if (jqXHR.status == 500) {
+                alert('Requested page not found [404]');
 
-            alert('Internal Server Error [500].');
+                } else if (jqXHR.status == 500) {
 
-            } else if (textStatus === 'parsererror') {
+                alert('Internal Server Error [500].');
 
-            alert('Error de análisis JSON solicitado.');
+                } else if (textStatus === 'parsererror') {
 
-            } else if (textStatus === 'timeout') {
+                alert('Error de análisis JSON solicitado.');
 
-            alert('Time out error.');
+                } else if (textStatus === 'timeout') {
 
-            } else if (textStatus === 'abort') {
+                alert('Time out error.');
 
-            alert('Ajax request aborted.');
+                } else if (textStatus === 'abort') {
 
-            } else {
+                alert('Ajax request aborted.');
 
-            alert('Uncaught Error: ' + jqXHR.responseText);
+                } else {
 
+                alert('Uncaught Error: ' + jqXHR.responseText);
+
+                }
             }
-        }
+            });
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Registro Cancelado',
+              'Has Cancelado el envio',
+              'error'
+            )
+          }
         });
-        setTimeout(function () {
-            location.reload("./././infInvestigar_Consultor.php");
-        }, 3000); //hace redireccion despues de 3 segundos
     });
 });

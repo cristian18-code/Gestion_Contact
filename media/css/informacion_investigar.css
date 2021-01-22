@@ -19,26 +19,6 @@ section h1 {
     color: #090275;
 }
 
-section div div.alerta{
-    width: 100%;
-    color: #ffffff;
-    margin: 20px auto;    
-}
-
-.msg_error{
-    background-color: #e65656;
-    border-radius: 15px;
-}
-
-.msg_save{
-    background-color: #6ece5b;
-    border-radius: 15px;
-}
-
-.alerta p{
-    padding: 10px;
-}
-
 section div#formulario_infInvestigar_Consultor {
     padding: 10px;
     margin: 10px;
