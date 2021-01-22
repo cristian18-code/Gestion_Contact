@@ -23,7 +23,7 @@
             $query=mysqli_query($con,$sql);
             $counter=mysqli_num_rows($query);
             if ($counter==1){
-                $_SESSION['activa'] = true;
+                $_SESSION['activas'] = true;
                 $_SESSION['usernames']=$username; // Iniciando la sesion
                 header("location: ./principal.php"); // Redireccionando a la pagina pincipal.php
                 

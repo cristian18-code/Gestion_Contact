@@ -1,8 +1,8 @@
 <?php
 	include('sistema/logica/login.php'); // Incluye archivo del login
 	
-	if(isset($_SESSION['activa'])){ // Valida si ya hay una sesion iniciada
-		header("location: infInvestigar_Consultor.php");
+	if(isset($_SESSION['activas'])){ // Valida si ya hay una sesion iniciada
+		header("location: principal.php");
 	}
 ?>
 <!DOCTYPE html>

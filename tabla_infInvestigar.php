@@ -50,7 +50,7 @@
     <script src="sistema/js/getTime.js"></script>
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
 <!-- Scripts -->       
-    <title>Informacion a investigar citas - Gestion Contact</title>
+    <title>Informacion a investigar <?php echo $tabla ?> - Gestion Contact</title>
 </head>
 <body>
 <header>
@@ -69,7 +69,7 @@
     <section>
 
         <div>   
-        <span class=""><h2>Registros Informacion a investigar <b> <?php echo strtoupper($tabla);?></b></h2></span>
+        <span class=""><h2>Registros Informacion a investigar <b> <?php echo strtoupper($tabla); if ($tabla == 'fono') {?>PLUS <?PHP } ?></b></h2></span>
         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
         <img src="media/img/<?php echo $img;?>" alt="<?php echo $tabla?>" width="120px">
         <input type="text" name="hora" id="hora" value="" readonly>  <!-- Muestra la hora actual en tiempo real -->

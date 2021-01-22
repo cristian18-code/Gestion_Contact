@@ -1,6 +1,6 @@
 <?php 
 
-    if (empty($_POST['user'])) {
+    if ( empty($_POST['user']) || empty($_POST['tabla']) ) {
         $alert='<p class="msg_error"> Error en la sesión </p>';
     }
     else if (empty($_POST['dia']) || empty($_POST['hora']) || empty($_POST['registro'])) {
@@ -12,10 +12,11 @@
             $alert='<p class="msg_error"> Todos los campos son Obligatorios </p>';
     } else {
         
-        require('../../../../config/db.php');
-        require('../../../../config/conexion.php');
+        require('../../../config/db.php');
+        require('../../../config/conexion.php');
 
         $userRegistra = $_POST['user'];
+        $tabla = $_POST['tabla'];
         $fechaRegistro = $_POST['dia'];
         $horaRegistro = $_POST['hora'];
         $registro = $_POST['registro'];
@@ -31,7 +32,7 @@
         $ciudad = $_POST['ciudad'];
         $detalle = $_POST['detalle'];
 
-        $insertSsql = "INSERT INTO inf_investigar_citas (id_tipificacionEstado,
+        $insertSsql = "INSERT INTO inf_investigar_".$tabla." (id_tipificacionEstado,
                                     fechaRegistro,
                                     horaRegistro,
                                     documento,
@@ -63,7 +64,7 @@
         $insertQslq = $con -> query($insertSsql);
             
         if($insertQslq){
-            $alert='<p class="msg_save"> Registro N°'. $registro .' creado Correctamente</p>';
+            $alert='<p class="msg_save"> Registro N°'. $registro .' creado en '.$tabla.' Correctamente</p>';
         }else{
             $alert='<p class="msg_error"> error al crear el Registro</p>';    
         }

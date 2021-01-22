@@ -1,20 +1,6 @@
 <?php 
     include('config/session.php');
     include('config/conexion.php');
-
-    	
-	$permisoQsql = $con->query("SELECT inf_InvestigarConsultor
-                                    FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'");
-
-    if ($filaP = mysqli_fetch_row($permisoQsql)) {
-        $permiso = $filaP[0];
-    } else {
-        header("location: principal.php");
-    }
-
-    if ($permiso = 0){ // Valida si ya hay una sesion iniciada
-        header("location: principal.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +17,7 @@
 <!-- Scripts -->
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
 <!-- Scripts -->    
-    <title>Informacion a investigar Fono - Gestion Contact</title>
+    <title>Informacion a investigar - Gestion Contact</title>
 </head>
 <body>
 <header>

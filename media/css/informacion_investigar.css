@@ -50,6 +50,11 @@ section div#formulario_infInvestigar_Consultor {
     box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
+section div#formulario_infInvestigar_Consultor h1 b {
+    color: rgb(185, 1, 1);
+    font-weight: 900;
+}
+
 section img:hover {
     -webkit-transform: rotateY(180deg);
     -webkit-transform-style: preserve-3d;

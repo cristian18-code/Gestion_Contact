@@ -1,0 +1,6 @@
+
+"ID Ticket","Area Solicitante","Quien Reporta","Fecha Reporte","Hora Reporte"," Tipo Reporte","Tipo Incidencia","Detalle Soporte",Prioridad,"Tipicacion TI","Fecha Respuesta","Hora Respuesta","Cierre Tickets","Incidencia Nivel","Respuesta TI"
+44,Citas,Citas,22/01/2021,08:04:16,Presence,"Falla X-lite","Se desconfigura x-lite, se hace proceso pero aun no funciona Anydesk 256785407. Diana Castro",Alta,"Se configuro equipo ",22/01/2021,09:54:42,Si,Individual,"Diana Santos"
+45,FonoPlus,FonoPlus,22/01/2021,09:32:14,Athenea,"Caida General","BUEN DIA SOLICITO DE SU AMABLE COLABORACION CON REVISION APLICATIVO MEDICAFE",Alta,"Se valida y el ticetk fue creado por atenena y es para revision de medicafe, medicafe esta funcional , se cierra ticekt por mala creacion ",22/01/2021,09:55:39,Si,General,"lucrecia Jimenez"
+46,FonoPlus,FonoPlus,22/01/2021,09:38:19,Athenea,"Lentitud Athenea","lentitud en medicafe",Alta,"Se valida con dirNal y se presenta un bloqueo por una actualizacion ",22/01/2021,09:56:21,Si,General,"Hugo Moreno"
+47,Citas,Citas,22/01/2021,09:38:50,GO,"Error GO(Home Office)","Por favor instalar la aplicacion GO en los equipos de las auxiliares de novedades Miriam Martinez y Karina Arbelaez",Media,,,,No,Individual,"Diana Santos"

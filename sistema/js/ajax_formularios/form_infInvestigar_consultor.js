@@ -100,7 +100,7 @@ $(document).ready(function(){
 
         $.ajax({
             data:parametros,
-            url:"./././sistema/logica/ajax_formularios/citas/form_infInvestigar_consultor.php",
+            url:"././sistema/logica/ajax_formularios/form_infInvestigar_consultor.php",
             type:"POST",
             contentType:false,
             processData:false,
@@ -147,6 +147,6 @@ $(document).ready(function(){
         });
         setTimeout(function () {
             location.reload("./././infInvestigar_Consultor.php");
-          }, 3000); //hace redireccion despues de 3 segundos
+        }, 3000); //hace redireccion despues de 3 segundos
     });
 });
