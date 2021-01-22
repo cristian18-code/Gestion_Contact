@@ -13,7 +13,7 @@
     }
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT inf_InvestigarConsultor
+	$permisoQsql = $con->query("SELECT inf_investigarConsultor
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'");
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
@@ -22,7 +22,7 @@
         header("location: principal.php");
     }
 
-    if($permiso = 0){ // Valida si ya hay una sesion iniciada
+    if($permiso != 1){ 
         header("location: principal.php");
     }
 
@@ -200,7 +200,7 @@
         </div>            
 
     </section>
+</body>
     <script src="sistema/js/libs/sweetalert2.js"></script>
     <script src="sistema/js/ajax_formularios/form_infInvestigar_consultor.js"></script>
-</body>
 </html>

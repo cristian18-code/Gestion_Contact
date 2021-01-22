@@ -60,6 +60,7 @@ span {
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px;
+	font-family: 'Open Sans';
 }
 .logo{
 	position: absolute;
@@ -147,6 +148,7 @@ ul li a{
 	border-right: 1px solid white;
 	text-decoration:none;
 	display:block;
+	font-family: 'Open Sans';
 }
 ul a:hover{
 	background: rgba(8, 199, 40, 0.11);

@@ -29,7 +29,17 @@
         break;
         case 'fono':
             $img = 'virus.png';
-            break;
+        break;
+    }
+    
+    // valida si el usuario tiene permisos concedidos
+	$permisoQsql = $con->query("SELECT inf_investigarGestor
+                                    FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die (header("location: principal.php"));
+
+    if ($filaP = mysqli_fetch_row($permisoQsql)) {
+        $permiso = $filaP[0];
+    } else {
+        $permiso = 0;
     }
 
 ?>
@@ -86,7 +96,9 @@
                     <th>Hora registro</th>
                     <th>Nombres usuario</th>
                     <th>Estado</th>
+                <?php if ($permiso == 1) { ?>
                     <th>Editar</th>
+                <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -101,7 +113,10 @@
                             <td><?php echo $dato['estado']?></td>
                             <input type="hidden" id="estado" value="<?php echo $dato['estado']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
-                            <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                            <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
+                            <?php if ($permiso == 1) { ?>
+                                <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                            <?php } ?>
                         </form>
                     </tr>
                 <?php } ?>
@@ -114,7 +129,9 @@
                     <th>Hora registro</th>
                     <th>Nombres usuario</th>
                     <th>Estado</th>
+                <?php if ($permiso == 1) { ?>
                     <th>Editar</th>
+                <?php } ?>
                 </tr>
             </tfoot>
         </table>
