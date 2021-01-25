@@ -42,7 +42,7 @@
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
     <script src="sistema/js/getTime.js"></script>
 <!-- Scripts -->    
-    <title>Informacion a investigar <?php echo $tabla ?> - Gestion Contact</title>
+    <title>Informacion a investigar FONO - Gestion Contact</title>
 </head>
 <body>
 <header>
@@ -80,7 +80,7 @@
                         <select name="estado" id="estado" class="form-control" required>
                         <option value="" hidden>Selecciona una opcion</option>
                         <!-- consulta traer datos de la base -->
-                        <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' ORDER BY nombre_tipificacion ASC";
+                        <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado consultor' ORDER BY nombre_tipificacion ASC";
                             $estadoQsql = $con -> query($estadoSsql);
                         ?>
                         <!-- ciclo para mostrar las areas -->

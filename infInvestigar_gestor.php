@@ -23,6 +23,32 @@
         header("location: principal.php");
     }
 
+    $traerDatos = "SELECT tFono.id_registro,
+                            t.nombre_tipificacion AS estado,
+                            DATE_FORMAT(tFono.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
+                            tFono.horaRegistro,
+                            tFono.documento,
+                            tFono.contrato,
+                            tFono.nombresUsuario,
+                            tFono.detalle_servicio,
+                            tFono.email,
+                            t1.nombre_tipificacion AS causal,
+                            tFono.persona_preguntar,
+                            tFono.telefono,
+                            tFono.celular,
+                            tFono.ciudad,
+                            u.username AS user_crea
+                            FROM ((( inf_investigar_fono tFono
+                            INNER JOIN tipificaciones t 
+                                ON tFono.id_tipificacionEstado = t.id_tipificacion)
+                            INNER JOIN tipificaciones t1 
+                                ON tFono.id_tipificacionCausal = t1.id_tipificacion)
+                            INNER JOIN usuarios u
+                                ON tFono.id_userCrea = u.id_usuario)
+                            WHERE tFono.id_registro = '$registro'";
+
+    $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');     
+
 ?>
 
 <!DOCTYPE html>
@@ -71,25 +97,20 @@
                     <input type="text" class="form-control" name="registro" id="registro" readonly value="<?php echo $registro ?>"> <!-- Muestra el numero del registro a crear -->
                     </div>
                     <br>
-                    <div id="encabezado" class="form-group">
-                        <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-                        <img src="media/img/datos-del-usuario.png" alt="anadir" width="80px">
-                        <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
-                        <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
-                    </div>          
-
+  
+                <?php foreach ($ver as $dato) { ?>
                     <div class="row" style="justify-content: center;">
                         <div id="cont-fecha" class="form-group row col-5">
                             <label for="fecha" class="col-sm-3   col-form-label">Fecha de registro</label>
                             <div class="col-sm-9">
-                                <input type="text" name="fecha" id="fecha" value="" class="form-control" readonly>
+                                <input type="text" name="fecha" id="fecha" value="Dia: <?php echo $dato['fecha_registro']; ?>  Hora: <?php echo $dato['horaRegistro']; ?>" class="form-control" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-consultor">
                             <label for="consultor" class="col-sm-3 col-form-label">Consultor</label>
                             <div class="col-sm-9">
-                                <input type="text" name="consultor" id="consultor" class="form-control" readonly>
+                                <input type="text" name="consultor" id="consultor" class="form-control" value="<?php echo $dato['user_crea']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -98,14 +119,14 @@
                         <div class="form-group row col-5" id="cont-documento">
                             <label for="documento" class="col-sm-3 col-form-label">N° Documento</label>
                             <div class="col-sm-9">
-                                <input type="text" name="documento" id="documento" class="form-control" readonly>
+                                <input type="text" name="documento" id="documento" class="form-control" value="<?php echo $dato['documento']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-contrato">
                             <label for="contrato" class="col-sm-3 col-form-label">N° contrato</label>
                             <div class="col-sm-9">
-                                <input type="text" name="contrato" id="contrato" class="form-control" readonly>
+                                <input type="text" name="contrato" id="contrato" class="form-control" value="<?php echo $dato['contrato']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -114,14 +135,14 @@
                         <div class="form-group row col-5" id="cont-nombres">
                             <label for="nombres" class="col-sm-3 col-form-label">Nombres usuario</label>
                             <div class="col-sm-9">
-                                <input type="text" name="nombres" id="nombres" class="form-control" readonly>
+                                <input type="text" name="nombres" id="nombres" class="form-control" value="<?php echo $dato['nombresUsuario']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-correo">
                             <label for="correo" class="col-sm-3 col-form-label">Correo electronico</label>
                             <div class="col-sm-9">
-                                <input type="text" name="correo" id="correo" class="form-control" readonly>
+                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['email']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -130,14 +151,14 @@
                         <div class="form-group row col-5" id="cont-causal">
                             <label for="causal" class="col-sm-3 col-form-label">Causal</label>
                             <div class="col-sm-9">
-                                <input type="text" name="causal" id="causal" class="form-control" readonly>
+                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['causal']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-persona">
                             <label for="persona" class="col-sm-3 col-form-label">Persona a preguntar</label>
                             <div class="col-sm-9">
-                                <input type="text" name="persona" id="persona" class="form-control" readonly>
+                                <input type="text" name="persona" id="persona" class="form-control" value="<?php echo $dato['persona_preguntar']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -146,14 +167,14 @@
                         <div class="form-group row col-5" id="cont-telefono">
                             <label for="telefono" class="col-sm-3 col-form-label">Telefono fijo</label>
                             <div class="col-sm-9">
-                                <input type="text" name="telefono" id="telefono" class="form-control" readonly>
+                                <input type="text" name="telefono" id="telefono" class="form-control" value="<?php echo $dato['telefono']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-celular">
                             <label for="celular" class="col-sm-3 col-form-label">Celular</label>
                             <div class="col-sm-9">
-                                <input type="text" name="celular" id="celular" class="form-control" readonly>
+                                <input type="text" name="celular" id="celular" class="form-control" value="<?php echo $dato['celular']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -162,14 +183,14 @@
                         <div id="cont-estado" class="form-group row col-5">
                             <label for="estado" class="col-sm-3 col-form-label">Estado</label>
                             <div class="col-sm-9">
-                                <input type="text" name="estado" id="estado" class="form-control" readonly>
+                                <input type="text" name="estado" id="estado" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-ciudad">
                             <label for="ciudad" class="col-sm-3 col-form-label">Ciudad</label>
                             <div class="col-sm-9">
-                                <input type="text" name="ciudad" id="ciudad" class="form-control" readonly>
+                                <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo $dato['ciudad']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -178,17 +199,66 @@
                         <div class="form-group row col-10" style="justify-content: center;" id="cont-detalle">
                             <label for="detalle" class="col-sm-3 col-form-label">Detalle servicio</label>
                             <div class="col-sm-9">
-                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" value="<?php echo $dato['detalle_servicio']; ?>" readonly></textarea>
                             </div>
                         </div>
                     </div>
+                <?php } ?>
                 </form>
                 <hr>
-                <form method="post" name="form_infInvestigarConsultor" id="form_infInvestigarConsultor">
+                <form method="post" name="form_infInvestigar_gestor" id="form_infInvestigar_gestor">
+                    <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
+                    <hr>
+
+                    <div id="encabezado" class="form-group">
+                        <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
+                        <img src="media/img/datos-del-usuario.png" alt="anadir" width="80px">
+                        <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
+                        <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
+                        <input type="hidden" name="registro" id="registro" value="<?php echo $registro ?>"> <!-- Muestra el numero del registro a crear -->
+                    </div>        
+
+                    <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto;">
+                    <label for="estado" class="col-sm-4 col-form-label">Estado</label>
+                    <div class="col-sm-8">
+                        <select name="estado" id="estado" class="form-control" autofocus required>
+                            <option value="" hidden>Selecciona una opcion</option>
+                            <!-- consulta traer datos de la base -->
+                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' ORDER BY nombre_tipificacion ASC";
+                                $estadoQsql = $con->query($estadoSsql);
+                            ?>
+                            <!-- ciclo para mostrar las areas -->
+                            <?php foreach ($estadoQsql as $row) { ?>
+                            
+                                <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
+                            
+                            <?php } ?>                        
+                        </select>
+                    </div>
+                    </div>
+                    
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group row col-5" style="justify-content: center;" id="cont-respuesta">
+                            <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
+                            <div class="col-sm-9">
+                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row col-5" style="justify-content: center;" id="cont-gestion">
+                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
+                            <div class="col-sm-9">
+                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarGestor" name="btnEnviar_infInvestigarGestor" value="Guardar"></center>
+
                 </form>
-        </div>  
+        </div>
     </section>
 </body>
-<script src="sistema/js/libs/sweetalert2.js"></script>
-<script src="sistema/js/ajax_formularios/form_infInvestigar_consultor.js"></script>
+    <script src="sistema/js/libs/sweetalert2.js"></script>
+    <script src="sistema/js/ajax_formularios/form_infInvestigar_gestor.js"></script>
 </html>                
