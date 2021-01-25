@@ -176,7 +176,7 @@
                 </div>
                 <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarConsultor" name="btnEnviar_infInvestigarConsultor" value="Guardar"></center>
             </form>
-        </div>            
+        </div>    
 
     </section>
 </body>
