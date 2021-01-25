@@ -98,9 +98,6 @@ $(document).ready(function(){
             return
         }
 
-        // tabla en que se guardara
-        var tabla = $("#tabla").val();
-
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',
@@ -111,7 +108,7 @@ $(document).ready(function(){
           
           swalWithBootstrapButtons.fire({
             title: '¿Estas seguro?',
-            text: "Crear registro en "+tabla +", despues de guardar no se podra reversar",
+            text: "Despues de guardar no se podra reversar",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

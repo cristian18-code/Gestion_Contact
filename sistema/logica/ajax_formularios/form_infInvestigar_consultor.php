@@ -1,6 +1,6 @@
 <?php 
 
-    if ( empty($_POST['user']) || empty($_POST['tabla']) ) {
+    if ( empty($_POST['user'])) {
         $alert="<script>
         Swal.fire({
             icon: 'error',
@@ -50,7 +50,7 @@
         $ciudad = $_POST['ciudad'];
         $detalle = $_POST['detalle'];
 
-        $insertSsql = "INSERT INTO inf_investigar_".$tabla." (id_tipificacionEstado,
+        $insertSsql = "INSERT INTO inf_investigar_fono (id_tipificacionEstado,
                                     fechaRegistro,
                                     horaRegistro,
                                     documento,

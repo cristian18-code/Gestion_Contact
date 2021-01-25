@@ -9,6 +9,7 @@
 <!-- Estilos css -->
     <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="media/css/libs/reset.css">
+    <link rel="stylesheet" href="media/icons/style.css">
     <link rel="stylesheet" href="media/css/header.css">
 <!-- Estilos css -->
     <link rel="shortcut icon" href="media/img/favicon.png" type="image/x-icon">

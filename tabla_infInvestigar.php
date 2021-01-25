@@ -2,16 +2,6 @@
     include('config/session.php');
     include('config/conexion.php');
 
-    if (empty($_GET['tabla'])) {
-        header("location: principal.php");
-    }
-    
-    $tabla = $_GET['tabla'];
-
-    if ($tabla != 'citas' && $tabla != 'fono') {
-        header("location: principal.php");
-    }
-
     /* Traer los tickets pendientes */
     $ssql = "SELECT investigar.id_registro,
                     usuarios.username,
@@ -19,18 +9,9 @@
                     DATE_FORMAT(investigar.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
                     investigar.horaRegistro,
                     investigar.nombresUsuario
-                    FROM ((inf_investigar_".$tabla." investigar INNER JOIN usuarios ON investigar.id_userCrea = usuarios.id_usuario)
+                    FROM ((inf_investigar_fono investigar INNER JOIN usuarios ON investigar.id_userCrea = usuarios.id_usuario)
                     INNER JOIN tipificaciones t ON investigar.id_tipificacionEstado = t.id_tipificacion)";
     $qsqlDatos = $con->query($ssql);
-
-    switch ($tabla) {
-        case 'citas':
-            $img = 'datos_citas.png';
-        break;
-        case 'fono':
-            $img = 'virus.png';
-        break;
-    }
     
     // valida si el usuario tiene permisos concedidos
 	$permisoQsql = $con->query("SELECT inf_investigarGestor
@@ -60,7 +41,7 @@
     <script src="sistema/js/getTime.js"></script>
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
 <!-- Scripts -->       
-    <title>Informacion a investigar <?php echo $tabla ?> - Gestion Contact</title>
+    <title>Informacion a investigar fonoplus - Gestion Contact</title>
 </head>
 <body>
 <header>
@@ -79,9 +60,9 @@
     <section>
 
         <div>   
-        <span class=""><h2>Registros Informacion a investigar <b> <?php echo strtoupper($tabla); if ($tabla == 'fono') {?>PLUS <?PHP } ?></b></h2></span>
+        <span class=""><h2>Registros Informacion a investigar <b>FONOPLUSS</b></h2></span>
         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-        <img src="media/img/<?php echo $img;?>" alt="<?php echo $tabla?>" width="120px">
+        <img src="media/img/investigar.png" alt="<?php echo $tabla?>" width="120px">
         <input type="text" name="hora" id="hora" value="" readonly>  <!-- Muestra la hora actual en tiempo real -->
         </div>
 

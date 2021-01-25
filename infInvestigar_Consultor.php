@@ -2,16 +2,6 @@
     include('config/session.php');
     include('config/conexion.php');
 
-    if (empty($_GET['tabla'])) {
-        header("location: principal.php");
-    }
-
-    $tabla = $_GET['tabla'];
-
-    if ($tabla != 'citas' && $tabla != 'fono') {
-        header("location: principal.php");
-    }
-
     // valida si el usuario tiene permisos concedidos
 	$permisoQsql = $con->query("SELECT inf_investigarConsultor
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'");
@@ -27,21 +17,11 @@
     }
 
     /* Trae el ultimo registro creado */
-    $traerDatos = "SELECT max(id_registro) FROM inf_investigar_".$tabla."";
+    $traerDatos = "SELECT max(id_registro) FROM inf_investigar_fono";
     $ver = $con->query($traerDatos) or die ("No se obtuvieron datos en la consulta");
 
     if ($row = mysqli_fetch_row($ver)) {
         $id = $row[0];
-    }
-
-    // direccion de imagen
-    switch ($tabla) {
-        case 'citas':
-            $img = 'investigar';
-        break;
-        case 'fono':
-            $img = 'datos-del-usuario';
-            break;
     }
 ?>
 
@@ -79,7 +59,7 @@
     <section>
     
     <div id="formulario_infInvestigar_Consultor">    
-        <h1>Datos Consultor <b> <?php echo strtoupper($tabla); if ($tabla == 'fono') {?>PLUS <?PHP } ?></b> </h1>
+        <h1>Datos Consultor <b> FONOPLUS </b> </h1>
         <hr>
             <form method="post" name="form_infInvestigarConsultor" id="form_infInvestigarConsultor">
                 <div class="form-group" id="cont-registro" style="text-align: center;">
@@ -89,10 +69,9 @@
                 <br>
                 <div id="encabezado" class="form-group">
                     <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-                    <img src="media/img/<?php echo $img ?>.png" alt="anadir" width="80px">
+                    <img src="media/img/datos_citas.png" alt="anadir" width="80px">
                     <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
                     <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
-                    <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>">
                 </div>
 
                 <div id="cont-estado" class="form-group row">

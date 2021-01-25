@@ -4,15 +4,15 @@
 
     <li class="principal"> <a href="#"> <span class="icon-aid-kit"></span> citas </a>
       <ul>
-        <li><a href="./infInvestigar_Consultor.php?tabla=citas"> <span class="icon-folder-plus"> </span> crear registro </a></li>
-        <li><a href="./tabla_infInvestigar.php?tabla=citas">  <span class="icon-eye"> </span> Seguimiento </a></li>
+        <li><a href="#"> <span class="icon-folder-plus"> </span> crear registro </a></li>
+        <li><a href="#">  <span class="icon-eye"> </span> Seguimiento </a></li>
       </ul>
     </li>
 
     <li class="principal"> <a href="#"> <span class="icon-user-tie"></span> Fonoplus </a>
       <ul>
-        <li><a href="./infInvestigar_Consultor.php?tabla=fono"> <span class="icon-folder-plus"> </span> crear registro </a></li>
-        <li><a href="./tabla_infInvestigar.php?tabla=fono">  <span class="icon-eye"> </span> Seguimiento </a></li>
+        <li><a href="./infInvestigar_Consultor.php"> <span class="icon-folder-plus"> </span> crear registro </a></li>
+        <li><a href="./tabla_infInvestigar.php">  <span class="icon-eye"> </span> Seguimiento </a></li>
       </ul>
     </li>
 <!--/.Navbar -->
