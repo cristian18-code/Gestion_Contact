@@ -10,7 +10,7 @@
     $registro = $_POST['registro'];
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT inf_investigarGestor
+	$permisoQsql = $con->query("SELECT preparaciones_gestor
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die (header("location: principal.php"));
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
@@ -23,31 +23,47 @@
         header("location: principal.php");
     }
 
-    $traerDatos = "SELECT tFono.id_registro,
+    $traerDatos = "SELECT   preparaciones.id_registro,
                             t.nombre_tipificacion AS estado,
-                            DATE_FORMAT(tFono.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
-                            tFono.horaRegistro,
-                            tFono.documento,
-                            tFono.contrato,
-                            tFono.nombresUsuario,
-                            tFono.detalle_servicio,
-                            tFono.email,
-                            t1.nombre_tipificacion AS causal,
-                            tFono.persona_preguntar,
-                            tFono.telefono,
-                            tFono.celular,
-                            tFono.ciudad,
+                            DATE_FORMAT(preparaciones.fecha_registro, '%d/%m/%Y') AS fecha_registro,
+                            preparaciones.hora_registro,
+                            preparaciones.documento,
+                            preparaciones.contrato,
+                            preparaciones.nombres_usuario,
+                            preparaciones.examen,
+                            preparaciones.correo,
+                            preparaciones.celular,
+                            preparaciones.observaciones,
+                            preparaciones.fecha_envio,
+                            preparaciones.hora_envio,
+                            t1.nombre_tipificacion AS cmd,
+                            t2.nombre_tipificacion AS tipo,
+                            t3.nombre_tipificacion AS solicitud,
+                            t4.nombre_tipificacion AS tipoPaciente,
                             u.username AS user_crea
-                            FROM ((( inf_investigar_fono tFono
-                            INNER JOIN tipificaciones t 
-                                ON tFono.id_tipificacionEstado = t.id_tipificacion)
+                            FROM ((((( envio_preparaciones preparaciones
+                            LEFT JOIN tipificaciones t 
+                                ON preparaciones.id_tipificacionEstado = t.id_tipificacion)
                             INNER JOIN tipificaciones t1 
-                                ON tFono.id_tipificacionCausal = t1.id_tipificacion)
+                                ON preparaciones.id_tipificacionCmd = t1.id_tipificacion)
+                            INNER JOIN tipificaciones t2 
+                                ON preparaciones.id_tipificacionTipo = t2.id_tipificacion)
+                            INNER JOIN tipificaciones t3
+                                ON preparaciones.id_tipificacionSolicitud = t3.id_tipificacion)
+                            INNER JOIN tipificaciones t4
+                                ON preparaciones.id_tipificacionTipo_paciente = t4.id_tipificacion)
                             INNER JOIN usuarios u
-                                ON tFono.id_userCrea = u.id_usuario)
-                            WHERE tFono.id_registro = '$registro'";
+                                ON preparaciones.id_userCrea = u.id_usuario
+                            WHERE preparaciones.id_registro = '$registro'";
 
-    $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');     
+    $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');
+    
+    if ($filaR = mysqli_fetch_row($ver)) {
+        $estado = $filaR[0];
+        if ($estado == 'CORREO ENVIADO') {
+            header("location: principal.php");
+        }
+    }
 
 ?>
 
@@ -68,7 +84,7 @@
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
     <script src="sistema/js/getTime.js"></script>
 <!-- Scripts -->    
-    <title>Informacion a investigar FONOPLUS - Gestion Contact</title>
+    <title>Envio de preparaciones - Gestion Contact</title>
 
     <style>
         section {max-width: 1400px;} section form {max-width: 1200px;} section form input{font-size: 16px;} 
@@ -89,7 +105,7 @@
     <section>
 
         <div id="formulario">    
-            <h1>Datos a gestionar <b>FONOPLUS</b> </h1>
+            <h1>Gestion agente <b>Preparaciones</b> </h1>
             <hr>
                 <form>
                     <div class="form-group" id="cont-registro" style="text-align: center;">
@@ -103,7 +119,7 @@
                         <div id="cont-fecha" class="form-group row col-5">
                             <label for="fecha" class="col-sm-3   col-form-label">Fecha de registro</label>
                             <div class="col-sm-9">
-                                <input type="text" name="fecha" id="fecha" value="Dia: <?php echo $dato['fecha_registro']; ?>  Hora: <?php echo $dato['horaRegistro']; ?>" class="form-control" readonly>
+                                <input type="text" name="fecha" id="fecha" value="Dia: <?php echo $dato['fecha_registro']; ?>  Hora: <?php echo $dato['hora_registro']; ?>" class="form-control" readonly>
                             </div>
                         </div>
 
@@ -135,39 +151,23 @@
                         <div class="form-group row col-5" id="cont-nombres">
                             <label for="nombres" class="col-sm-3 col-form-label">Nombres usuario</label>
                             <div class="col-sm-9">
-                                <input type="text" name="nombres" id="nombres" class="form-control" value="<?php echo $dato['nombresUsuario']; ?>" readonly>
+                                <input type="text" name="nombres" id="nombres" class="form-control" value="<?php echo $dato['nombres_usuario']; ?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group row col-5" id="cont-correo">
                             <label for="correo" class="col-sm-3 col-form-label">Correo electronico</label>
                             <div class="col-sm-9">
-                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['email']; ?>" readonly>
+                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['correo']; ?>" readonly>
                             </div>
                         </div>
                     </div>
 
                     <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-causal">
-                            <label for="causal" class="col-sm-3 col-form-label">Causal</label>
+                        <div class="form-group row col-5" id="cont-examen">
+                            <label for="examen" class="col-sm-3 col-form-label">Examen</label>
                             <div class="col-sm-9">
-                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['causal']; ?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-5" id="cont-persona">
-                            <label for="persona" class="col-sm-3 col-form-label">Persona a preguntar</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="persona" id="persona" class="form-control" value="<?php echo $dato['persona_preguntar']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-telefono">
-                            <label for="telefono" class="col-sm-3 col-form-label">Telefono fijo</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="telefono" id="telefono" class="form-control" value="<?php echo $dato['telefono']; ?>" readonly>
+                                <input type="text" name="examen" id="examen" class="form-control" value="<?php echo $dato['examen']; ?>" readonly>
                             </div>
                         </div>
 
@@ -179,27 +179,12 @@
                         </div>
                     </div>
 
-                    <div class="row" style="justify-content: center;">
-                        <div id="cont-estado" class="form-group row col-5">
-                            <label for="estado" class="col-sm-3 col-form-label">Estado</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="estado" id="estado" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-5" id="cont-ciudad">
-                            <label for="ciudad" class="col-sm-3 col-form-label">Ciudad</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo $dato['ciudad']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-10" style="justify-content: center;" id="cont-detalle">
-                            <label for="detalle" class="col-sm-3 col-form-label">Detalle servicio</label>
+                        <div class="form-group row col-10" style="justify-content: center;" id="cont-observacion">
+                            <label for="observacion" class="col-sm-3 col-form-label">Observaciones de solicitud</label>
                             <div class="col-sm-9">
-                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['detalle_servicio']; ?></textarea>
+                                <textarea name="observacion" id="observacion" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['observaciones']; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -207,49 +192,44 @@
                 </form>
                 <hr>
                 <form method="post" name="form_infInvestigar_gestor" id="form_infInvestigar_gestor">
-                    <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
+                    <h1 style="text-align: center;">Gestion<b> BACK OFFICE</b></h1>
                     <hr>
 
                     <div id="encabezado" class="form-group">
                         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-                        <img src="media/img/datos-del-usuario.png" class="mover" alt="anadir" width="80px">
+                        <img src="media/img/datos-del-usuario.png" class="mover" class="mover" alt="anadir" width="80px">
                         <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
                         <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
                         <input type="hidden" name="registro" id="registro" value="<?php echo $registro ?>"> <!-- Muestra el numero del registro a crear -->
-                    </div>        
+                    </div>
 
-                    <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto;">
-                    <label for="estado" class="col-sm-4 col-form-label">Estado</label>
-                    <div class="col-sm-8">
-                        <select name="estado" id="estado" class="form-control" autofocus required>
-                            <option value="" hidden>Selecciona una opcion</option>
-                            <!-- consulta traer datos de la base -->
-                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
-                                $estadoQsql = $con->query($estadoSsql);
-                            ?>
-                            <!-- ciclo para mostrar las areas -->
-                            <?php foreach ($estadoQsql as $row) { ?>
-                            
-                                <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
-                            
-                            <?php } ?>                        
-                        </select>
-                    </div>
-                    </div>
-                    
                     <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" style="justify-content: center;" id="cont-respuesta">
-                            <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
+                        <div class="form-group row col-5" id="cont-examen">
+                            <label for="examen" class="col-sm-3 col-form-label">Examen</label>
                             <div class="col-sm-9">
-                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                                <select name="estado" id="estado" class="form-control" autofocus required>
+                                    <option value="" hidden>Selecciona una opcion</option>
+                                    <!-- consulta traer datos de la base -->
+                                <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
+                                    $estadoQsql = $con->query($estadoSsql);
+                                ?>
+                                <!-- ciclo para mostrar las areas -->
+                                <?php foreach ($estadoQsql as $row) { ?>
+                                
+                                    <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
+                                
+                                <?php } ?>                        
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group row col-5" style="justify-content: center;" id="cont-gestion">
-                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
-                            <div class="col-sm-9">
-                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
-                            </div>
+                        <a href="mailto:soporte"><img src="media/img/gmail.png" alt="enviar correo" width="50px"></a>
+                    </div>
+                    
+                    <div class="form-group row  col-8" id="cont-observacion" style="margin-left:auto; margin-right:auto;">
+                        <label for="observacion" class="col-sm-4 col-form-label">Observaciones Gestión</label>
+                        <div class="col-sm-8">
+                            <textarea name="observacion" id="observacion" class="form-control" rows="4" style="resize:none; text-align: center;" required></textarea>
                         </div>
                     </div>
 

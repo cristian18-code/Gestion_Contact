@@ -59,7 +59,7 @@
     <section>
     
     <div id="formulario">    
-        <h1>Envio de preparaciones <b> Gestion agente</b></h1>
+        <h1>Envio de Preparaciones <b> Gestion agente</b></h1>
         <hr>
             <form method="post" name="form_preparaciones_agente" id="form_preparaciones_agente">
                 <div class="form-group" id="cont-registro" style="text-align: center;">
@@ -69,7 +69,7 @@
                 <br>
                 <div id="encabezado" class="form-group">
                     <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-                    <img src="media/img/mensaje.png" alt="anadir" width="80px">
+                    <img src="media/img/mensaje.png" class="mover" alt="anadir" width="80px">
                     <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
                     <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
                 </div>

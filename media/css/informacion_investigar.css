@@ -36,7 +36,7 @@ section div#formulario h1 b {
     font-weight: 900;
 }
 
-section img:hover {
+section form img.mover:hover {
     -webkit-transform: rotateY(180deg);
     -webkit-transform-style: preserve-3d;
     transform: rotateY(180deg);

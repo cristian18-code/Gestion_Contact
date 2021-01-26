@@ -16,7 +16,7 @@
     $qsqlDatos = $con->query($ssql);
     
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT inf_investigarGestor
+	$permisoQsql = $con->query("SELECT preparaciones_gestor
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die ($permiso = 0);
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
@@ -64,7 +64,7 @@
         <div>   
         <span class=""><h2>Envio <b>Preparaciones</b></h2></span>
         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-        <img src="media/img/enviar.png" width="70px" alt="<?php echo $tabla?>" width="120px">
+        <img src="media/img/enviar.png" class="mover" width="70px" alt="<?php echo $tabla?>" width="120px">
         <input type="text" name="hora" id="hora" value="" readonly>  <!-- Muestra la hora actual en tiempo real -->
         </div>
 
@@ -88,7 +88,7 @@
             <tbody>
                 <?php foreach ($qsqlDatos as $dato) { ?>
                     <tr>
-                        <form action="#" method="post">
+                        <form action="preparaciones_gestor.php" method="post">
                             <td><?php echo $dato['id_registro']; ?></td>
                             <td><?php echo $dato['fecha_registro']?></td>
                             <td><?php echo $dato["hora_registro"]; ?></td>

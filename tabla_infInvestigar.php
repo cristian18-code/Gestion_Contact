@@ -64,7 +64,7 @@
         <div>   
         <span class=""><h2>Registros Informacion a investigar <b>FONOPLUSS</b></h2></span>
         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-        <img src="media/img/investigar.png" width="70px" alt="<?php echo $tabla?>" width="120px">
+        <img src="media/img/investigar.png" class="mover" width="70px" alt="<?php echo $tabla?>" width="120px">
         <input type="text" name="hora" id="hora" value="" readonly>  <!-- Muestra la hora actual en tiempo real -->
         </div>
 
