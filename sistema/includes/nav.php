@@ -15,5 +15,6 @@
         <li><a href="./tabla_infInvestigar.php">  <span class="icon-eye"> </span> Seguimiento </a></li>
       </ul>
     </li>
+    <li><a href="descargarConsolidadoCompleto.php"> <span class="icon-home3"></span> Historicos</a></li>
 <!--/.Navbar -->
 <!-- se envia un parametro por medio de la url el cual indica que tabla se debe visualzar -->

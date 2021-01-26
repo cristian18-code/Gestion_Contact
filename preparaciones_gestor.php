@@ -1,6 +1,7 @@
 <?php 
     include('config/session.php');
     include('config/conexion.php');
+    include('sistema/logica/envio_correo.php');
 
     // valida que se envie un registro
     if (empty($_POST['registro'])) {
@@ -59,9 +60,13 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');
     
     if ($filaR = mysqli_fetch_row($ver)) {
-        $estado = $filaR[0];
+        $estado = $filaR[1];
         if ($estado == 'CORREO ENVIADO') {
             header("location: principal.php");
+        }
+
+        if ($filaR[16] = 'MEDPLUS') {
+            $correo = usuarioMedplus($filaR[8], $filaR[6], $filaR[7]);
         }
     }
 
@@ -203,10 +208,9 @@
                         <input type="hidden" name="registro" id="registro" value="<?php echo $registro ?>"> <!-- Muestra el numero del registro a crear -->
                     </div>
 
-                    <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-examen">
-                            <label for="examen" class="col-sm-3 col-form-label">Examen</label>
-                            <div class="col-sm-9">
+                        <div class="form-group row col-8" id="cont-estado" style="margin-left:auto; margin-right:auto;">
+                            <label for="estado" class="col-sm-4 col-form-label">Estado</label>
+                            <div class="col-sm-8">
                                 <select name="estado" id="estado" class="form-control" autofocus required>
                                     <option value="" hidden>Selecciona una opcion</option>
                                     <!-- consulta traer datos de la base -->
@@ -223,7 +227,8 @@
                             </div>
                         </div>
 
-                        <a href="mailto:soporte"><img src="media/img/gmail.png" alt="enviar correo" width="50px"></a>
+                    <div id="cont-enviarCorreo">
+                        <center><a href="<?php echo $correo; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
                     </div>
                     
                     <div class="form-group row  col-8" id="cont-observacion" style="margin-left:auto; margin-right:auto;">
