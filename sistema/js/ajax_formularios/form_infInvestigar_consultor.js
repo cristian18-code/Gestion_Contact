@@ -136,37 +136,66 @@ $(document).ready(function(){
                     }, 5000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
-                                                        // ejecutara alguna de las siguientes alertas de acuerdo error
+                  // ejecutara alguna de las siguientes alertas de acuerdo error
                 if (jqXHR.status === 0) {
 
-                alert('Not connect: Verify Network.');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Not connect: Verify Network.'
+                })
 
                 } else if (jqXHR.status == 404) {
 
-                alert('Requested page not found [404]');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Requested page not found [404]'
+                })
 
                 } else if (jqXHR.status == 500) {
 
-                alert('Internal Server Error [500].');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Internal Server Error [500].'
+                })
 
                 } else if (textStatus === 'parsererror') {
 
-                alert('Error de análisis JSON solicitado.');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error de análisis JSON solicitado.'
+                })
 
                 } else if (textStatus === 'timeout') {
 
-                alert('Time out error.');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Time out error.'
+                })
 
                 } else if (textStatus === 'abort') {
 
-                alert('Ajax request aborted.');
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ajax request aborted.'
+                })
 
                 } else {
 
                 alert('Uncaught Error: ' + jqXHR.responseText);
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Uncaught Error: ' + jqXHR.responseText
+                })
 
                 }
-            }
+                }
             });
         } else if (
             /* Read more about handling dismissals below */

@@ -14,13 +14,13 @@
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Error en la sesion!'
+            text: 'Error en los parametros enviados!'
         })
         </script>";
     }
-    else if (empty($_POST['estado']) || empty($_POST['documento']) || empty($_POST['contrato']) || empty($_POST['nombres'])
-                || empty($_POST['causal']) || empty($_POST['correo']) || empty($_POST['persona']) || empty($_POST['telefono'])
-                || empty($_POST['celular']) || empty($_POST['ciudad']) || empty($_POST['detalle'])) {                
+    else if (empty($_POST['documento']) || empty($_POST['contrato']) || empty($_POST['nombres']) || empty($_POST['celular'])
+                || empty($_POST['examen']) || empty($_POST['correo']) || empty($_POST['solicitud']) || empty($_POST['cmd'])
+                || empty($_POST['tipo']) || empty($_POST['tipoPaciente']) || empty($_POST['observacion'])) {                
                     $alert="<script>
                     Swal.fire({
                         icon: 'error',
@@ -37,45 +37,45 @@
         $fechaRegistro = $_POST['dia'];
         $horaRegistro = $_POST['hora'];
         $registro = $_POST['registro'];
-        $estado = $_POST['estado'];
         $documento = $_POST['documento'];
         $contrato = $_POST['contrato'];
         $nombres = $_POST['nombres'];
-        $causal = $_POST['causal'];
-        $correo = $_POST['correo'];
-        $persona = $_POST['persona'];
-        $telefono = $_POST['telefono'];
         $celular = $_POST['celular'];
-        $ciudad = $_POST['ciudad'];
-        $detalle = $_POST['detalle'];
+        $examen = $_POST['examen'];
+        $correo = $_POST['correo'];
+        $solicitud = $_POST['solicitud'];
+        $cmd = $_POST['cmd'];
+        $tipo = $_POST['tipo'];
+        $tipoPaciente = $_POST['tipoPaciente'];
+        $observacion = $_POST['observacion'];
 
-        $insertSsql = "INSERT INTO inf_investigar_fono (id_tipificacionEstado,
-                                    fechaRegistro,
-                                    horaRegistro,
+        $insertSsql = "INSERT INTO envio_preparaciones (fecha_registro,
+                                    hora_registro,
                                     documento,
                                     contrato,
-                                    nombresUsuario,
-                                    detalle_servicio,
-                                    email,
-                                    id_tipificacionCausal,
-                                    persona_preguntar,
-                                    telefono,
+                                    nombres_usuario,
+                                    examen,
+                                    correo,
                                     celular,
-                                    ciudad,
+                                    id_tipificacionCmd,
+                                    id_tipificacionTipo,
+                                    id_tipificacionTipo_paciente,
+                                    id_tipificacionSolicitud,
+                                    observaciones,
                                     id_userCrea)
-                            VALUES ('$estado',
-                                    STR_TO_DATE('$fechaRegistro', '%d/%m/%Y'),
+                            VALUES (STR_TO_DATE('$fechaRegistro', '%d/%m/%Y'),
                                     '$horaRegistro',
                                     '$documento',
                                     '$contrato',
                                     '$nombres',
-                                    '$detalle',
+                                    '$examen',
                                     '$correo',
-                                    '$causal',
-                                    '$persona',
-                                    '$telefono',
                                     '$celular',
-                                    '$ciudad',
+                                    '$cmd',
+                                    '$tipo',
+                                    '$tipoPaciente',
+                                    '$solicitud',
+                                    '$observacion',
                                     '$userRegistra')";
 
         $insertQslq = $con -> query($insertSsql);
@@ -85,7 +85,7 @@
                     var id = $registro;
                     Swal.fire(
                         'Registro Creado',
-                        'Se ha a guardado el registro No: '+ id +'',
+                        'Se ha guardado el registro No: '+ id +', por favor recargar la pagina',
                         'success'
                     ) 
                     </script>";
@@ -94,7 +94,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Something went wrong!'
+                        text: 'Error al crear registro!'
 
                     })
                     </script>";

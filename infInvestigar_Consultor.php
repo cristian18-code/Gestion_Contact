@@ -58,7 +58,7 @@
 
     <section>
     
-    <div id="formulario_infInvestigar_Consultor">    
+    <div id="formulario">    
         <h1>Datos Consultor <b> FONOPLUS </b> </h1>
         <hr>
             <form method="post" name="form_infInvestigarConsultor" id="form_infInvestigarConsultor">
@@ -80,7 +80,7 @@
                         <select name="estado" id="estado" class="form-control" required>
                         <option value="" hidden>Selecciona una opcion</option>
                         <!-- consulta traer datos de la base -->
-                        <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado consultor' ORDER BY nombre_tipificacion ASC";
+                        <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado consultor' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
                             $estadoQsql = $con -> query($estadoSsql);
                         ?>
                         <!-- ciclo para mostrar las areas -->
@@ -120,7 +120,7 @@
                         <select name="causal" id="causal" class="form-control" required>
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
-                            <?php $causalSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Causal' ORDER BY nombre_tipificacion ASC";
+                            <?php $causalSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Causal' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
                                 $causalQsql = $con -> query($causalSsql);
                             ?>
                             <!-- ciclo para mostrar las areas -->

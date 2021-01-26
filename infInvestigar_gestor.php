@@ -88,8 +88,8 @@
 
     <section>
 
-        <div id="formulario_infInvestigar_Consultor">    
-            <h1>Datos a gestionar <b> FONOPLUS</b> </h1>
+        <div id="formulario">    
+            <h1>Datos a gestionar <b>FONOPLUS</b> </h1>
             <hr>
                 <form>
                     <div class="form-group" id="cont-registro" style="text-align: center;">
@@ -224,7 +224,7 @@
                         <select name="estado" id="estado" class="form-control" autofocus required>
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
-                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' ORDER BY nombre_tipificacion ASC";
+                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
                                 $estadoQsql = $con->query($estadoSsql);
                             ?>
                             <!-- ciclo para mostrar las areas -->

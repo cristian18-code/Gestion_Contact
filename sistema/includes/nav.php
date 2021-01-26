@@ -4,7 +4,7 @@
 
     <li class="principal"> <a href="#"> <span class="icon-aid-kit"></span> citas </a>
       <ul>
-        <li><a href="#"> <span class="icon-folder-plus"> </span> crear registro </a></li>
+        <li><a href="./preparaciones_agente.php"> <span class="icon-folder-plus"> </span> crear registro </a></li>
         <li><a href="#">  <span class="icon-eye"> </span> Seguimiento </a></li>
       </ul>
     </li>

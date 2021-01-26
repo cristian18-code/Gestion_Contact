@@ -30,10 +30,10 @@
             include 'sistema/includes/nav.php';
         ?>
         </nav>
-    </header>
+</header>
 
     <section>
-    
+        
            
 
     </section>

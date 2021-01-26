@@ -20,7 +20,7 @@ section h1 {
     color: #090275;
 }
 
-section div#formulario_infInvestigar_Consultor {
+section div#formulario {
     padding: 10px;
     margin: 10px;
     border: 1px solid #1826356e;
@@ -31,7 +31,7 @@ section div#formulario_infInvestigar_Consultor {
     box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-section div#formulario_infInvestigar_Consultor h1 b {
+section div#formulario h1 b {
     color: rgb(185, 1, 1);
     font-weight: 900;
 }
@@ -44,7 +44,7 @@ section img:hover {
     transition: 1s;
 }
 
-section div#formulario_infInvestigar_Consultor #dia, section div#formulario_infInvestigar_Consultor #hora {
+section div#formulario #dia, section div#formulario #hora {
     border: 1px solid rgb(11, 70, 197);
     background-color: rgba(255, 255, 255, .0);
     pointer-events: none;
@@ -58,20 +58,20 @@ section div#formulario_infInvestigar_Consultor #dia, section div#formulario_infI
     font-size: 20px;
 }
 
-section div#formulario_infInvestigar_Consultor div#encabezado {
+section div#formulario div#encabezado {
     margin: 0 auto;
     max-width: 750px;
 }
 
-section div#formulario_infInvestigar_Consultor #hora {
+section div#formulario #hora {
     float: right;
 }
 
-section div#formulario_infInvestigar_Consultor #dia {
+section div#formulario #dia {
     float: left;
 }
 
-section div#formulario_infInvestigar_Consultor #registro {
+section div#formulario #registro {
     display: block;
     margin-left: auto;
     margin-top: 10px;

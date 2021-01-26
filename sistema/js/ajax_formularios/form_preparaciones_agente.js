@@ -1,20 +1,21 @@
+
 $(document).ready(function(){
 
     /* Envio de formulario para crear ticket*/
-    $("#form_infInvestigar_gestor").on("submit",function(e){
+    $("#form_preparaciones_agente").on("submit",function(e){
         e.preventDefault();
 
 
-        var parametros = new FormData($("#form_infInvestigar_gestor")[0]);
-        var btnEnviar = $("#btnEnviar_infInvestigarGestor");
+        var parametros = new FormData($("#form_preparaciones_agente")[0]);
+        var btnEnviar = $("#btnEnviar_preparaciones_agente");
         
         // valida que el campo documento no este vacio ni contenga letras
-        var estado = $("#estado").val();
-        if (estado == 0 || estado == null) {
+        var documento = $("#documento").val();
+        if (isNaN(documento) || /^\s+$/.test(documento)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Debes seleccionar una opción estado'
+                text: 'El campo DOCUMENTO no puede estar vacio ni contener letras'
               });
             return
         }
@@ -26,28 +27,61 @@ $(document).ready(function(){
                 icon: 'warning',
                 title: 'Oops...',
                 text: 'El campo CONTRATO no puede estar vacio ni contener letras'
+            });
+            return
+        }
+
+        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+        var nombres = $("#nombres").val();
+        if (nombres.length == 0 || nombres == null || /^\s+$/.test(nombres)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'El campo NOMBRE USUARIO no puede estar vacio'
+              });
+            return
+        }
+
+        // valida que el campo no este vacio ni contenga letras
+        var celular = $("#celular").val();
+        if (isNaN(celular) || /^\s+$/.test(celular)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'El campo CELULAR no puede estar vacio ni contener letras'
+                });
+            return
+        }
+
+        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+        var examen = $("#examen").val();
+        if (examen.length == 0 || examen == null || /^\s+$/.test(examen)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'El campo EXAMEN no puede estar vacio'
+                });
+            return
+        }
+
+        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+        var correo = $("#correo").val();
+        if (correo.length == 0 || correo == null || /^\s+$/.test(correo)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'El campo CORREO no puede estar vacio'
               });
             return
         }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var respuesta = $("#respuesta").val();
-        if (respuesta.length == 0 || respuesta == null || /^\s+$/.test(respuesta)) {
+        var observacion = $("#observacion").val();
+        if (observacion.length == 0 || observacion == null || /^\s+$/.test(observacion)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo RESPUESTA no puede estar vacio'
-              });
-            return
-        }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var gestion = $("#observaciones").val();
-        if (gestion.length == 0 || gestion == null || /^\s+$/.test(gestion)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo GESTIÓN llAMADA no puede estar vacio'
+                text: 'El campo OBSERVACIONES no puede estar vacio'
               });
             return
         }
@@ -74,7 +108,7 @@ $(document).ready(function(){
 
             $.ajax({
                 data:parametros,
-                url:"././sistema/logica/ajax_formularios/form_infInvestigar_gestor.php",
+                url:"././sistema/logica/ajax_formularios/form_preparaciones_agente.php",
                 type:"POST",
                 contentType:false,
                 processData:false,
@@ -86,69 +120,70 @@ $(document).ready(function(){
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
                     setTimeout(function () {
-                      window.location = "./././tabla_infInvestigar.php";
+                      location.reload("./././infInvestigar_Consultor.php");
                     }, 5000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
-                  // ejecutara alguna de las siguientes alertas de acuerdo error
+                                                        // ejecutara alguna de las siguientes alertas de acuerdo error
                 if (jqXHR.status === 0) {
 
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Not connect: Verify Network.'
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Not connect: Verify Network.'
                 })
 
                 } else if (jqXHR.status == 404) {
 
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Requested page not found [404]'
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Requested page not found [404]'
                 })
 
                 } else if (jqXHR.status == 500) {
 
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Internal Server Error [500].'
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Internal Server Error [500].'
                 })
 
                 } else if (textStatus === 'parsererror') {
 
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Error de análisis JSON solicitado.'
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error de análisis JSON solicitado.'
                 })
 
                 } else if (textStatus === 'timeout') {
 
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Time out error.'
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Time out error.'
                 })
 
                 } else if (textStatus === 'abort') {
 
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Ajax request aborted.'
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Ajax request aborted.'
                 })
 
                 } else {
 
+                alert('Uncaught Error: ' + jqXHR.responseText);
                 Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'Uncaught Error: ' + jqXHR.responseText
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Uncaught Error: ' + jqXHR.responseText
                 })
 
                 }
-                }
+            }
             });
         } else if (
             /* Read more about handling dismissals below */
