@@ -3,16 +3,16 @@
     include('config/conexion.php');
 
     /* Traer los tickets pendientes */
-    $ssql = "SELECT investigar.id_registro,
-                    t.nombre_tipificacion AS estado,
-                    DATE_FORMAT(investigar.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
-                    investigar.horaRegistro,
-                    investigar.documento,
-                    investigar.contrato,
-                    investigar.nombresUsuario
-                    FROM (inf_investigar_fono investigar
-                        INNER JOIN tipificaciones t
-                            ON investigar.id_tipificacionEstado = t.id_tipificacion)";
+    $ssql = "SELECT preparaciones.id_registro,
+                    DATE_FORMAT(preparaciones.fecha_registro, '%d/%m/%Y') AS fecha_registro,
+                    preparaciones.hora_registro,
+                    preparaciones.documento,
+                    preparaciones.contrato,
+                    preparaciones.nombres_usuario,
+                    t.nombre_tipificacion AS solicitud
+                    FROM (envio_preparaciones preparaciones 
+                        INNER JOIN tipificaciones t ON preparaciones.id_tipificacionSolicitud = t.id_tipificacion)";
+
     $qsqlDatos = $con->query($ssql);
     
     // valida si el usuario tiene permisos concedidos
@@ -43,7 +43,7 @@
     <script src="sistema/js/getTime.js"></script>
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
 <!-- Scripts -->       
-    <title>Informacion a investigar fonoplus - Gestion Contact</title>
+    <title>Envio Preparaciones - Gestion Contact</title>
 </head>
 <body>
 <header>
@@ -62,9 +62,9 @@
     <section>
 
         <div>   
-        <span class=""><h2>Registros Informacion a investigar <b>FONOPLUSS</b></h2></span>
+        <span class=""><h2>Envio <b>Preparaciones</b></h2></span>
         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-        <img src="media/img/investigar.png" width="70px" alt="<?php echo $tabla?>" width="120px">
+        <img src="media/img/enviar.png" width="70px" alt="<?php echo $tabla?>" width="120px">
         <input type="text" name="hora" id="hora" value="" readonly>  <!-- Muestra la hora actual en tiempo real -->
         </div>
 
@@ -74,12 +74,12 @@
             <thead>
                 <tr>
                     <th>Registro</th>
-                    <th>Estado</th>
-                    <th>fecha Registro</th>
+                    <th>Fecha registro</th>
                     <th>Hora registro</th>
-                    <th>Documento</th>
-                    <th>Contrato</th>
-                    <th>Nombres usuario</th>
+                    <th>documento</th>
+                    <th>contrato</th>
+                    <th>nombres usuario</th>
+                    <th>Tipo solicitud</th>
                 <?php if ($permiso == 1) { ?>
                     <th>Editar</th>
                 <?php } ?>
@@ -88,15 +88,15 @@
             <tbody>
                 <?php foreach ($qsqlDatos as $dato) { ?>
                     <tr>
-                        <form action="infInvestigar_gestor.php" method="post">
+                        <form action="#" method="post">
                             <td><?php echo $dato['id_registro']; ?></td>
-                            <td><?php echo $dato['estado']?></td>
-                            <td><?php echo $dato["fecha_registro"]; ?></td>
-                            <td><?php echo $dato["horaRegistro"]; ?></td>
-                            <td><?php echo $dato['documento']?></td>
+                            <td><?php echo $dato['fecha_registro']?></td>
+                            <td><?php echo $dato["hora_registro"]; ?></td>
+                            <td><?php echo $dato["documento"]; ?></td>
                             <td><?php echo $dato['contrato']?></td>
-                            <td><?php echo $dato['nombresUsuario']?></td>
-                            <input type="hidden" id="estado" value="<?php echo $dato['estado']; ?>"> <!-- para dar color a la fila-->
+                            <td><?php echo $dato['nombres_usuario']?></td>
+                            <td><?php echo $dato['solicitud']?></td>
+                            <input type="hidden" id="estado" value="<?php echo $dato['solicitud']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
                             <?php if ($permiso == 1) { ?>
@@ -107,17 +107,18 @@
                 <?php } ?>
             </tbody>
             <tfoot>
-                <tr>
-                    <th>Registro</th>
-                    <th>Consultor</th>
-                    <th>fecha Registro</th>
-                    <th>Hora registro</th>
-                    <th>Nombres usuario</th>
-                    <th>Estado</th>
-                <?php if ($permiso == 1) { ?>
-                    <th>Editar</th>
-                <?php } ?>
-                </tr>
+            <tr>
+                <th>Registro</th>
+                <th>Fecha registro</th>
+                <th>Hora registro</th>
+                <th>documento</th>
+                <th>contrato</th>
+                <th>nombres usuario</th>
+                <th>Tipo solicitud</th>
+            <?php if ($permiso == 1) { ?>
+                <th>Editar</th>
+            <?php } ?>
+            </tr>
             </tfoot>
         </table>
     </section>
