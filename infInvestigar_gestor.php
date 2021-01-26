@@ -199,7 +199,7 @@
                         <div class="form-group row col-10" style="justify-content: center;" id="cont-detalle">
                             <label for="detalle" class="col-sm-3 col-form-label">Detalle servicio</label>
                             <div class="col-sm-9">
-                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" value="<?php echo $dato['detalle_servicio']; ?>" readonly></textarea>
+                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['detalle_servicio']; ?></textarea>
                             </div>
                         </div>
                     </div>

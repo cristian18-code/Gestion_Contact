@@ -64,7 +64,7 @@
             <form method="post" name="form_infInvestigarConsultor" id="form_infInvestigarConsultor">
                 <div class="form-group" id="cont-registro" style="text-align: center;">
                 <label for="registro" style="font-weight: 700;">Registro N°</label>
-                <input type="text" class="form-control" name="registro" id="registro" readonly value="<?php echo $id ?>"> <!-- Muestra el numero del registro a crear -->
+                <input type="text" class="form-control" name="registro" id="registro" readonly value="<?php echo $id + 1; ?>"> <!-- Muestra el numero del registro a crear -->
                 </div>
                 <br>
                 <div id="encabezado" class="form-group">
