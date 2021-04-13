@@ -30,16 +30,17 @@ $(document).ready(function(){
             return
         }
 
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var nombres = $("#nombres").val();
-        if (nombres.length == 0 || nombres == null || /^\s+$/.test(nombres)) {
+                // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+        var ServicioSoli = $("#ServicioSoli").val();
+        if (ServicioSoli == null) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo NOMBRE USUARIO no puede estar vacio'
+                text: 'El campo Servicio Solicitado no puede estar vacio'
               });
             return
         }
+
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var correo = $("#correo").val();
@@ -48,29 +49,6 @@ $(document).ready(function(){
                 icon: 'warning',
                 title: 'Oops...',
                 text: 'El campo CORREO no puede estar vacio'
-              });
-            return
-        }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var persona = $("#persona").val();
-        if (persona.length == 0 || persona == null || /^\s+$/.test(persona)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo PERSONA A PREGUNTAR no puede estar vacio'
-              });
-            return
-        }
-
-
-        // valida que el campo no este vacio ni contenga letras
-        var celular = $("#celular").val();
-        if (isNaN(celular) || /^\s+$/.test(celular)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CELULAR no puede estar vacio ni contener letras'
               });
             return
         }
