@@ -15,6 +15,14 @@
                     WHERE id_tipificacionEstado != '30' AND id_tipificacionEstado !='33' OR id_tipificacionEstado IS NULL";
 
     $qsqlDatos = $con->query($ssql);
+	$permisoQsql = $con->query("SELECT GestorCitas
+                                    FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die ($permiso = 0);
+
+    if ($filaP = mysqli_fetch_row($permisoQsql)) {
+        $permiso = $filaP[0];
+    } else {
+        $permiso = 0;
+    }
 
 
 ?>
@@ -91,7 +99,7 @@
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
                        
-                                <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                            <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
                   
                         </form>
                     </tr>

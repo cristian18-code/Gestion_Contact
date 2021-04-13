@@ -17,7 +17,7 @@
     $qsqlDatos = $con->query($ssql);
     
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT GestorFono
+	$permisoQsql = $con->query("SELECT GestorCitas
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die ($permiso = 0);
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
@@ -82,7 +82,9 @@
                     <th>Documento</th>
                     <th>Contrato</th>
                     <th>Nombres usuario</th>
+                    <?php if ($_SESSION['roles'] == 'Administrador' || $_SESSION['roles'] == 'Supervisor' || $_SESSION['roles'] == 'Back Office') { ?>
                     <th>Editar</th>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -98,8 +100,10 @@
                             <td><?php echo $dato['nombresUsuario']?></td>
                             <input type="hidden" id="estado" value="<?php echo $dato['estado']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
+                            <?php if ($_SESSION['roles'] == 'Administrador' || $_SESSION['roles'] == 'Supervisor' || $_SESSION['roles'] == 'Back Office') { ?>
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
-                                <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                            <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                            <?php } ?>
                         </form>
                     </tr>
                 <?php } ?>
@@ -113,7 +117,9 @@
                     <th>Documento</th>
                     <th>Contrato</th>
                     <th>Nombres usuario</th>
+                    <?php if ($_SESSION['roles'] == 'Administrador' || $_SESSION['roles'] == 'Supervisor' || $_SESSION['roles'] == 'Back Office') { ?>
                     <th>Editar</th>
+                    <?php } ?>
         
                 </tr>
             </tfoot>
