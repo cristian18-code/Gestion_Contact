@@ -3,7 +3,7 @@
     include('config/conexion.php');
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT GestorCitas
+	$permisoQsql = $con->query("SELECT AgenteCitas
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'");
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
