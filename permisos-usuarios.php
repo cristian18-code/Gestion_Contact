@@ -62,7 +62,7 @@
     
 
             // Se ejecuta un Query que valide si el Usuario y la Cedula no se encuentran creados//
-            $query = mysqli_query($con,"UPDATE permisos SET ConsultorFono = '$ConsultorFono', GestorFono = '$GestorFono', GestorCitas = '$GestorCitas',
+            $query = mysqli_query($con,"UPDATE permisos SET ConsultorFono = '$ConsultorFono', GestorFono = '$GestorFono', AgenteCitas = '$AgenteCitas',
 			GestorCitas = '$GestorCitas', reportes = '$reportes', crud_usuarios = '$usuarios'
 			WHERE id_usuario = '$idusuario' ");
 			
