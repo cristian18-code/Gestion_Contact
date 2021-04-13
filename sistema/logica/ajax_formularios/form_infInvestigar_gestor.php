@@ -43,9 +43,9 @@
 
         $insertSsql = "UPDATE inf_investigar_fono SET   fechaCierre = STR_TO_DATE('$fechaGestion', '%d/%m/%Y'),
                                                         horaRegistro = '$horaGestion',
-                                                        Observaciones = '$observaciones',
+                                                        Observaciones = CONCAT(Observaciones, '$observaciones //'),
                                                         id_tipificacionEstado = '$estado',
-                                                        respuestaCierre = '$respuesta',
+                                                        respuestaCierre = CONCAT(respuestaCierre, '$respuesta //'),
                                                         id_userCierre = '$userGestion'
                                                         WHERE id_registro = '$registro'";
 

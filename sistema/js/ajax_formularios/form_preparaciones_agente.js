@@ -119,9 +119,9 @@ $(document).ready(function(){
                 success: function(data){
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
-                    setTimeout(function () {
-                      location.reload("./././infInvestigar_Consultor.php");
-                    }, 5000); //hace redireccion despues de 3 segundos
+                    // setTimeout(function () {
+                    //   location.reload("./././infInvestigar_Consultor.php");
+                    // }, 5000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
                                                         // ejecutara alguna de las siguientes alertas de acuerdo error

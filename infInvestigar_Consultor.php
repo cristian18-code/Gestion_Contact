@@ -3,17 +3,17 @@
     include('config/conexion.php');
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT inf_investigarConsultor
+	$permisoQsql = $con->query("SELECT ConsultorFono
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'");
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
         $permiso = $filaP[0];
     } else {
-        header("location: principal.php");
+        header("location: alerta.php");
     }
 
     if($permiso != 1){ 
-        header("location: principal.php");
+        header("location: alerta.php");
     }
 
     /* Trae el ultimo registro creado */
@@ -29,7 +29,9 @@
 <html lang="es">
 <head>
 <!-- Estilos css -->
+     <link rel="stylesheet" href="media/css/libs/pushbar.css">	
     <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="media/css/libs/bootstrap5.min.css">
     <link rel="stylesheet" href="media/css/libs/reset.css">
     <link rel="stylesheet" href="media/css/header.css">
     <link rel="stylesheet" href="media/icons/style.css">
@@ -96,14 +98,14 @@
                 <div class="form-group row" id="cont-documento">
                     <label for="documento" class="col-sm-4 col-form-label">N° Documento</label>
                     <div class="col-sm-8">
-                        <input type="text" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento" required>
+                        <input type="number" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento" required>
                     </div>
                 </div>
             
                 <div class="form-group row" id="cont-contrato">
                     <label for="contrato" class="col-sm-4 col-form-label">N° Contrato</label>
                     <div class="col-sm-8">
-                        <input type="text" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato" required>
+                        <input type="number" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato" required>
                     </div>
                 </div>
 
@@ -136,7 +138,7 @@
                 <div class="form-group row" id="cont-correo">
                     <label for="correo" class="col-sm-4 col-form-label">Correo electronico</label>
                     <div class="col-sm-8">
-                        <input type="text" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario" required>
+                        <input type="email" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario" pattern="{@}" required>
                     </div>
                 </div>
 
@@ -150,14 +152,14 @@
                 <div class="form-group row" id="cont-telefono">
                     <label for="telefono" class="col-sm-4 col-form-label">Telefono</label>
                     <div class="col-sm-8">
-                        <input type="text" name="telefono" id="telefono" class="form-control" autocomplete="off" placeholder="Telefono fijo" required>
+                        <input type="number" name="telefono" id="telefono" class="form-control" autocomplete="off" placeholder="Telefono fijo" required>
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-celular">
                     <label for="celular" class="col-sm-4 col-form-label">Celular</label>
                     <div class="col-sm-8">
-                        <input type="text" name="celular" id="celular" class="form-control" autocomplete="off" placeholder="Numero celular" required>
+                        <input type="number" name="celular" id="celular" class="form-control" autocomplete="off" placeholder="Numero celular" required>
                     </div>
                 </div>
 
@@ -180,6 +182,12 @@
 
     </section>
 </body>
-    <script src="sistema/js/libs/sweetalert2.js"></script>
     <script src="sistema/js/ajax_formularios/form_infInvestigar_consultor.js"></script>
+    <script src="sistema/js/libs/pushbar.js"></script>
+<script type="text/javascript">
+    const pushbar = new Pushbar({
+          blur:true,
+          overlay:true,
+        });
+</script>
 </html>

@@ -11,18 +11,16 @@
     $registro = $_POST['registro'];
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT preparaciones_gestor
+	$permisoQsql = $con->query("SELECT GestorCitas
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die (header("location: principal.php"));
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
         $permiso = $filaP[0];
     } else {
-        header("location: principal.php");
+        header("location: alerta.php");
     }
 
-    if($permiso != 1){ 
-        header("location: principal.php");
-    }
+
 
     $traerDatos = "SELECT   preparaciones.id_registro,
                             t.nombre_tipificacion AS estado,
@@ -65,8 +63,17 @@
             header("location: principal.php");
         }
 
-        if ($filaR[16] = 'MEDPLUS') {
+        switch ($filaR[16]) {
+            case 'MEDPLUS':
             $correo = usuarioMedplus($filaR[8], $filaR[6], $filaR[7]);
+            break;
+            case 'PARTICULAR':
+            $correo = usuarioParticular($filaR[8], $filaR[6], $filaR[7]);
+            break;
+            case 'MEDCENTER':
+                $correo = usuarioMedcenter($filaR[8], $filaR[6], $filaR[7]);
+            break;
+          
         }
     }
 
@@ -76,6 +83,7 @@
 <html lang="es">
 <head>
 <!-- Estilos css -->
+    <link rel="stylesheet" href="media/css/libs/pushbar.css">	
     <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="media/css/libs/reset.css">
     <link rel="stylesheet" href="media/css/header.css">
@@ -183,8 +191,32 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group row col-5" id="cont-examen">
+                            <label for="tipousuario" class="col-sm-3 col-form-label">Tipo Usuario</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="tipousuario" id="tipousuario" class="form-control" value="<?php echo $dato['tipoPaciente']; ?>" readonly>
+                            </div>
+                        </div>
+                        
 
-
+                        <div class="form-group row col-5" id="cont-celular">
+                            <label for="estadoS" class="col-sm-3 col-form-label">Estado</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="estadoS" id="estadoS" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group row col-10" id="cont-examen">
+                            <label for="examen" class="col-sm-3 col-form-label">Centro Medico</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="examen" id="examen" class="form-control" value="<?php echo $dato['cmd']; ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-10" style="justify-content: center;" id="cont-observacion">
                             <label for="observacion" class="col-sm-3 col-form-label">Observaciones de solicitud</label>
@@ -196,7 +228,8 @@
                 <?php } ?>
                 </form>
                 <hr>
-                <form method="post" name="form_infInvestigar_gestor" id="form_infInvestigar_gestor">
+                <?php if($permiso == 1 ) {?>
+                <form method="post" name="form_preparaciones_gestor" id="form_preparaciones_gestor" action="sistema/logica/ajax_formularios/form_preparaciones_gestor.php">
                     <h1 style="text-align: center;">Gestion<b> BACK OFFICE</b></h1>
                     <hr>
 
@@ -207,10 +240,10 @@
                         <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
                         <input type="hidden" name="registro" id="registro" value="<?php echo $registro ?>"> <!-- Muestra el numero del registro a crear -->
                     </div>
-
-                        <div class="form-group row col-8" id="cont-estado" style="margin-left:auto; margin-right:auto;">
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group row col-5" id="cont-estado" style="margin-left:auto; margin-right:auto;">
                             <label for="estado" class="col-sm-4 col-form-label">Estado</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-9">
                                 <select name="estado" id="estado" class="form-control" autofocus required>
                                     <option value="" hidden>Selecciona una opcion</option>
                                     <!-- consulta traer datos de la base -->
@@ -226,11 +259,32 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row col-5" id="cont-cmd">
+                            <label for="cmd" class="col-sm-4 col-form-label">Centro Medico</label>
+                            <div class="col-sm-9">
+                                <select name="cmd" id="cmd" class="form-control" required>
+                                    <option value="" hidden>Selecciona una opcion</option>
+                                    <!-- consulta traer datos de la base -->
+                                    <?php $cmdSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'centro medico' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
+                                        $cmdQsql = $con -> query($cmdSsql);
+                                    ?>
+                                    <!-- ciclo para mostrar las areas -->
+                                    <?php foreach ($cmdQsql as $row) { ?>
+                                    
+                                        <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
+                                    
+                                    <?php } ?>                        
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div id="cont-enviarCorreo">
                         <center><a href="<?php echo $correo; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
                     </div>
-                    
+
+    
+
                     <div class="form-group row  col-8" id="cont-observacion" style="margin-left:auto; margin-right:auto;">
                         <label for="observacion" class="col-sm-4 col-form-label">Observaciones Gestión</label>
                         <div class="col-sm-8">
@@ -238,12 +292,22 @@
                         </div>
                     </div>
 
-                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarGestor" name="btnEnviar_infInvestigarGestor" value="Guardar"></center>
+                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_preparacionesGestor" name="btnEnviar_preparacionesGestor" value="Guardar"></center>
 
                 </form>
+                <?php }?>
         </div>
     </section>
 </body>
+<script src="sistema/js/libs/pushbar.js"></script>
+
+
+<script type="text/javascript">
+    const pushbar = new Pushbar({
+          blur:true,
+          overlay:true,
+        });
+</script>
     <script src="sistema/js/libs/sweetalert2.js"></script>
-    <script src="sistema/js/ajax_formularios/form_infInvestigar_gestor.js"></script>
+   <script src="sistema/js/ajax_formularios/form_preparaciones_gestor.js"></script>
 </html>                

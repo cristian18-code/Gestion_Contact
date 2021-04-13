@@ -12,7 +12,8 @@
                     investigar.nombresUsuario
                     FROM (inf_investigar_fono investigar
                         INNER JOIN tipificaciones t
-                            ON investigar.id_tipificacionEstado = t.id_tipificacion)";
+                            ON investigar.id_tipificacionEstado = t.id_tipificacion)
+                    WHERE id_tipificacionEstado != '14'";
     $qsqlDatos = $con->query($ssql);
     
     // valida si el usuario tiene permisos concedidos
@@ -30,7 +31,8 @@
 <html lang="es">
 <head>
 <!-- Estilos css -->
-<link rel="stylesheet" href="media/css/libs/bootstrap5.min.css">
+    <link rel="stylesheet" href="media/css/libs/pushbar.css">	
+    <link rel="stylesheet" href="media/css/libs/bootstrap5.min.css">
     <link rel="stylesheet" href="media/css/header.css">
     <link rel="stylesheet" href="media/icons/style.css">
     <link rel="stylesheet" href="media/css/tabla_infInvestigar.css">
@@ -80,9 +82,7 @@
                     <th>Documento</th>
                     <th>Contrato</th>
                     <th>Nombres usuario</th>
-                <?php if ($permiso == 1) { ?>
                     <th>Editar</th>
-                <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -98,10 +98,10 @@
                             <td><?php echo $dato['nombresUsuario']?></td>
                             <input type="hidden" id="estado" value="<?php echo $dato['estado']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
+                           
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
-                            <?php if ($permiso == 1) { ?>
-                                <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
-                            <?php } ?>
+                            <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                     
                         </form>
                     </tr>
                 <?php } ?>
@@ -109,14 +109,14 @@
             <tfoot>
                 <tr>
                     <th>Registro</th>
-                    <th>Consultor</th>
+                    <th>Estado</th>
                     <th>fecha Registro</th>
                     <th>Hora registro</th>
+                    <th>Documento</th>
+                    <th>Contrato</th>
                     <th>Nombres usuario</th>
-                    <th>Estado</th>
-                <?php if ($permiso == 1) { ?>
                     <th>Editar</th>
-                <?php } ?>
+        
                 </tr>
             </tfoot>
         </table>
@@ -125,6 +125,13 @@
     <div class="adicional"></div>
 
 </body>
+<script src="sistema/js/libs/pushbar.js"></script>
+<script type="text/javascript">
+    const pushbar = new Pushbar({
+          blur:true,
+          overlay:true,
+        });
+</script>
 <script>
     $(document).ready(function() {
         $('#registros').DataTable(); /* Script para la tabla */
@@ -141,6 +148,8 @@
             }
         });
     </script>
+    
+    <script src="sistema/js/libs/sweetalert2.js"></script>
     <script src="sistema/js/libs/jquery.dataTables.min.js"></script> <!-- Script de Datatable -->
     <script src="sistema/js/libs/bootstrap5.min.js"></script> <!-- Script de Datatable -->
 </html>

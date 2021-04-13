@@ -124,11 +124,9 @@ $(document).ready(function(){
                 type:"POST",
                 contentType:false,
                 processData:false,
-                beforeSend: function(){
+                success: function(data){
                     btnEnviar.val("Guardando.."); // Para input de tipo button
                     btnEnviar.attr("disabled","disabled");
-                },
-                success: function(data){
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
                     setTimeout(function () {

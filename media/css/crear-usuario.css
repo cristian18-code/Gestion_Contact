@@ -1,0 +1,63 @@
+body {
+    background-color: #f8f7f7;
+}
+
+
+header {
+    grid-area: my-header;
+    grid-column: 1/2;
+    z-index: 10;
+}
+
+
+section {
+    grid-area: my-section;
+    grid-column: 1/2;
+    margin: 0 auto;
+    max-width: 1400px;
+    text-align: center;
+    display: flex;  
+    align-items: center;
+    margin-top: 5%;
+}
+
+section div#formulario_usuario {
+    min-width: 700px;
+    padding: 10px;
+    margin: auto;
+}
+
+section div#formulario_usuario form {
+    padding: 30px;
+    border: 1px solid #0505053b;
+    background-color: #fffefe;
+    border-radius: 10px;
+    box-shadow: -10px 10px 20px -10px rgba(0,0,0, 0.5);
+}
+
+section div#formulario_usuario form label {
+    font-size: 18px;
+    float: left;
+    font-weight: 600;
+    color: #000000;
+}
+
+section div#formulario_usuario form input, section div#formulario_usuario form select {
+    border: none;
+    border-bottom: 1px solid #0a2d79bb;
+    border-radius: 0px;
+}
+section div#formulario_usuario form input:focus,section div#formulario_usuario form select:focus {
+    border-bottom: solid #e65656 2px;
+}
+section div#formulario_usuario form input[type=submit] {
+    border-radius: 5px;
+}
+
+section div#formulario_usuario form input[type=submit]:hover {
+    cursor:pointer;
+}
+
+footer {
+    grid-area: my-footer;
+}

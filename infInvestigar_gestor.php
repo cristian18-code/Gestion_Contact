@@ -1,6 +1,7 @@
 <?php 
     include('config/session.php');
     include('config/conexion.php');
+    include('sistema/logica/envio_correo.php');
 
     // valida que se envie un registro
     if (empty($_POST['registro'])) {
@@ -10,18 +11,15 @@
     $registro = $_POST['registro'];
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT inf_investigarGestor
+	$permisoQsql = $con->query("SELECT GestorFono
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die (header("location: principal.php"));
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
         $permiso = $filaP[0];
     } else {
-        header("location: principal.php");
+        header("location: alerta.php");
     }
 
-    if($permiso != 1){ 
-        header("location: principal.php");
-    }
 
     $traerDatos = "SELECT tFono.id_registro,
                             t.nombre_tipificacion AS estado,
@@ -37,6 +35,8 @@
                             tFono.telefono,
                             tFono.celular,
                             tFono.ciudad,
+                            tFono.respuestaCierre,
+                            tFono.Observaciones,
                             u.username AS user_crea
                             FROM ((( inf_investigar_fono tFono
                             INNER JOIN tipificaciones t 
@@ -46,16 +46,26 @@
                             INNER JOIN usuarios u
                                 ON tFono.id_userCrea = u.id_usuario)
                             WHERE tFono.id_registro = '$registro'";
+                            
 
-    $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');     
+    $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
+    if ($filaR = mysqli_fetch_row($ver)) {
+        $estado = $filaR[1];
+        if ($filaR[1] = 'NONE') {
+            $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
+        }
+    } 
+    
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <!-- Estilos css -->
+    <link rel="stylesheet" href="media/css/libs/pushbar.css">	
     <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="media/css/libs/bootstrap5.min.css">
     <link rel="stylesheet" href="media/css/libs/reset.css">
     <link rel="stylesheet" href="media/css/header.css">
     <link rel="stylesheet" href="media/icons/style.css">
@@ -206,6 +216,7 @@
                 <?php } ?>
                 </form>
                 <hr>
+                <?php if($permiso == 1){ ?>
                 <form method="post" name="form_infInvestigar_gestor" id="form_infInvestigar_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
                     <hr>
@@ -218,12 +229,46 @@
                         <input type="hidden" name="registro" id="registro" value="<?php echo $registro ?>"> <!-- Muestra el numero del registro a crear -->
                     </div>        
 
-                    <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto;">
+                    
+                    <div id="cont-enviarCorreo">
+                        <center><a href="<?php echo $correos; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
+                    </div>
+                    <?php if($filaR[14] != '' || $filaR[15] != '') { ?>
+                    <div class="rows">
+                    <?php if ($filaR[14] != '') { ?>     
+                    <h4>Respuesta Anterior</h4>
+                        <textarea class="left form-control" readonly> <?php echo $filaR[14] ?></textarea>
+                    <?php } ?>
+                    <?php if ($filaR[15] != '') { ?>    
+                    <h4>Observación Anterior</h4>
+                        <textarea class="right form-control" readonly> <?php echo $filaR[15] ?></textarea>
+                    <?php } ?>        
+                    </div>
+                    <?php } ?>
+                    
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group row col-6" style="justify-content: center;" id="cont-respuesta">
+                            <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
+                            <div class="col-sm-9">
+                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" required> </textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row col-6" style="justify-content: center;" id="cont-gestion">
+                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
+                            <div class="col-sm-9">
+                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto; margin-top: 1%;">
                     <label for="estado" class="col-sm-4 col-form-label">Estado</label>
                     <div class="col-sm-8">
                         <select name="estado" id="estado" class="form-control" autofocus required>
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
+                    
                             <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
                                 $estadoQsql = $con->query($estadoSsql);
                             ?>
@@ -236,29 +281,24 @@
                         </select>
                     </div>
                     </div>
-                    
-                    <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" style="justify-content: center;" id="cont-respuesta">
-                            <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
-                            <div class="col-sm-9">
-                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-5" style="justify-content: center;" id="cont-gestion">
-                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
-                            <div class="col-sm-9">
-                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
-                            </div>
-                        </div>
-                    </div>
 
                     <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarGestor" name="btnEnviar_infInvestigarGestor" value="Guardar"></center>
 
                 </form>
+                <?php } ?>
         </div>
     </section>
 </body>
+<script src="sistema/js/libs/pushbar.js"></script>
+
+
+<script type="text/javascript">
+    const pushbar = new Pushbar({
+          blur:true,
+          overlay:true,
+        });
+</script>
     <script src="sistema/js/libs/sweetalert2.js"></script>
     <script src="sistema/js/ajax_formularios/form_infInvestigar_gestor.js"></script>
+    <script src="sistema/js/libs/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>                
