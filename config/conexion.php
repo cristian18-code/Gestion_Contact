@@ -10,6 +10,4 @@
     if (@mysqli_connect_errno()) {
         die("Conexión falló: ".mysqli_connect_errno()." : ". mysqli_connect_error());
     }
-    
-    $tb = array(1 => "envio_preparaciones", 2 => "inf-investigar_fono");
 ?>

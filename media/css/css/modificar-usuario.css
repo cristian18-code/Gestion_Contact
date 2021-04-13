@@ -1,0 +1,71 @@
+body {
+    margin: 0 auto !important;
+    min-height: 100vh;
+    display: grid !important;
+    background-color: #f8f7f7;
+    grid-template-columns: 100%;
+    grid-template-rows: 110px 
+                        1fr
+                        60px;
+    grid-template-areas:"my-header my-header my-header"
+                        "my-section my-section my-section"
+                        "my-footer my-footer my-footer";
+}
+
+header {
+    grid-area: my-header;
+    grid-column: 1/2;
+    z-index: 10;
+}
+
+
+section {
+    grid-area: my-section;
+    grid-column: 1/2;
+    margin: 0 auto;
+    max-width: 1400px;
+    text-align: center;
+    display: flex;  
+    align-items: center;
+}
+
+section form {
+    min-width: 700px;
+    padding: 10px;
+}
+
+section form {
+    padding: 30px;
+    border: 1px solid #0505053b;
+    background-color: #fffefe;
+    border-radius: 10px;
+    box-shadow: -10px 10px 20px -10px rgba(0,0,0, 0.5);
+}
+section form label{
+    text-align: left;
+}
+input,select{
+    display: block;
+    width: 100%;
+    font-size: 11pt;
+    padding: 5px;
+    border: 1px solid #85929e;
+    border-radius: 5px;
+    border:none;
+    border-bottom:solid #061747 3px;
+}
+input:focus{
+    border-bottom:solid #dd3737 4px;
+}
+select:focus{
+    border-bottom:solid #dd3737 4px;
+}
+
+form a{
+    text-decoration: none !important;
+}
+@media screen and(max-width:1400px){
+    section{
+        margin-top: 5%;
+    }
+}
