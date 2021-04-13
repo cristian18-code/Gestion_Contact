@@ -55,15 +55,15 @@
        		$alert='';
             $ConsultorFono = $_POST['ConsultorFono'];
             $GestorFono = $_POST['GestorFono'];
-            $envioAgente = $_POST['envioAgente'];
-            $envioGestor = $_POST['envioGestor'];
+            $AgenteCitas = $_POST['AgenteCitas'];
+            $GestorCitas = $_POST['GestorCitas'];
 			$reportes = $_POST['reportes'];
 			$usuarios = $_POST['usuarios'];
     
 
             // Se ejecuta un Query que valide si el Usuario y la Cedula no se encuentran creados//
-            $query = mysqli_query($con,"UPDATE permisos SET ConsultorFono = '$infoConsultor', GestorFono = '$infoGestor', GestorCitas = '$envioAgente',
-			preparaciones_gestor = '$envioGestor', reportes = '$reportes', crud_usuarios = '$usuarios'
+            $query = mysqli_query($con,"UPDATE permisos SET ConsultorFono = '$ConsultorFono', GestorFono = '$GestorFono', GestorCitas = '$GestorCitas',
+			GestorCitas = '$GestorCitas', reportes = '$reportes', crud_usuarios = '$usuarios'
 			WHERE id_usuario = '$idusuario' ");
 			
 		if($query){
