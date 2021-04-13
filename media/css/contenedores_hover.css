@@ -1,0 +1,145 @@
+ 
+.pusbar-fono{
+    width: 100%;
+    background: #000;
+    height: 56%;
+    color: #fff;
+    text-align: center;
+  }
+.pusbar-fono-consultar{
+    width: 100%;
+    background: #000;
+    height: 30%;
+    color: #fff;
+    text-align: center;
+}
+.pusbar-fono-bitacora{
+  width: 100%;
+  background: #000;
+  height: 30%;
+  color: #fff;
+  text-align: center;
+}
+.icon-circle-down{
+  font-size: 20pt;
+  cursor: pointer;
+}
+  .container-boxes{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+  
+  }
+  .container-boxes a{
+    text-decoration: none;
+    color: black;
+  }
+  .boxes{
+    width: 200px;
+    height: 140px;
+    padding: 10px;
+    margin: 40px;
+    background: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 900ms;
+    font-family: 'Calibri', sans-serif !important;
+    border-radius: 10px;
+  }
+  .boxes:hover{
+    transform: translate(5px, -5px);
+    box-shadow: -10px 10px 20px -10px rgba(0,0,0, 0.5);
+  }
+  .boxes .icon,
+  .boxes h4,
+  .boxes p{
+    position: relative;
+    z-index: 1;
+    transition: all 300ms;
+  }
+  .boxes .icon{
+  
+    width: 60px;
+    transform: translateY(30px);
+   }
+  .boxes:hover .icon{
+    width: 30px;
+    transform: translateY(0px);
+  
+  }
+  .boxes h4,
+  .boxes p{
+  margin-top: 10px;
+  }
+  
+  .boxes h4{
+    font-size: 22px;
+    transform: translateY(30px);
+  }
+  .boxes:hover h4{
+    transform: translateY(0px);
+    color: white;
+  }
+  .boxes p{
+    font-size: 14px;
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  .boxes:hover p{
+    transform: translateY(0);
+    opacity: 1;
+    font-size: 20px;
+    color: white;
+  }
+  
+  .boxes .background-hover{
+    width: 550px;
+    height: 550px;
+    position: absolute;
+    top: 250px;
+    left: -100px;
+    background: red;
+    border-radius: 100%;
+    transition:all 900ms;
+    background: linear-gradient(to bottom, rgb(255,115,0), rgb(255,148,48));
+  
+  }
+  .boxes:hover .background-hover{
+    width:450px;
+    height: 450px;
+    top: -70px;
+    left: -70px;
+  
+  }
+  .boxes1 .background-hover{
+    background:rgb(0, 153, 255);
+    top: -490px;
+    left: -490px;
+  
+  }
+  #close{
+    background: #000;
+    font-size: 20pt;
+    color: white;
+    position: fixed;
+    right: 0px;
+    list-style: none !important;
+    text-decoration: none;
+    top: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+  @media screen and (max-width:1500px){
+    .pusbar-fono{
+      height: 35%;
+    }
+    .pusbar-fono-consultar{
+      height: 42%;
+    }
+    .pusbar-fono-bitacora{
+      height: 42%;
+    }
+  }
