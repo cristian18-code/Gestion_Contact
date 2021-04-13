@@ -63,7 +63,7 @@
     <div id="formulario">    
         <h1>Envio De Documentos Consultor <b> FONOPLUS </b> </h1>
         <hr>
-            <form method="post" name="form_envio_documentos" id="form_envio_documentos">
+            <form method="post" name="form_envioDocumentos" id="form_envioDocumentos">
                 <div class="form-group" id="cont-registro" style="text-align: center;">
                 <label for="registro" style="font-weight: 700;">Registro N°</label>
                 <input type="text" class="form-control" name="registro" id="registro" readonly value="<?php echo $id + 1; ?>"> <!-- Muestra el numero del registro a crear -->
@@ -132,13 +132,13 @@
                 </div>
 
                
-                <center><input type="submit" class="btn btn-primary" id="btnEnviar_envio_documentos" name="btnEnviar_envio_documentos" value="Guardar"></center>
+                <center><input type="submit" class="btn btn-primary" id="btnEnviar_envioDocumentos" name="btnEnviar_envioDocumentos" value="Guardar"></center>
             </form>
         </div>    
 
     </section>
 </body>
-    <script src="sistema/js/ajax_formularios/form_envioDocumentos_consultor.js"></script>
+    <script src="sistema/js/ajax_formularios/form_documentosFono_consultor.js"></script>
     <script src="sistema/js/libs/pushbar.js"></script>
 <script type="text/javascript">
     const pushbar = new Pushbar({
