@@ -18,9 +18,9 @@
         })
         </script>";
     }
-    else if (empty($_POST['estado']) || empty($_POST['documento']) || empty($_POST['contrato']) || empty($_POST['nombres'])
-                || empty($_POST['causal']) || empty($_POST['correo']) || empty($_POST['persona']) || empty($_POST['telefono'])
-                || empty($_POST['celular']) || empty($_POST['ciudad']) || empty($_POST['detalle'])) {                
+    else if (empty($_POST['documento']) || empty($_POST['contrato'])])
+                || empty($_POST['ServicioSoli']) || empty($_POST['correo']))
+                || empty($_POST['ciudad']) || empty($_POST['detalle'])) {                
                     $alert="<script>
                     Swal.fire({
                         icon: 'error',
@@ -41,16 +41,12 @@
         $documento = $_POST['documento'];
         $contrato = $_POST['contrato'];
         $nombres = $_POST['nombres'];
-        $causal = $_POST['causal'];
+        $ServicioSoli = $_POST['ServicioSoli'];
         $correo = $_POST['correo'];
-        $persona = $_POST['persona'];
-        $telefono = $_POST['telefono'];
-        $celular = $_POST['celular'];
         $ciudad = $_POST['ciudad'];
         $detalle = $_POST['detalle'];
 
-        $insertSsql = "INSERT INTO inf_investigar_fono (id_tipificacionEstado,
-                                    fechaRegistro,
+        $insertSsql = "INSERT INTO envio_documentos (fechaRegistro,
                                     horaRegistro,
                                     documento,
                                     contrato,
@@ -58,23 +54,16 @@
                                     detalle_servicio,
                                     email,
                                     id_tipificacionCausal,
-                                    persona_preguntar,
-                                    telefono,
-                                    celular,
                                     ciudad,
                                     id_userCrea)
-                            VALUES ('$estado',
-                                    STR_TO_DATE('$fechaRegistro', '%d/%m/%Y'),
+                            VALUES (STR_TO_DATE('$fechaRegistro', '%d/%m/%Y'),
                                     '$horaRegistro',
                                     '$documento',
                                     '$contrato',
+                                    '$ServicioSoli',
                                     '$nombres',
                                     '$detalle',
                                     '$correo',
-                                    '$causal',
-                                    '$persona',
-                                    '$telefono',
-                                    '$celular',
                                     '$ciudad',
                                     '$userRegistra')";
 

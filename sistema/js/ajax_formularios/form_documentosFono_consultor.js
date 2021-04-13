@@ -41,14 +41,14 @@ $(document).ready(function(){
             return
         }
 
-
+        var expresionEmail = /^[A-Za-z0-9._-]+@[a-z]+\.[\w.-]*[a-z][a-z]+$/;
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var correo = $("#correo").val();
-        if (correo.length == 0 || correo == null || /^\s+$/.test(correo)) {
+        if (correo.length == 0 || correo == null || !expresionEmail.test(correo)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo CORREO no puede estar vacio'
+                text: 'El correo electrónico ingresado no es válido. Este campo puede tener letras, números, puntos, guiones, seguido de @ y el dominio correspondiente.'
               });
             return
         }
