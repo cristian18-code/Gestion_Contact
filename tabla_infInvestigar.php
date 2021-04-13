@@ -17,7 +17,7 @@
     $qsqlDatos = $con->query($ssql);
     
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT inf_investigarGestor
+	$permisoQsql = $con->query("SELECT GestorFono
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die ($permiso = 0);
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {

@@ -53,8 +53,8 @@
 	if (!empty($_POST)) {
         // Declaracion de variables que se mostraran segun sus campos designados" //
        		$alert='';
-            $infoConsultor = $_POST['infoConsultor'];
-            $infoGestor = $_POST['infoGestor'];
+            $ConsultorFono = $_POST['ConsultorFono'];
+            $GestorFono = $_POST['GestorFono'];
             $envioAgente = $_POST['envioAgente'];
             $envioGestor = $_POST['envioGestor'];
 			$reportes = $_POST['reportes'];
@@ -62,7 +62,7 @@
     
 
             // Se ejecuta un Query que valide si el Usuario y la Cedula no se encuentran creados//
-            $query = mysqli_query($con,"UPDATE permisos SET inf_investigarConsultor = '$infoConsultor', inf_investigarGestor = '$infoGestor', envioPreparaciones_agente = '$envioAgente',
+            $query = mysqli_query($con,"UPDATE permisos SET ConsultorFono = '$infoConsultor', GestorFono = '$infoGestor', GestorCitas = '$envioAgente',
 			preparaciones_gestor = '$envioGestor', reportes = '$reportes', crud_usuarios = '$usuarios'
 			WHERE id_usuario = '$idusuario' ");
 			
@@ -149,33 +149,33 @@
 				<tbody>
 			
 					<tr>
-			  			<td> <input class="form-check-input"  <?php if($dato['inf_investigarConsultor'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="infoConsultor" id="inlineRadio1" value="1"></td>
-						<td> <input class="form-check-input"  <?php if($dato['inf_investigarConsultor'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="infoConsultor" id="inlineRadio2" value="0"></td>
-						<td> Información a investigar Consultor </td>
+			  			<td> <input class="form-check-input"  <?php if($dato['ConsultorFono'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="ConsultorFono" id="inlineRadio1" value="1"></td>
+						<td> <input class="form-check-input"  <?php if($dato['ConsultorFono'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="ConsultorFono" id="inlineRadio2" value="0"></td>
+						<td> Fonoplus Consultor </td>
 					
 					</tr>
 
 			
 					<tr>
-						<td> <input class="form-check-input"  <?php if($dato['inf_investigarGestor'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="infoGestor" id="inlineRadio1" value="1"></td>
-						<td> <input class="form-check-input"  <?php if($dato['inf_investigarGestor'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="infoGestor" id="inlineRadio2" value="0"></td>
-						<td> Información a investigar Gestor</td>
+						<td> <input class="form-check-input"  <?php if($dato['GestorFono'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="GestorFono" id="inlineRadio1" value="1"></td>
+						<td> <input class="form-check-input"  <?php if($dato['GestorFono'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="GestorFono" id="inlineRadio2" value="0"></td>
+						<td> Fonoplus Gestor</td>
 					
 					</tr>
 
 				
 					<tr>
-						<td> <input class="form-check-input"  <?php if($dato['envioPreparaciones_agente'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="envioAgente" id="inlineRadio1" value="1"></td>
-						<td> <input class="form-check-input"  <?php if($dato['envioPreparaciones_agente'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="envioAgente" id="inlineRadio2" value="0"></td>
-						  <td> Envio Preparaciones Agente</td>
+						<td> <input class="form-check-input"  <?php if($dato['AgenteCitas'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="AgenteCitas" id="inlineRadio1" value="1"></td>
+						<td> <input class="form-check-input"  <?php if($dato['AgenteCitas'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="AgenteCitas" id="inlineRadio2" value="0"></td>
+						  <td> Citas Agente</td>
 					
 					</tr>
 
 				
 					<tr>
-						<td> <input class="form-check-input"  <?php if($dato['preparaciones_gestor'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="envioGestor" id="inlineRadio1" value="1"></td>
-						<td> <input class="form-check-input"  <?php if($dato['preparaciones_gestor'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="envioGestor" id="inlineRadio2" value="0"></td>
-						<td> Envio Preparaciones Gestor</td>
+						<td> <input class="form-check-input"  <?php if($dato['GestorCitas'] == 1) { ?> checked="checked" <?php } ?>  type="radio" name="GestorCitas" id="inlineRadio1" value="1"></td>
+						<td> <input class="form-check-input"  <?php if($dato['GestorCitas'] == 0) { ?> checked="checked" <?php } ?>  type="radio" name="GestorCitas" id="inlineRadio2" value="0"></td>
+						<td> Citas Gestor</td>
 					
 					</tr>
 					

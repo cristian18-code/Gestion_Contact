@@ -11,7 +11,7 @@
     $registro = $_POST['registro'];
 
     // valida si el usuario tiene permisos concedidos
-	$permisoQsql = $con->query("SELECT preparaciones_gestor
+	$permisoQsql = $con->query("SELECT GestorCitas
                                     FROM permisos WHERE id_usuario = '".$_SESSION['idUsers']."'") or die (header("location: principal.php"));
 
     if ($filaP = mysqli_fetch_row($permisoQsql)) {
