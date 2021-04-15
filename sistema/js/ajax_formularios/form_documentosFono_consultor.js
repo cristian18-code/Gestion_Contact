@@ -65,12 +65,12 @@ $(document).ready(function(){
         }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var detalle = $("#detalle").val();
-        if (detalle.length == 0 || detalle == null || /^\s+$/.test(detalle)) {
+        var observaciones = $("#observaciones").val();
+        if (observaciones.length == 0 || observaciones == null || /^\s+$/.test(observaciones)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo DETALLE no puede estar vacio'
+                text: 'El campo Observaciones no puede estar vacio'
                 });
             return
         }
@@ -97,7 +97,7 @@ $(document).ready(function(){
 
             $.ajax({
                 data:parametros,
-                url:"././sistema/logica/ajax_formularios/form_infInvestigar_consultor.php",
+                url:"././sistema/logica/ajax_formularios/form_envio_documentos.php",
                 type:"POST",
                 contentType:false,
                 processData:false,
@@ -106,9 +106,9 @@ $(document).ready(function(){
                     btnEnviar.attr("disabled","disabled");
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
-                    setTimeout(function () {
-                      location.reload("./././infInvestigar_Consultor.php");
-                    }, 5000); //hace redireccion despues de 3 segundos
+                    // setTimeout(function () {
+                    //   location.reload("./././documentos_consultor.php");
+                    // }, 5000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
                   // ejecutara alguna de las siguientes alertas de acuerdo error

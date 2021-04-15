@@ -18,9 +18,9 @@
         })
         </script>";
     }
-    else if (empty($_POST['documento']) || empty($_POST['contrato'])])
-                || empty($_POST['ServicioSoli']) || empty($_POST['correo']))
-                || empty($_POST['ciudad']) || empty($_POST['detalle'])) {                
+    else if (empty($_POST['documento']) || empty($_POST['contrato'])
+                || empty($_POST['ServicioSoli']) || empty($_POST['correo'])
+                || empty($_POST['ciudad']) || empty($_POST['observaciones'])) {                
                     $alert="<script>
                     Swal.fire({
                         icon: 'error',
@@ -37,14 +37,12 @@
         $fechaRegistro = $_POST['dia'];
         $horaRegistro = $_POST['hora'];
         $registro = $_POST['registro'];
-        $estado = $_POST['estado'];
         $documento = $_POST['documento'];
         $contrato = $_POST['contrato'];
-        $nombres = $_POST['nombres'];
         $ServicioSoli = $_POST['ServicioSoli'];
         $correo = $_POST['correo'];
         $ciudad = $_POST['ciudad'];
-        $detalle = $_POST['detalle'];
+        $observaciones = $_POST['observaciones'];
 
         $insertSsql = "INSERT INTO envio_documentos (fechaRegistro,
                                     horaRegistro,
@@ -60,9 +58,9 @@
                                     '$documento',
                                     '$contrato',
                                     '$ServicioSoli',
-                                    '$detalle',
                                     '$correo',
                                     '$ciudad',
+                                    '$observaciones',
                                     '$userRegistra')";
 
         $insertQslq = $con -> query($insertSsql);

@@ -124,10 +124,10 @@
                     </div>
                 </div>
 
-                <div class="form-group row" id="cont-detalle">
-                    <label for="detalle" class="col-sm-4 col-form-label">Descripción</label>
+                <div class="form-group row" id="cont-observaciones">
+                    <label for="observaciones" class="col-sm-4 col-form-label">observaciones</label>
                     <div class="col-sm-8">
-                        <textarea name="detalle" id="detalle" class="form-control" style="resize:none; text-align: center;" placeholder="Servicio solicitado" required></textarea>
+                        <textarea name="observaciones" id="observaciones" class="form-control" style="resize:none; text-align: center;" placeholder="Servicio solicitado"></textarea>
                     </div>
                 </div>
 
