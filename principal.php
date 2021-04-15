@@ -345,7 +345,7 @@
                 </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="documentos_consultor.php" target="_top">
 
                 <div class="boxes boxes1" >
 
