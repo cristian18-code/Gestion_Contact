@@ -62,7 +62,8 @@
                       <ul id="box-search">
                       <!-- Opciones de Reportes-->
                       <li><a> <button name="generar_reportes_preparaciones"  class="btn btn-primary"  value="Descargar Reporte Preparaciones" onclick='alerta();'><span class="icon-download2"></span> Reporte Preparaciones</button></a></li>
-                      <li><a><button name="generar_reportes_fonoplus"  class="btn btn-primary"  value="Descargar Reporte Preparaciones" onclick='alerta();'><span class="icon-download2"></span> Reporte Fonoplus</button></a></li>
+                      <li><a><button name="generar_reportes_fonoplus"  class="btn btn-primary "  value="Descargar Reporte Fonoplus" onclick='alerta();'><span class="icon-download2"></span> Reporte Fonoplus</button></a></li>
+                      <li><a><button name="generar_reportes_fonoplus"  class="btn btn-primary "  value="Descargar Reporte Preparaciones" onclick='alerta();'><span class="icon-download2"></span> Reporte Documentos</button></a></li>
 
                       </ul>
 

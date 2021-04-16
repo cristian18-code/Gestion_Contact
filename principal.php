@@ -522,7 +522,9 @@
 
                         </a>
     </div>
+    
         <button data-pushbar-close><span class="icon-cancel-circle" id="close"></span></button>
+        <span class="icon-circle-down"  data-pushbar-target="pushbar-menu-fonoplus"></span>
 </div>
 
 <!-- Opciones desplegables de Fono - Consulta-->

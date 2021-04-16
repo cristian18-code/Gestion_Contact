@@ -166,5 +166,70 @@ if(isset($_POST['generar_reportes_fonoplus']))
 								$filaR['horaCierre']));
 							
     }
+
+    if(isset($_POST['generar_reportes_documentos']))
+{
+    // NOMBRE DEL ARCHIVO Y CHARSET
+    
+	header('Content-Type:text/csv; charset=UTF-8');
+	header('Content-Disposition: attachment; filename="Reporte_Consolidado_Preparaciones.csv"');
+
+	// SALIDA DEL ARCHIVO
+	$salida=fopen('php://output', 'b');
+	// ENCABEZADOS
+	fputcsv($salida, array('ID Registro', 'Id Tipificacion Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
+						    'Servicio Solicitado', 'Correo', 'Ciudad', 'Observaciones', 'Observaciones Backoffice','Consultor', 'Backoffice', 
+						   'Fecha Cierre', 'Hora Cierre'));
+	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
+	$traerDatos=$con->query("SELECT     tDoc.id_registro,
+                                        t.nombre_tipificacion AS estado,
+                                        DATE_FORMAT(tDoc.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
+                                        tDoc.horaRegistro,
+                                        tDoc.documento,
+                                        tDoc.contrato,
+                                        tDoc.correo,
+                                        t1.nombre_tipificacion AS Servicio_Solicitado,
+                                        u1.username AS userCrea,
+                                        tDoc.observacionesBack,
+                                        tDoc.observaciones,
+                                        u.username AS user_cierre,
+                                        tDoc.fechaCierre,
+                                        tDoc.horaCierre
+                                        FROM ((( envio_documentos tDoc
+                                        INNER JOIN tipificaciones t 
+                                            ON tDoc.id_tipificacionEstado = t.id_tipificacion)
+                                        INNER JOIN tipificaciones t1 
+                                            ON tDoc.id_tipificacionServicioSo = t1.id_tipificacion)
+                                        INNER JOIN usuarios u1
+                                            ON tDoc.id_usercrea = u1.id_usuario)
+                                        LEFT JOIN usuarios u
+                                            ON tDoc.id_userCierre = u.id_usuario
+                                        where tDoc.fechaRegistro BETWEEN '$fecha1' AND '$fecha2' ORDER BY id_registro");
+
+	foreach ($traerDatos as $filaR) {
+				
+		$cadena = $filaR['observacionesBack'];
+
+		$filaR['observacionesBack'] = preg_replace("[\n|\r|\n\r]", "", $cadena);
+        $filaR['respuestaCierre'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['respuestaCierre']);
+	
+		
+		fputcsv($salida, array($filaR['id_registro'], 
+								$filaR['estado'],
+								$filaR['fecha_registro'],
+								$filaR['horaRegistro'],
+								$filaR['documento'],
+								$filaR['contrato'],
+                                $filaR['Servicio_Solicitado'],
+                                $filaR['correo'],
+                                $filaR['ciudad'],
+                                $filaR['observaciones'],
+                                $filaR['observacionesBack'],
+                                $filaR['userCrea'],
+                                $filaR['user_cierre'],
+                                $filaR['fechaCierre'],
+								$filaR['horaCierre']));
+							
+    }
 }
 ?>
