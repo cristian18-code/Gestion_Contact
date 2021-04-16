@@ -4,12 +4,15 @@
 
     /* Traer los tickets pendientes */
     $ssql = "SELECT documentos.id_registro,
+                    t.nombre_tipificacion AS estado,
                     DATE_FORMAT(documentos.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
                     documentos.horaRegistro,
                     documentos.documento,
                     documentos.documento,
                     documentos.contrato
-                    FROM envio_documentos documentos";
+                    FROM envio_documentos documentos
+                     INNER JOIN tipificaciones t
+                     ON documentos.id_TipificacionServicioSo = t.id_tipificacion";
  $qsqlDatos = $con->query($ssql);
     // valida si el usuario tiene permisos concedidos
 	$permisoQsql = $con->query("SELECT GestorFono
@@ -75,7 +78,7 @@
                     <th>Hora registro</th>
                     <th>Documento</th>
                     <th>Contrato</th>
-                    <th>Usuario Crea</th>
+                    <th>Servicio Utilizado</th>
                     <th>Editar</th>
                 </tr>
             </thead>
@@ -88,7 +91,7 @@
                             <td><?php echo $dato["horaRegistro"]; ?></td>
                             <td><?php echo $dato['documento']?></td>
                             <td><?php echo $dato['contrato']?></td>
-                            <td><?php echo $dato['contrato']?></td>
+                            <td><?php echo $dato['estado']?></td>
                             <input type="hidden" id="estado" value="<?php echo $dato['estado']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
@@ -104,7 +107,7 @@
                     <th>Hora registro</th>
                     <th>Documento</th>
                     <th>Contrato</th>
-                    <th>Usuario Crea</th>
+                    <th>Servicio Utilizado</th>
                     <th>Editar</th>
         
                 </tr>
