@@ -174,11 +174,12 @@
                 <?php } ?>
                 </form>
                 <hr>
+
+                // formlario a llenar por el gestor
                 <?php if($permiso == 1){ ?>
-                <form method="post" name="form_infInvestigar_gestor" id="form_infInvestigar_gestor">
+                <form method="post" name="form_documentosFono_gestor" id="form_documentosFono_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
                     <hr>
-
                     <div id="encabezado" class="form-group">
                         <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
                         <img src="media/img/datos-del-usuario.png" class="mover" alt="anadir" width="80px">
@@ -191,29 +192,10 @@
                     <div id="cont-enviarCorreo">
                         <center><a href="<?php echo $correos; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
                     </div>
-                    <?php if($filaR[14] != '' || $filaR[15] != '') { ?>
-                    <div class="rows">
-                    <?php if ($filaR[14] != '') { ?>     
-                    <h4>Respuesta Anterior</h4>
-                        <textarea class="left form-control" readonly> <?php echo $filaR[14] ?></textarea>
-                    <?php } ?>
-                    <?php if ($filaR[15] != '') { ?>    
-                    <h4>Observación Anterior</h4>
-                        <textarea class="right form-control" readonly> <?php echo $filaR[15] ?></textarea>
-                    <?php } ?>        
-                    </div>
-                    <?php } ?>
                     
                     <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-6" style="justify-content: center;" id="cont-respuesta">
-                            <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
-                            <div class="col-sm-9">
-                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" required> </textarea>
-                            </div>
-                        </div>
-                        
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-gestion">
-                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
+                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones Back Office</label>
                             <div class="col-sm-9">
                                 <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
                             </div>
@@ -239,9 +221,7 @@
                         </select>
                     </div>
                     </div>
-
-                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarGestor" name="btnEnviar_infInvestigarGestor" value="Guardar"></center>
-
+                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_documentosFono_gestor" name="btnEnviar_documentosFono_gestor" value="Guardar"></center>
                 </form>
                 <?php } ?>
         </div>
@@ -257,6 +237,6 @@
         });
 </script>
     <script src="sistema/js/libs/sweetalert2.js"></script>
-    <script src="sistema/js/ajax_formularios/form_infInvestigar_gestor.js"></script>
+    <script src="sistema/js/ajax_formularios/form_documentosFono_gestor.js"></script>
     <script src="sistema/js/libs/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>                
