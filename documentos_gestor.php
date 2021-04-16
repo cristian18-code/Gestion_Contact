@@ -42,11 +42,7 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
 
-<<<<<<< HEAD
-    $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
-=======
->>>>>>> 94f17708342806968ad57ba5a2d6d21c80be4fb1
-    
+    $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);  
 ?>
 
 <!DOCTYPE html>
