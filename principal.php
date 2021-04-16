@@ -390,7 +390,7 @@
                 </div>  
 
             </a>
-            <a href="tabla_infInvestigar.php" target="_top" >
+            <a href="#" target="_top" data-pushbar-target="pushbar-menu-fonoplus-backoffice" >
 
                         <div class="boxes boxes1"  >
 
@@ -487,6 +487,43 @@
 </div>  
 </div>
 
+<div data-pushbar-id="pushbar-menu-fonoplus-backoffice" data-pushbar-direction="top" class="pusbar-fono-consultar">
+    <h1> Gestión Fono Plus BackOffice</h1>
+
+    <div class="container-boxes">
+                        <a href="tabla_infInvestigar.php" target="_top">
+
+                        <div class="boxes boxes1">
+
+                            <img src="media/img/backoffice.png" alt="usuario-reportar" class="icon" >
+
+                            <h4 class="title">Inf a Investigar</h4>
+
+                            <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                            <div class="background-hover"></div>
+
+                        </div>  
+
+                        </a>
+                        <a href="tabla_envioDocumentos.php" target="_top">
+
+                            <div class="boxes boxes1">
+
+                                <img src="media/img/backoffice.png" alt="usuario-reportar" class="icon" >
+
+                                <h4 class="title">Inf a Investigar</h4>
+
+                                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                                <div class="background-hover"></div>
+
+                            </div>  
+
+                        </a>
+    </div>
+        <button data-pushbar-close><span class="icon-cancel-circle" id="close"></span></button>
+</div>
 
 <!-- Opciones desplegables de Fono - Consulta-->
 <div data-pushbar-id="pushbar-menu-fonoplus-consultar" data-pushbar-direction="top" class="pusbar-fono-consultar">

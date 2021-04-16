@@ -41,8 +41,9 @@
 
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
-
-    $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
+if ($filaR = mysqli_fetch_row($ver)) {
+    $correos = EnvioCorreoDocumentos($filaR[5], $filaR[4]);
+}
     
 ?>
 
