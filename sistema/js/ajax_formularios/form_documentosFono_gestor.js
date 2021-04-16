@@ -64,7 +64,7 @@ $(document).ready(function(){
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
                     setTimeout(function () {
-                      window.location = "./././tabla_infInvestigar.php";
+                      window.location = "./././tabla_envioDocumentos.php";
                     }, 5000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 

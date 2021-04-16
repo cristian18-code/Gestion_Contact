@@ -42,7 +42,6 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
 
-    $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
     
 ?>
 
@@ -197,7 +196,7 @@
                     <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto; margin-top: 1%;">
                     <label for="estado" class="col-sm-4 col-form-label">Estado</label>
                     <div class="col-sm-8">
-                        <select name="estado" id="estado" class="form-control" autofocus required>
+                        <select name="estado" id="estado" class="form-control" autofocus>
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                     
