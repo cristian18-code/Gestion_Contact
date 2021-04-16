@@ -134,7 +134,7 @@
                         <div class="form-group row col-5" id="cont-causal">
                             <label for="causal" class="col-sm-3 col-form-label">Servicio Solicitado</label>
                             <div class="col-sm-9">
-                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
+                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['Servicio_Solicitado']; ?>" readonly>
                             </div>
                         </div>
                         <div class="form-group row col-5" id="cont-correo">
@@ -147,15 +147,7 @@
 
                     <div class="row" style="justify-content: center;">
                       
-
-                        <div class="form-group row col-5" id="cont-celular">
-                            <label for="celular" class="col-sm-3 col-form-label">Celular</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="celular" id="celular" class="form-control" value="<?php echo $dato['celular']; ?>" readonly>
-                            </div>
-                        </div>
-                
-                        <div class="form-group row col-5" id="cont-ciudad">
+                                        <div class="form-group row col-5" id="cont-ciudad">
                             <label for="ciudad" class="col-sm-3 col-form-label">Ciudad</label>
                             <div class="col-sm-9">
                                 <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo $dato['ciudad']; ?>" readonly>
