@@ -42,7 +42,7 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
 
-    $correos = EnvioCorreoDocumentos($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
+    $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
     
 ?>
 
@@ -128,21 +128,6 @@
                         </div>
                     </div>
 
-                    <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-nombres">
-                            <label for="nombres" class="col-sm-3 col-form-label">Nombres usuario</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="nombres" id="nombres" class="form-control" value="<?php echo $dato['nombresUsuario']; ?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-5" id="cont-correo">
-                            <label for="correo" class="col-sm-3 col-form-label">Correo electronico</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['email']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-5" id="cont-causal">

@@ -95,7 +95,7 @@
                             <input type="hidden" id="estado" value="<?php echo $dato['estado']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
-                                <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
+                                <td><input type="submit" value="Editar" class="btn btn-outline-dark"></td> <!-- Envia los tres datos anteriores -->
                         </form>
                     </tr>
                 <?php } ?>
