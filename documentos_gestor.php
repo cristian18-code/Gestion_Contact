@@ -42,7 +42,7 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
 
-    $correos = EnvioCorreoDocumentos($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
+    $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
     
 ?>
 
@@ -128,63 +128,26 @@
                         </div>
                     </div>
 
-                    <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-nombres">
-                            <label for="nombres" class="col-sm-3 col-form-label">Nombres usuario</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="nombres" id="nombres" class="form-control" value="<?php echo $dato['nombresUsuario']; ?>" readonly>
-                            </div>
-                        </div>
 
-                        <div class="form-group row col-5" id="cont-correo">
-                            <label for="correo" class="col-sm-3 col-form-label">Correo electronico</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['email']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-5" id="cont-causal">
-                            <label for="causal" class="col-sm-3 col-form-label">Causal</label>
+                            <label for="causal" class="col-sm-3 col-form-label">Servicio Solicitado</label>
                             <div class="col-sm-9">
-                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['causal']; ?>" readonly>
+                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['Servicio_Solicitado']; ?>" readonly>
                             </div>
                         </div>
-
-                        <div class="form-group row col-5" id="cont-persona">
-                            <label for="persona" class="col-sm-3 col-form-label">Persona a preguntar</label>
+                        <div class="form-group row col-5" id="cont-correo">
+                            <label for="correo" class="col-sm-3 col-form-label">Correo</label>
                             <div class="col-sm-9">
-                                <input type="text" name="persona" id="persona" class="form-control" value="<?php echo $dato['persona_preguntar']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-telefono">
-                            <label for="telefono" class="col-sm-3 col-form-label">Telefono fijo</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="telefono" id="telefono" class="form-control" value="<?php echo $dato['telefono']; ?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-5" id="cont-celular">
-                            <label for="celular" class="col-sm-3 col-form-label">Celular</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="celular" id="celular" class="form-control" value="<?php echo $dato['celular']; ?>" readonly>
+                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['correo']; ?>" readonly>
                             </div>
                         </div>
                     </div>
 
                     <div class="row" style="justify-content: center;">
-                        <div id="cont-estado" class="form-group row col-5">
-                            <label for="estado" class="col-sm-3 col-form-label">Estado</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="estado" id="estado" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row col-5" id="cont-ciudad">
+                      
+                                        <div class="form-group row col-5" id="cont-ciudad">
                             <label for="ciudad" class="col-sm-3 col-form-label">Ciudad</label>
                             <div class="col-sm-9">
                                 <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo $dato['ciudad']; ?>" readonly>
@@ -194,9 +157,9 @@
 
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-10" style="justify-content: center;" id="cont-detalle">
-                            <label for="detalle" class="col-sm-3 col-form-label">Detalle servicio</label>
+                            <label for="detalle" class="col-sm-3 col-form-label">Observaciones</label>
                             <div class="col-sm-9">
-                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['detalle_servicio']; ?></textarea>
+                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['observaciones']; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -204,7 +167,11 @@
                 </form>
                 <hr>
 
+<<<<<<< HEAD
                 <!-- formlario a llenar por el gestor -->
+=======
+                <!-- formlario a llenar por el gestor-->
+>>>>>>> 415383ffe4ce6f83000d1b0bfac68e923ba31fb2
                 <?php if($permiso == 1){ ?>
                 <form method="post" name="form_documentosFono_gestor" id="form_documentosFono_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
@@ -224,9 +191,9 @@
                     
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-gestion">
-                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones Back Office</label>
+                            <label for="observacionesBack" class="col-sm-3 col-form-label">Observaciones Back Office</label>
                             <div class="col-sm-9">
-                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                                <textarea name="observacionesBack" id="observacionesBack" class="form-control" cols="30" rows="5" style="resize: none;"></textarea>
                             </div>
                         </div>
                     </div>

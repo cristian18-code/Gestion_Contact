@@ -20,8 +20,8 @@ $(document).ready(function(){
         }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var gestion = $("#observaciones").val();
-        if (gestion.length == 0 || gestion == null || /^\s+$/.test(gestion)) {
+        var observacionesBack = $("#observacionesBack").val();
+        if (observacionesBack.length == 0 || observacionesBack == null || /^\s+$/.test(observacionesBack)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
@@ -52,7 +52,7 @@ $(document).ready(function(){
 
             $.ajax({
                 data:parametros,
-                url:"././sistema/logica/ajax_formularios/form_infInvestigar_gestor.php",
+                url:"././sistema/logica/ajax_formularios/form_envio_documentos_gestor.php",
                 type:"POST",
                 contentType:false,
                 processData:false,
