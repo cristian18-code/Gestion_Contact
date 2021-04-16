@@ -166,15 +166,8 @@
                 </form>
                 <hr>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <!-- formlario a llenar por el gestor -->
-=======
                 <!-- formlario a llenar por el gestor-->
->>>>>>> 415383ffe4ce6f83000d1b0bfac68e923ba31fb2
-=======
-                <!-- formlario a llenar por el gestor-->
->>>>>>> 94f17708342806968ad57ba5a2d6d21c80be4fb1
+
                 <?php if($permiso == 1){ ?>
                 <form method="post" name="form_documentosFono_gestor" id="form_documentosFono_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
@@ -208,7 +201,7 @@
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                     
-                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
+                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado Documento' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
                                 $estadoQsql = $con->query($estadoSsql);
                             ?>
                             <!-- ciclo para mostrar las areas -->

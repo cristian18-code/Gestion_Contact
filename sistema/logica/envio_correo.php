@@ -55,4 +55,17 @@
         $envioCorreo = 'mailto:'.'&subject='.$asunto.'&body='.$cuerpo;
         return $envioCorreo;
     }
+
+    function EnvioCorreoDocumentos($correo, $contrato) {
+        $Correo. '.$correo.'
+        $asunto = 'MEDPLUS MEDICINA PREPAGADA';
+        $cuerpo = 'Respetado Usuario: 
+        %0D%0DReciba un cordial saludo de MEDPLUS Medicina Prepagada con nuestros mejores deseos de bienestar para usted y su familia.
+        %0D%0DRespondiendo a su solicitud, por este medio me permito enviar adjunto el documento solicitado correspondiente al contrato '.$contrato.'
+        %0D%0DPara finalizar, le reitero  en nombre de la compañía  nuestra voluntad siempre de servicio, quedando a su entera disposición; Cualquier información adicional no dude en comunicarse con nuestra línea de atención al usuario 7420101 opción 4 en Bogotá, y a nivel nacional 01 8000 18 4000, o través de nuestro chat virtual al cual puede tener acceso por  nuestra página de internet www.medplus.com.co
+        ';
+
+        $envioCorreo = 'mailto:'.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    }
 ?>
