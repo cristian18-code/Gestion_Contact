@@ -187,9 +187,9 @@
                     
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-gestion">
-                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones Back Office</label>
+                            <label for="observacionesBack" class="col-sm-3 col-form-label">Observaciones Back Office</label>
                             <div class="col-sm-9">
-                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                                <textarea name="observacionesBack" id="observacionesBack" class="form-control" cols="30" rows="5" style="resize: none;"></textarea>
                             </div>
                         </div>
                     </div>

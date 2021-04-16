@@ -20,8 +20,8 @@ $(document).ready(function(){
         }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var gestion = $("#observaciones").val();
-        if (gestion.length == 0 || gestion == null || /^\s+$/.test(gestion)) {
+        var observacionesBack = $("#observacionesBack").val();
+        if (observacionesBack.length == 0 || observacionesBack == null || /^\s+$/.test(observacionesBack)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
