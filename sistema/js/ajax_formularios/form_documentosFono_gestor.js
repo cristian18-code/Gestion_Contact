@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
     /* Envio de formulario para crear ticket*/
-    $("#form_infInvestigar_gestor").on("submit",function(e){
+    $("#form_documentosFono_gestor").on("submit",function(e){
         e.preventDefault();
 
 
-        var parametros = new FormData($("#form_infInvestigar_gestor")[0]);
-        var btnEnviar = $("#btnEnviar_infInvestigarGestor");
+        var parametros = new FormData($("#form_documentosFono_gestor")[0]);
+        var btnEnviar = $("#btnEnviar_documentosFono_gestor");
         
         // valida que el campo documento no este vacio ni contenga letras
         var estado = $("#estado").val();
@@ -19,35 +19,13 @@ $(document).ready(function(){
             return
         }
 
-        // valida que el campo contrato no este vacio ni contenga letras
-        var contrato = $("#contrato").val();
-        if (isNaN(contrato) || /^\s+$/.test(contrato)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CONTRATO no puede estar vacio ni contener letras'
-              });
-            return
-        }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var respuesta = $("#respuesta").val();
-        if (respuesta.length == 0 || respuesta == null || /^\s+$/.test(respuesta)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo RESPUESTA no puede estar vacio'
-              });
-            return
-        }
-
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var gestion = $("#observaciones").val();
         if (gestion.length == 0 || gestion == null || /^\s+$/.test(gestion)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo GESTIÓN llAMADA no puede estar vacio'
+                text: 'El campo observaciones Back Office no puede estar vacio'
               });
             return
         }
