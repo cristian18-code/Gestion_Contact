@@ -129,29 +129,24 @@
                     </div>
 
 
+
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-5" id="cont-causal">
-                            <label for="causal" class="col-sm-3 col-form-label">Causal</label>
+                            <label for="causal" class="col-sm-3 col-form-label">Servicio Solicitado</label>
                             <div class="col-sm-9">
-                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['causal']; ?>" readonly>
+                                <input type="text" name="causal" id="causal" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
                             </div>
                         </div>
-
-                        <div class="form-group row col-5" id="cont-persona">
-                            <label for="persona" class="col-sm-3 col-form-label">Persona a preguntar</label>
+                        <div class="form-group row col-5" id="cont-correo">
+                            <label for="correo" class="col-sm-3 col-form-label">Correo</label>
                             <div class="col-sm-9">
-                                <input type="text" name="persona" id="persona" class="form-control" value="<?php echo $dato['persona_preguntar']; ?>" readonly>
+                                <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $dato['correo']; ?>" readonly>
                             </div>
                         </div>
                     </div>
 
                     <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-5" id="cont-telefono">
-                            <label for="telefono" class="col-sm-3 col-form-label">Telefono fijo</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="telefono" id="telefono" class="form-control" value="<?php echo $dato['telefono']; ?>" readonly>
-                            </div>
-                        </div>
+                      
 
                         <div class="form-group row col-5" id="cont-celular">
                             <label for="celular" class="col-sm-3 col-form-label">Celular</label>
@@ -159,16 +154,7 @@
                                 <input type="text" name="celular" id="celular" class="form-control" value="<?php echo $dato['celular']; ?>" readonly>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row" style="justify-content: center;">
-                        <div id="cont-estado" class="form-group row col-5">
-                            <label for="estado" class="col-sm-3 col-form-label">Estado</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="estado" id="estado" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
-                            </div>
-                        </div>
-
+                
                         <div class="form-group row col-5" id="cont-ciudad">
                             <label for="ciudad" class="col-sm-3 col-form-label">Ciudad</label>
                             <div class="col-sm-9">
@@ -179,9 +165,9 @@
 
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-10" style="justify-content: center;" id="cont-detalle">
-                            <label for="detalle" class="col-sm-3 col-form-label">Detalle servicio</label>
+                            <label for="detalle" class="col-sm-3 col-form-label">Observaciones</label>
                             <div class="col-sm-9">
-                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['detalle_servicio']; ?></textarea>
+                                <textarea name="detalle" id="detalle" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['observaciones']; ?></textarea>
                             </div>
                         </div>
                     </div>
