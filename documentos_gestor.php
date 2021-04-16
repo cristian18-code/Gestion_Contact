@@ -26,12 +26,12 @@
                             tFono.horaRegistro,
                             tFono.documento,
                             tFono.contrato,
-                            tFono.observaciones,
                             tFono.correo,
+                            tFono.observaciones,
                             t1.nombre_tipificacion AS Servicio_Solicitado,
                             tFono.ciudad,
                             u.username AS user_crea
-                            FROM (( inf_investigar_fono tFono
+                            FROM (( envio_documentos tFono
                             INNER JOIN tipificaciones t1 
                                 ON tFono.id_tipificacionServicioSo = t1.id_tipificacion)
                             INNER JOIN usuarios u
@@ -65,7 +65,7 @@
     <script src="sistema/js/libs/jquery-3.5.1.min.js"></script>
     <script src="sistema/js/getTime.js"></script>
 <!-- Scripts -->    
-    <title>Informacion a investigar FONOPLUS - Gestion Contact</title>
+    <title>Envio Documentos - Gestor</title>
 
     <style>
         section {max-width: 1400px;} section form {max-width: 1200px;} section form input{font-size: 16px;} 
