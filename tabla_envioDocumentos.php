@@ -12,7 +12,8 @@
                     documentos.contrato
                     FROM envio_documentos documentos
                      INNER JOIN tipificaciones t
-                     ON documentos.id_TipificacionServicioSo = t.id_tipificacion";
+                     ON documentos.id_TipificacionServicioSo = t.id_tipificacion
+                     WHERE id_tipificacionEstado != '30' AND id_tipificacionEstado !='33' OR id_tipificacionEstado IS NULL";
  $qsqlDatos = $con->query($ssql);
     // valida si el usuario tiene permisos concedidos
 	$permisoQsql = $con->query("SELECT GestorFono

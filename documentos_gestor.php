@@ -42,7 +42,10 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
 
+<<<<<<< HEAD
     $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
+=======
+>>>>>>> 94f17708342806968ad57ba5a2d6d21c80be4fb1
     
 ?>
 
@@ -168,10 +171,14 @@
                 <hr>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <!-- formlario a llenar por el gestor -->
 =======
                 <!-- formlario a llenar por el gestor-->
 >>>>>>> 415383ffe4ce6f83000d1b0bfac68e923ba31fb2
+=======
+                <!-- formlario a llenar por el gestor-->
+>>>>>>> 94f17708342806968ad57ba5a2d6d21c80be4fb1
                 <?php if($permiso == 1){ ?>
                 <form method="post" name="form_documentosFono_gestor" id="form_documentosFono_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
@@ -201,7 +208,7 @@
                     <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto; margin-top: 1%;">
                     <label for="estado" class="col-sm-4 col-form-label">Estado</label>
                     <div class="col-sm-8">
-                        <select name="estado" id="estado" class="form-control" autofocus required>
+                        <select name="estado" id="estado" class="form-control" autofocus>
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                     
