@@ -167,8 +167,10 @@ if(isset($_POST['generar_reportes_fonoplus']))
 							
     }
 
-    if(isset($_POST['generar_reportes_documentos']))
-{
+    
+}
+if(isset($_POST['generar_reportes_documentos']))
+    {
     // NOMBRE DEL ARCHIVO Y CHARSET
     
 	header('Content-Type:text/csv; charset=UTF-8');
@@ -211,7 +213,7 @@ if(isset($_POST['generar_reportes_fonoplus']))
 		$cadena = $filaR['observacionesBack'];
 
 		$filaR['observacionesBack'] = preg_replace("[\n|\r|\n\r]", "", $cadena);
-        $filaR['respuestaCierre'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['respuestaCierre']);
+        $filaR['observaciones'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['observaciones']);
 	
 		
 		fputcsv($salida, array($filaR['id_registro'], 
@@ -231,5 +233,4 @@ if(isset($_POST['generar_reportes_fonoplus']))
 								$filaR['horaCierre']));
 							
     }
-}
 ?>
