@@ -20,11 +20,7 @@
         </script>";
     }
 
-<<<<<<< HEAD
     else if (empty($_POST['estado']) || empty($_POST['observaciones'])) {                
-=======
-    else if (empty($_POST['estado']) || empty($_POST['observacionesBack'])) {                
->>>>>>> 94f17708342806968ad57ba5a2d6d21c80be4fb1
                     $alert="<script>
                     Swal.fire({
                         icon: 'error',
@@ -45,7 +41,7 @@
         $observacionesBack = $_POST['observacionesBack'];
 
         $insertSsql = "UPDATE envio_documentos SET   fechaCierre = STR_TO_DATE('$fechaGestion', '%d/%m/%Y'),
-                                                        horaRegistro = '$horaGestion',
+                                                        horaCierre = '$horaGestion',
                                                         id_tipificacionEstado = '$estado',
                                                         observacionesBack = '$observacionesBack',
                                                         id_userCierre = '$userGestion'
