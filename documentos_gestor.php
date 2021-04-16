@@ -286,6 +286,6 @@
         });
 </script>
     <script src="sistema/js/libs/sweetalert2.js"></script>
-    <script src="sistema/js/ajax_formularios/form_infInvestigar_gestor.js"></script>
+    <script src="sistema/js/ajax_formularios/form_documentosFono_gestor.js"></script>
     <script src="sistema/js/libs/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>                
