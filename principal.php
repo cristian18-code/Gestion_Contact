@@ -495,7 +495,7 @@
 
                         <div class="boxes boxes1">
 
-                            <img src="media/img/backoffice.png" alt="usuario-reportar" class="icon" >
+                            <img src="media/img/datos_citas.png" alt="usuario-reportar" class="icon" >
 
                             <h4 class="title">Inf a Investigar</h4>
 
@@ -510,9 +510,9 @@
 
                             <div class="boxes boxes1">
 
-                                <img src="media/img/backoffice.png" alt="usuario-reportar" class="icon" >
+                                <img src="media/img/archivo.png" alt="usuario-reportar" class="icon" >
 
-                                <h4 class="title">Inf a Investigar</h4>
+                                <h4 class="title">Documentos</h4>
 
                                 <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
 
