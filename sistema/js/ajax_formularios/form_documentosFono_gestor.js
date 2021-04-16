@@ -52,7 +52,7 @@ $(document).ready(function(){
 
             $.ajax({
                 data:parametros,
-                url:"././sistema/logica/ajax_formularios/form_infInvestigar_gestor.php",
+                url:"././sistema/logica/ajax_formularios/form_envio_documentos_gestor.php",
                 type:"POST",
                 contentType:false,
                 processData:false,
