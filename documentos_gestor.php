@@ -167,7 +167,7 @@
                 </form>
                 <hr>
 
-                // formlario a llenar por el gestor
+                <!-- formlario a llenar por el gestor-->
                 <?php if($permiso == 1){ ?>
                 <form method="post" name="form_documentosFono_gestor" id="form_documentosFono_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
