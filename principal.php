@@ -562,7 +562,7 @@
             </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="consulta-documentos.php" target="_top">
 
             <div class="boxes boxes1">
 

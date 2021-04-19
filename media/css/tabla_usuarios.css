@@ -135,6 +135,17 @@ a{
     width: 25%;
     height: 12vh;
 }
+.respuestas1{
+    width: 100%;
+    display: flex;
+}
+.respuestas1 h1{
+    width: 50%;
+}
+.respuestas1 textarea{
+    width: 25%;
+    height: 12vh;
+}
 .adicional{
     width: 100%;
     height: 2vh;

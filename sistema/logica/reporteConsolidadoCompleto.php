@@ -190,6 +190,7 @@ if(isset($_POST['generar_reportes_documentos']))
                                         tDoc.documento,
                                         tDoc.contrato,
                                         tDoc.correo,
+                                        tDoc.ciudad,
                                         t1.nombre_tipificacion AS Servicio_Solicitado,
                                         u1.username AS userCrea,
                                         tDoc.observacionesBack,
@@ -198,11 +199,11 @@ if(isset($_POST['generar_reportes_documentos']))
                                         tDoc.fechaCierre,
                                         tDoc.horaCierre
                                         FROM ((( envio_documentos tDoc
-                                        INNER JOIN tipificaciones t 
+                                        LEFT JOIN tipificaciones t 
                                             ON tDoc.id_tipificacionEstado = t.id_tipificacion)
-                                        INNER JOIN tipificaciones t1 
+                                        LEFT JOIN tipificaciones t1 
                                             ON tDoc.id_tipificacionServicioSo = t1.id_tipificacion)
-                                        INNER JOIN usuarios u1
+                                        LEFT JOIN usuarios u1
                                             ON tDoc.id_usercrea = u1.id_usuario)
                                         LEFT JOIN usuarios u
                                             ON tDoc.id_userCierre = u.id_usuario
@@ -231,6 +232,7 @@ if(isset($_POST['generar_reportes_documentos']))
                                 $filaR['user_cierre'],
                                 $filaR['fechaCierre'],
 								$filaR['horaCierre']));
+    }
 							
     }
 ?>

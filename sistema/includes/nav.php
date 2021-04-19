@@ -20,15 +20,32 @@
 
     <li class="principal"> <a href="#"> <span class="icon-aid-kit"></span> citas </a>
       <ul>
-        <li><a href="./preparaciones_agente.php"> <span class="icon-folder-plus"> </span> Preparaciones</a></li>
-        <li><a href="./tabla_envioPreparaciones.php">  <span class="icon-eye"> </span> Backoffice</a></li>
+        <li><a href="#"> Preparaciones <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
+            <ul>
+              <li><a href="preparaciones_agente.php"> <span class="icon-user-plus"> </span> Crear Registro </a></li>
+              <li><a href="consulta-examenes.php"> <span class="icon-user-plus"> </span> Consultar Registro</a></li>
+              <li><a href="tabla_envioPreparaciones.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
+            </ul>
+          </li>
       </ul>
     </li>
 
     <li class="principal"> <a href="#" > <span class="icon-user-tie"></span> Fonoplus </a>
       <ul>
-        <li><a href="./infInvestigar_Consultor.php" > <span class="icon-folder-plus"> </span> Inf a Investigar </a></li>
-        <li><a href="./tabla_infInvestigar.php">  <span class="icon-eye"> </span> Backoffice </a></li>
+      <li><a href="#"> Inf a Investigar <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
+            <ul>
+              <li><a href="infInvestigar_Consultor.php"> <span class="icon-user-plus"> </span> Crear Registro </a></li>
+              <li><a href="consulta-inf-investigar.php"> <span class="icon-user-plus"> </span> Consultar Registro</a></li>
+              <li><a href="tabla_infInvestigar.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
+            </ul>
+          </li>
+          <li><a href="#">Envio Documentos <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
+            <ul>
+              <li><a href="documentos_consultor.php"> <span class="icon-user-plus"> </span> Crear Registro </a></li>
+              <li><a href="consulta-documentos.php"> <span class="icon-user-plus"> </span> Consultar Registro</a></li>
+              <li><a href="tabla_envioDocumentos.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
+            </ul>
+          </li>
       </ul>
     </li>
    <?php if($reporte == 1){?>
@@ -63,7 +80,7 @@
                       <!-- Opciones de Reportes-->
                       <li><a> <button name="generar_reportes_preparaciones"  class="btn btn-primary"  value="Descargar Reporte Preparaciones" onclick='alerta();'><span class="icon-download2"></span> Reporte Preparaciones</button></a></li>
                       <li><a><button name="generar_reportes_fonoplus"  class="btn btn-primary "  value="Descargar Reporte Fonoplus" onclick='alerta();'><span class="icon-download2"></span> Reporte Fonoplus</button></a></li>
-                      <li><a><button name="generar_reportes_fonoplus"  class="btn btn-primary "  value="Descargar Reporte Preparaciones" onclick='alerta();'><span class="icon-download2"></span> Reporte Documentos</button></a></li>
+                      <li><a><button name="generar_reportes_documentos"  class="btn btn-primary "  value="Descargar Reporte Documentos" onclick='alerta();'><span class="icon-download2"></span> Reporte Documentos</button></a></li>
 
                       </ul>
 
