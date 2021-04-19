@@ -10,22 +10,32 @@ $(document).ready(function(){
         
         // valida que el campo documento no este vacio ni contenga letras
         var estado = $("#estado").val();
-        if (estado == 0 || estado == null) {
+        if (estado == null || estado == 0) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Debes seleccionar una opción estado'
+                text: 'Debes seleccionar una opción ESTADO'
               });
             return
         }
+           // valida que el campo documento no este vacio ni contenga letras
+           var cmd = $("#cmd").val();
+           if (cmd == null || cmd == 0) {
+               Swal.fire({
+                   icon: 'warning',
+                   title: 'Oops...',
+                   text: 'Debes seleccionar una opción CENTRO MÉDICO'
+                 });
+               return
+           }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var gestion = $("#observacion").val();
-        if (gestion.length == 0 || gestion == null || /^\s+$/.test(gestion)) {
+        var observacion = $("#observacion").val();
+        if (observacion == 0 || observacion == null || /^\s+$/.test(observacion)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo GESTIÓN llAMADA no puede estar vacio'
+                text: 'El campo OBSERVACIONES GESTIÓN no puede estar vacio'
               });
             return
         }

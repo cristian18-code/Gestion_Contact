@@ -218,10 +218,10 @@
                     </div>
                     <br>
                     <div class="row" style="justify-content: center;">
-                        <div class="form-group row col-10" style="justify-content: center;" id="cont-observacion">
-                            <label for="observacion" class="col-sm-3 col-form-label">Observaciones de solicitud</label>
+                        <div class="form-group row col-10" style="justify-content: center;" id="cont-observacion1">
+                            <label for="observacion1" class="col-sm-3 col-form-label">Observaciones de solicitud</label>
                             <div class="col-sm-9">
-                                <textarea name="observacion" id="observacion" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['observaciones']; ?></textarea>
+                                <textarea name="observacion1" id="observacion1" class="form-control" cols="30" rows="5" style="resize: none;" readonly><?php echo $dato['observaciones']; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                         <div class="form-group row col-5" id="cont-estado" style="margin-left:auto; margin-right:auto;">
                             <label for="estado" class="col-sm-4 col-form-label">Estado</label>
                             <div class="col-sm-9">
-                                <select name="estado" id="estado" class="form-control" autofocus required>
+                                <select name="estado" id="estado" class="form-control" autofocus>
                                     <option value="" hidden>Selecciona una opcion</option>
                                     <!-- consulta traer datos de la base -->
                                 <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
@@ -262,7 +262,7 @@
                         <div class="form-group row col-5" id="cont-cmd">
                             <label for="cmd" class="col-sm-4 col-form-label">Centro Medico</label>
                             <div class="col-sm-9">
-                                <select name="cmd" id="cmd" class="form-control" required>
+                                <select name="cmd" id="cmd" class="form-control">
                                     <option value="" hidden>Selecciona una opcion</option>
                                     <!-- consulta traer datos de la base -->
                                     <?php $cmdSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'centro medico' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
@@ -288,7 +288,7 @@
                     <div class="form-group row  col-8" id="cont-observacion" style="margin-left:auto; margin-right:auto;">
                         <label for="observacion" class="col-sm-4 col-form-label">Observaciones Gestión</label>
                         <div class="col-sm-8">
-                            <textarea name="observacion" id="observacion" class="form-control" rows="4" style="resize:none; text-align: center;" required></textarea>
+                            <textarea name="observacion" id="observacion" class="form-control" rows="4" style="resize:none; text-align: center;"></textarea>
                         </div>
                     </div>
 

@@ -10,7 +10,7 @@ $(document).ready(function(){
         
         // valida que el campo documento no este vacio ni contenga letras
         var documento = $("#documento").val();
-        if (isNaN(documento) || /^\s+$/.test(documento)) {
+        if (isNaN(documento) || /^\s+$/.test(documento) || documento == null || documento == 0) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
@@ -19,24 +19,25 @@ $(document).ready(function(){
             return
         }
 
-        // valida que el campo contrato no este vacio ni contenga letras
-        var contrato = $("#contrato").val();
-        if (isNaN(contrato) || /^\s+$/.test(contrato)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CONTRATO no puede estar vacio ni contener letras'
-              });
-            return
-        }
+         // valida que el campo contrato no este vacio ni contenga letras
+         var contrato = $("#contrato").val();
+         if (isNaN(contrato) || /^\s+$/.test(contrato) ||contrato == null || contrato == 0) {
+             Swal.fire({
+                 icon: 'warning',
+                 title: 'Oops...',
+                 text: 'El campo CONTRATO no puede estar vacio ni contener letras'
+               });
+             return
+         }
+  
 
                 // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var ServicioSoli = $("#ServicioSoli").val();
-        if (ServicioSoli == null) {
+        if (ServicioSoli == null || ServicioSoli == 0) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo Servicio Solicitado no puede estar vacio'
+                text: 'Debes seleccionar una opción en SERVICIO SOLICITADO'
               });
             return
         }

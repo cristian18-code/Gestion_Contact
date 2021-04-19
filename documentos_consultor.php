@@ -79,21 +79,21 @@
                 <div class="form-group row" id="cont-documento">
                     <label for="documento" class="col-sm-4 col-form-label">N° Documento</label>
                     <div class="col-sm-8">
-                        <input type="number" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento" required>
+                        <input type="text" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento">
                     </div>
                 </div>
             
                 <div class="form-group row" id="cont-contrato">
                     <label for="contrato" class="col-sm-4 col-form-label">N° Contrato</label>
                     <div class="col-sm-8">
-                        <input type="number" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato" required>
+                        <input type="text" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-ServicioSoli">
                     <label for="ServicioSoli" class="col-sm-4 col-form-label">Servicio Solicitado</label>
                     <div class="col-sm-8">
-                        <select name="ServicioSoli" id="ServicioSoli" class="form-control" required>
+                        <select name="ServicioSoli" id="ServicioSoli" class="form-control">
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                             <?php $causalSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Servicio Solicitado' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
@@ -113,14 +113,14 @@
                 <div class="form-group row" id="cont-correo">
                     <label for="correo" class="col-sm-4 col-form-label">Correo electronico</label>
                     <div class="col-sm-8">
-                        <input type="text" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario" required>
+                        <input type="text" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-ciudad">
                     <label for="ciudad" class="col-sm-4 col-form-label">Ciudad</label>
                     <div class="col-sm-8">
-                        <input type="text" name="ciudad" id="ciudad" class="form-control" autocomplete="off" placeholder="Ciudad de residencia" required>
+                        <input type="text" name="ciudad" id="ciudad" class="form-control" autocomplete="off" placeholder="Ciudad de residencia">
                     </div>
                 </div>
 

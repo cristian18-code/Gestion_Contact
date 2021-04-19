@@ -21,7 +21,7 @@ $(document).ready(function(){
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var observacionesBack = $("#observacionesBack").val();
-        if (observacionesBack.length == 0 || observacionesBack == null || /^\s+$/.test(observacionesBack)) {
+        if (observacionesBack == 0 || observacionesBack == null || /^\s+$/.test(observacionesBack)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
