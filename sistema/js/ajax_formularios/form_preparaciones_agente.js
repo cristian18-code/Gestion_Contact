@@ -9,27 +9,27 @@ $(document).ready(function(){
         var parametros = new FormData($("#form_preparaciones_agente")[0]);
         var btnEnviar = $("#btnEnviar_preparaciones_agente");
         
-        // valida que el campo documento no este vacio ni contenga letras
-        var documento = $("#documento").val();
-        if (isNaN(documento) || /^\s+$/.test(documento)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo DOCUMENTO no puede estar vacio ni contener letras'
-              });
-            return
-        }
+         // valida que el campo documento no este vacio ni contenga letras
+         var documento = $("#documento").val();
+         if (isNaN(documento) || /^\s+$/.test(documento) || documento == null || documento == 0) {
+             Swal.fire({
+                 icon: 'warning',
+                 title: 'Oops...',
+                 text: 'El campo DOCUMENTO no puede estar vacio ni contener letras'
+               });
+             return
+         }
 
-        // valida que el campo contrato no este vacio ni contenga letras
-        var contrato = $("#contrato").val();
-        if (isNaN(contrato) || /^\s+$/.test(contrato)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CONTRATO no puede estar vacio ni contener letras'
-            });
-            return
-        }
+       // valida que el campo contrato no este vacio ni contenga letras
+       var contrato = $("#contrato").val();
+       if (isNaN(contrato) || /^\s+$/.test(contrato) ||contrato == null || contrato == 0) {
+           Swal.fire({
+               icon: 'warning',
+               title: 'Oops...',
+               text: 'El campo CONTRATO no puede estar vacio ni contener letras'
+             });
+           return
+       }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var nombres = $("#nombres").val();
@@ -42,16 +42,16 @@ $(document).ready(function(){
             return
         }
 
-        // valida que el campo no este vacio ni contenga letras
-        var celular = $("#celular").val();
-        if (isNaN(celular) || /^\s+$/.test(celular)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CELULAR no puede estar vacio ni contener letras'
-                });
-            return
-        }
+            // valida que el campo no este vacio ni contenga letras
+            var celular = $("#celular").val();
+            if (isNaN(celular) || /^\s+$/.test(celular) || celular == null || celular == 0) {
+                     Swal.fire({
+                         icon: 'warning',
+                         title: 'Oops...',
+                         text: 'El campo CELULAR no puede estar vacio ni contener letras'
+                      });
+                  return
+              }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var examen = $("#examen").val();
@@ -64,18 +64,60 @@ $(document).ready(function(){
             return
         }
 
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+        var expresionEmail = /^[A-Za-z0-9._-]+@[A-Za-z]+\.[\w.-]*[[A-Za-z][[A-Za-z]+$/;
+        // valida si el correo esta bien escrito, si lo esta envia una alerta y retorna a la pagina del formulario
         var correo = $("#correo").val();
-        if (correo.length == 0 || correo == null || /^\s+$/.test(correo)) {
+        if (correo.length == 0 || correo == null || !expresionEmail.test(correo)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo CORREO no puede estar vacio'
+                text: 'El correo electrónico ingresado no es válido. Este campo puede tener letras, números, puntos, guiones, seguido de @ y el dominio correspondiente.'
               });
             return
         }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+            // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+            var solicitud = $("#solicitud").val();
+            if (solicitud == null || solicitud == 0) {
+                    Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Debes selecciona una opción en el campo de Tipo de Solicitud'
+                });
+                return
+            }
+           
+             // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+             var cmd = $("#cmd").val();
+             if (cmd == null || cmd == 0) {
+                      Swal.fire({
+                      icon: 'warning',
+                      title: 'Oops...',
+                      text: 'Debes selecciona una opción en el campo de Centro Médico'
+                   });
+                return
+             }
+               // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+               var tipo = $("#tipo").val();
+               if (tipo == null || tipo== 0) {
+                        Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Debes selecciona una opción en el campo de Tipo'
+                     });
+                  return
+               }
+             
+            // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+             var tipoPaciente = $("#tipoPaciente").val();
+             if (tipoPaciente == null || tipoPaciente == 0) {
+                      Swal.fire({
+                      icon: 'warning',
+                      title: 'Oops...',
+                      text: 'Debes selecciona una opción en el campo de Tipo Paciente'
+                   });
+                return
+             }
+                   // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var observacion = $("#observacion").val();
         if (observacion.length == 0 || observacion == null || /^\s+$/.test(observacion)) {
             Swal.fire({
@@ -85,7 +127,6 @@ $(document).ready(function(){
               });
             return
         }
-
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',

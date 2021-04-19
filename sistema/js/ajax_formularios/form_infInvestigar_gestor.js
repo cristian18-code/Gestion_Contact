@@ -10,22 +10,11 @@ $(document).ready(function(){
         
         // valida que el campo documento no este vacio ni contenga letras
         var estado = $("#estado").val();
-        if (estado == 0 || estado == null) {
+        if (estado == null || estado == 0) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Debes seleccionar una opción estado'
-              });
-            return
-        }
-
-        // valida que el campo contrato no este vacio ni contenga letras
-        var contrato = $("#contrato").val();
-        if (isNaN(contrato) || /^\s+$/.test(contrato)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CONTRATO no puede estar vacio ni contener letras'
+                text: 'Debes seleccionar una opción en el campo ESTADO'
               });
             return
         }
@@ -47,7 +36,7 @@ $(document).ready(function(){
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo GESTIÓN llAMADA no puede estar vacio'
+                text: 'El campo OBSERVACIONES no puede estar vacio'
               });
             return
         }

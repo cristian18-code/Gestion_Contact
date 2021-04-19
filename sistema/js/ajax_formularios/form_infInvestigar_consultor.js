@@ -8,10 +8,21 @@ $(document).ready(function(){
 
         var parametros = new FormData($("#form_infInvestigarConsultor")[0]);
         var btnEnviar = $("#btnEnviar_infInvestigarConsultor");
-        
+           // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+
+           var estado = $("#estado").val();
+           if (estado == null || estado == 0) {
+                    Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Debes seleccionar una opción en el campo Estado'
+                 });
+              return
+           }
+
         // valida que el campo documento no este vacio ni contenga letras
         var documento = $("#documento").val();
-        if (isNaN(documento) || /^\s+$/.test(documento)) {
+        if (isNaN(documento) || /^\s+$/.test(documento) || documento == null || documento == 0) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
@@ -19,18 +30,18 @@ $(document).ready(function(){
               });
             return
         }
-
-        // valida que el campo contrato no este vacio ni contenga letras
-        var contrato = $("#contrato").val();
-        if (isNaN(contrato) || /^\s+$/.test(contrato)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CONTRATO no puede estar vacio ni contener letras'
-              });
-            return
-        }
-
+          // valida que el campo contrato no este vacio ni contenga letras
+          var contrato = $("#contrato").val();
+          if (isNaN(contrato) || /^\s+$/.test(contrato) ||contrato == null || contrato == 0) {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'El campo CONTRATO no puede estar vacio ni contener letras'
+                });
+              return
+          }
+   
+          
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var nombres = $("#nombres").val();
         if (nombres.length == 0 || nombres == null || /^\s+$/.test(nombres)) {
@@ -42,39 +53,58 @@ $(document).ready(function(){
             return
         }
 
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+         var causal= $("#causal").val();
+         if (causal == null || causal == 0) {
+                  Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'Debes seleccionar una opción en el campo Causal'
+               });
+            return
+         }
+
+        var expresionEmail = /^[A-Za-z0-9._-]+@[A-Za-z]+\.[\w.-]*[[A-Za-z][[A-Za-z]+$/;
+        // valida si el correo esta bien escrito, si lo esta envia una alerta y retorna a la pagina del formulario
         var correo = $("#correo").val();
-        if (correo.length == 0 || correo == null || /^\s+$/.test(correo)) {
+        if (correo.length == 0 || correo == null || !expresionEmail.test(correo)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El campo CORREO no puede estar vacio'
+                text: 'El correo electrónico ingresado no es válido. Este campo puede tener letras, números, puntos, guiones, seguido de @ y el dominio correspondiente.'
               });
             return
         }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var persona = $("#persona").val();
-        if (persona.length == 0 || persona == null || /^\s+$/.test(persona)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo PERSONA A PREGUNTAR no puede estar vacio'
-              });
-            return
-        }
-
-
-        // valida que el campo no este vacio ni contenga letras
-        var celular = $("#celular").val();
-        if (isNaN(celular) || /^\s+$/.test(celular)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'El campo CELULAR no puede estar vacio ni contener letras'
-              });
-            return
-        }
+          // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+          var persona = $("#persona").val();
+          if (persona.length == 0 || persona == null || /^\s+$/.test(persona)) {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'El campo PERSONA A PREGUNTAR no puede estar vacio'
+                });
+              return
+          }
+             // valida que el campo no este vacio ni contenga letras
+          var telefono = $("#telefono").val();
+          if (isNaN(telefono) || /^\s+$/.test(telefono) || telefono == null || telefono == 0) {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'El campo Telefono no puede estar vacio ni contener letras'
+                });
+              return
+          }
+          // valida que el campo no este vacio ni contenga letras
+          var celular = $("#celular").val();
+          if (isNaN(celular) || /^\s+$/.test(celular) || celular == null || celular == 0) {
+                   Swal.fire({
+                       icon: 'warning',
+                       title: 'Oops...',
+                       text: 'El campo CELULAR no puede estar vacio ni contener letras'
+                    });
+                return
+            }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var ciudad = $("#ciudad").val();
@@ -97,7 +127,7 @@ $(document).ready(function(){
                 });
             return
         }
-
+  
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',

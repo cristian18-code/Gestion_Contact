@@ -78,49 +78,49 @@
                 <div class="form-group row" id="cont-documento">
                     <label for="documento" class="col-sm-4 col-form-label">Número de Documento</label>
                     <div class="col-sm-8">
-                        <input type="number" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento" required>
+                        <input type="text" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento">
                     </div>
                 </div>
             
                 <div class="form-group row" id="cont-contrato">
                     <label for="contrato" class="col-sm-4 col-form-label">Número del Contrato</label>
                     <div class="col-sm-8">
-                        <input type="number" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato" required>
+                        <input type="text" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-nombres">
                     <label for="nombres" class="col-sm-4 col-form-label">Nombre Usuario</label>
                     <div class="col-sm-8">
-                        <input type="text" name="nombres" id="nombres" class="form-control" autocomplete="off" placeholder="Nombre Completo" required>
+                        <input type="text" name="nombres" id="nombres" class="form-control" autocomplete="off" placeholder="Nombre Completo">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-celular">
                     <label for="celular" class="col-sm-4 col-form-label">Celular</label>
                     <div class="col-sm-8">
-                        <input type="number" name="celular" id="celular" class="form-control" autocomplete="off" placeholder="Numero celular" required>
+                        <input type="tel" name="celular" id="celular" class="form-control" autocomplete="off" placeholder="Numero celular">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-examen">
                     <label for="examen" class="col-sm-4 col-form-label">Examen</label>
                     <div class="col-sm-8">
-                        <input type="text" name="examen" id="examen" class="form-control" autocomplete="off" placeholder="Nombre de examen" required>
+                        <input type="text" name="examen" id="examen" class="form-control" autocomplete="off" placeholder="Nombre de examen">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-correo">
                     <label for="correo" class="col-sm-4 col-form-label">Correo electronico</label>
                     <div class="col-sm-8">
-                        <input type="email" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario"  required>
+                        <input type="email" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-solicitud">
                     <label for="solicitud" class="col-sm-4 col-form-label">Tipo solicitud</label>
                     <div class="col-sm-8">
-                        <select name="solicitud" id="solicitud" class="form-control" required>
+                        <select name="solicitud" id="solicitud" class="form-control">
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                             <?php $tipolSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'tipo solicitud' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
@@ -139,7 +139,7 @@
                 <div class="form-group row" id="cont-cmd">
                     <label for="cmd" class="col-sm-4 col-form-label">Centro Medico</label>
                     <div class="col-sm-8">
-                        <select name="cmd" id="cmd" class="form-control" required>
+                        <select name="cmd" id="cmd" class="form-control">
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                             <?php $cmdSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'centro medico' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
@@ -158,7 +158,7 @@
                 <div class="form-group row" id="cont-tipo">
                     <label for="tipo" class="col-sm-4 col-form-label">Tipo</label>
                     <div class="col-sm-8">
-                        <select name="tipo" id="tipo" class="form-control" required>
+                        <select name="tipo" id="tipo" class="form-control">
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                             <?php $tipoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'tipo' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
@@ -177,7 +177,7 @@
                 <div class="form-group row" id="cont-tipoPaciente">
                     <label for="tipoPaciente" class="col-sm-4 col-form-label">Tipo paciente</label>
                     <div class="col-sm-8">
-                        <select name="tipoPaciente" id="tipoPaciente" class="form-control" required>
+                        <select name="tipoPaciente" id="tipoPaciente" class="form-control">
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                             <?php $tipoPacienteSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'tipo paciente' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
@@ -196,7 +196,7 @@
                 <div class="form-group row" id="cont-observacion">
                     <label for="observacion" class="col-sm-4 col-form-label">Observaciones de solicitud</label>
                     <div class="col-sm-8">
-                        <textarea name="observacion" id="observacion" class="form-control" style="resize:none; text-align: center;" rows="3" placeholder="Observaciones" required></textarea>
+                        <textarea name="observacion" id="observacion" class="form-control" style="resize:none; text-align: center;" rows="3" placeholder="Observaciones"></textarea>
                     </div>
                 </div>
                 <center><input type="submit" class="btn btn-primary" id="btnEnviar_preparaciones_agente" name="btnEnviar_preparaciones_agente" value="Guardar"></center>

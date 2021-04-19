@@ -79,7 +79,7 @@
                 <div id="cont-estado" class="form-group row">
                     <label for="estado" class="col-sm-4 col-form-label">Estado</label>
                     <div class="col-sm-8">
-                        <select name="estado" id="estado" class="form-control" required>
+                        <select name="estado" id="estado" class="form-control">
                         <option value="" hidden>Selecciona una opcion</option>
                         <!-- consulta traer datos de la base -->
                         <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado consultor' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
@@ -98,28 +98,28 @@
                 <div class="form-group row" id="cont-documento">
                     <label for="documento" class="col-sm-4 col-form-label">N° Documento</label>
                     <div class="col-sm-8">
-                        <input type="number" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento" required>
+                        <input type="text" name="documento" class="form-control" autocomplete="off" placeholder="Ingrese el numero de documento" id="documento">
                     </div>
                 </div>
             
                 <div class="form-group row" id="cont-contrato">
                     <label for="contrato" class="col-sm-4 col-form-label">N° Contrato</label>
                     <div class="col-sm-8">
-                        <input type="number" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato" required>
+                        <input type="text" name="contrato" class="form-control" autocomplete="off" placeholder="Numero de contrato" id="contrato">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-nombres">
                     <label for="nombres" class="col-sm-4 col-form-label">Nombre Usuario</label>
                     <div class="col-sm-8">
-                        <input type="text" name="nombres" id="nombres" class="form-control" autocomplete="off" placeholder="Nombre Completo" required>
+                        <input type="text" name="nombres" id="nombres" class="form-control" autocomplete="off" placeholder="Nombre Completo">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-causal">
                     <label for="causal" class="col-sm-4 col-form-label">Causal</label>
                     <div class="col-sm-8">
-                        <select name="causal" id="causal" class="form-control" required>
+                        <select name="causal" id="causal" class="form-control">
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                             <?php $causalSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Causal' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
@@ -138,42 +138,42 @@
                 <div class="form-group row" id="cont-correo">
                     <label for="correo" class="col-sm-4 col-form-label">Correo electronico</label>
                     <div class="col-sm-8">
-                        <input type="email" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario" pattern="{@}" required>
+                        <input type="email" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-persona">
                     <label for="persona" class="col-sm-4 col-form-label">¿Persona a preguntar?</label>
                     <div class="col-sm-8">
-                        <input type="text" name="persona" id="persona" class="form-control" autocomplete="off" placeholder="Nombre de la persona" required>
+                        <input type="text" name="persona" id="persona" class="form-control" autocomplete="off" placeholder="Nombre de la persona">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-telefono">
                     <label for="telefono" class="col-sm-4 col-form-label">Telefono</label>
                     <div class="col-sm-8">
-                        <input type="number" name="telefono" id="telefono" class="form-control" autocomplete="off" placeholder="Telefono fijo" required>
+                        <input type="tel" name="telefono" id="telefono" class="form-control" autocomplete="off" placeholder="Telefono fijo">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-celular">
                     <label for="celular" class="col-sm-4 col-form-label">Celular</label>
                     <div class="col-sm-8">
-                        <input type="number" name="celular" id="celular" class="form-control" autocomplete="off" placeholder="Numero celular" required>
+                        <input type="tel" name="celular" id="celular" class="form-control" autocomplete="off" placeholder="Numero celular">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-ciudad">
                     <label for="ciudad" class="col-sm-4 col-form-label">Ciudad</label>
                     <div class="col-sm-8">
-                        <input type="text" name="ciudad" id="ciudad" class="form-control" autocomplete="off" placeholder="Ciudad de residencia" required>
+                        <input type="text" name="ciudad" id="ciudad" class="form-control" autocomplete="off" placeholder="Ciudad de residencia">
                     </div>
                 </div>
 
                 <div class="form-group row" id="cont-detalle">
                     <label for="detalle" class="col-sm-4 col-form-label">Descripción</label>
                     <div class="col-sm-8">
-                        <textarea name="detalle" id="detalle" class="form-control" style="resize:none; text-align: center;" placeholder="Servicio solicitado" required></textarea>
+                        <textarea name="detalle" id="detalle" class="form-control" style="resize:none; text-align: center;" placeholder="Servicio solicitado"></textarea>
                     </div>
                 </div>
                 <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarConsultor" name="btnEnviar_infInvestigarConsultor" value="Guardar"></center>

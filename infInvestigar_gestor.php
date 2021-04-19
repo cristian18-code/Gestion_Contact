@@ -191,9 +191,9 @@
 
                     <div class="row" style="justify-content: center;">
                         <div id="cont-estado" class="form-group row col-5">
-                            <label for="estado" class="col-sm-3 col-form-label">Estado</label>
+                            <label for="estado1" class="col-sm-3 col-form-label">Estado</label>
                             <div class="col-sm-9">
-                                <input type="text" name="estado" id="estado" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
+                                <input type="text" name="estado1" id="estado1" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
                             </div>
                         </div>
 
@@ -250,14 +250,14 @@
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-respuesta">
                             <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
                             <div class="col-sm-9">
-                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" required> </textarea>
+                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;"> </textarea>
                             </div>
                         </div>
                         
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-gestion">
                             <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
                             <div class="col-sm-9">
-                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" required></textarea>
+                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" ></textarea>
                             </div>
                         </div>
                     </div>
@@ -265,7 +265,7 @@
                     <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto; margin-top: 1%;">
                     <label for="estado" class="col-sm-4 col-form-label">Estado</label>
                     <div class="col-sm-8">
-                        <select name="estado" id="estado" class="form-control" autofocus required>
+                        <select name="estado" id="estado" class="form-control" autofocus>
                             <option value="" hidden>Selecciona una opcion</option>
                             <!-- consulta traer datos de la base -->
                     
