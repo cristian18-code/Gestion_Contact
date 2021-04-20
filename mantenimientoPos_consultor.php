@@ -71,7 +71,7 @@
                 <br>
                 <div id="encabezado" class="form-group">
                     <input type="text" name="dia" id="dia" value="" readonly> <!-- Muestra el dia actual -->
-                    <img src="media/img/archivo.png" class="mover" alt="anadir" width="80px">
+                    <img src="media/img/mantenimiento-pos.png" class="mover" alt="anadir" width="80px">
                     <input type="text" name="hora" id="hora" value="" readonly> <!-- Muestra la hora actual en tiempo real -->
                     <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['idUsers']; ?>">
                 </div>

@@ -375,7 +375,7 @@
                 </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="mantenimientoPos_consultor.php" target="_top">
 
                 <div class="boxes boxes1">
 
@@ -521,6 +521,21 @@
                             </div>  
 
                         </a>
+                        <a href="tabla_mantenimientoPosventa.php" target="_top">
+
+                            <div class="boxes boxes1">
+
+                                <img src="media/img/mantenimiento-pos.png" alt="usuario-reportar" class="icon" >
+
+                                <h4 class="title">Posventa </h4>
+
+                                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                                <div class="background-hover"></div>
+
+                        </div>  
+
+        </a>
     </div>
     
         <button data-pushbar-close><span class="icon-cancel-circle" id="close"></span></button>
@@ -577,7 +592,7 @@
             </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="consulta-mantenimientoPos.php" target="_top">
 
             <div class="boxes boxes1">
 
