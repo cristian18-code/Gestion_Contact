@@ -95,13 +95,13 @@ if(isset($_POST['generar_reportes_fonoplus']))
     // NOMBRE DEL ARCHIVO Y CHARSET
     
 	header('Content-Type:text/csv; charset=UTF-8');
-	header('Content-Disposition: attachment; filename="Reporte_Consolidado_Preparaciones.csv"');
+	header('Content-Disposition: attachment; filename="Reporte_Consolidado_infInvestigar.csv"');
 
 	// SALIDA DEL ARCHIVO
 	$salida=fopen('php://output', 'b');
 	// ENCABEZADOS
-	fputcsv($salida, array('ID Registro', 'Id Tipificacion Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
-						   'Nombre Usuario', 'Detalle Servicio', 'Email', 'Id Tipificacion Causal', 'Persona Preguntar', 'Telefono','Celular', 'Usuario Que Crea', 
+	fputcsv($salida, array('ID Registro', 'Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
+						   'Nombre Usuario', 'Detalle Servicio', 'Email', 'Causal', 'Persona Preguntar', 'Telefono','Celular', 'Usuario Que Crea', 
 						   'Ciudad', 'Respuesta Cierre','Observaciones', 'Backoffice', 'Fecha Cierre', 'Hora Cierre'));
 	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
 	$traerDatos=$con->query("SELECT     tFono.id_registro,
@@ -174,12 +174,12 @@ if(isset($_POST['generar_reportes_documentos']))
     // NOMBRE DEL ARCHIVO Y CHARSET
     
 	header('Content-Type:text/csv; charset=UTF-8');
-	header('Content-Disposition: attachment; filename="Reporte_Consolidado_Preparaciones.csv"');
+	header('Content-Disposition: attachment; filename="Reporte_Consolidado_Documentos.csv"');
 
 	// SALIDA DEL ARCHIVO
 	$salida=fopen('php://output', 'b');
 	// ENCABEZADOS
-	fputcsv($salida, array('ID Registro', 'Id Tipificacion Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
+	fputcsv($salida, array('ID Registro', 'Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
 						    'Servicio Solicitado', 'Correo', 'Ciudad', 'Observaciones', 'Observaciones Backoffice','Consultor', 'Backoffice', 
 						   'Fecha Cierre', 'Hora Cierre'));
 	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
@@ -232,6 +232,75 @@ if(isset($_POST['generar_reportes_documentos']))
                                 $filaR['user_cierre'],
                                 $filaR['fechaCierre'],
 								$filaR['horaCierre']));
+    }
+							
+    }
+
+    if(isset($_POST['generar_reportes_mantenimientoPos']))
+    {
+    // NOMBRE DEL ARCHIVO Y CHARSET
+    
+	header('Content-Type:text/csv; charset=UTF-8');
+	header('Content-Disposition: attachment; filename="Reporte_Consolidado_MantenimientoPos.csv"');
+
+	// SALIDA DEL ARCHIVO
+	$salida=fopen('php://output', 'b');
+	// ENCABEZADOS
+	fputcsv($salida, array('ID Registro', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
+						    'Telefono', 'Correo', 'Nombre Usuario', 'Ciudad', 'Asesor Mantenimiento', 'Observaciones', 
+                            'Enviado A', 'Estado', 'Consultor', 'Backoffice', 'Fecha Cierre', 'Hora Cierre'));
+	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
+	$traerDatos=$con->query("SELECT     tManP.id_registro,
+                                        t.nombre_tipificacion AS estado,
+                                        DATE_FORMAT(tManP.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
+                                        tManP.horaRegistro,
+                                        tManP.documento,
+                                        tManP.contrato,
+                                        tManP.correo,
+                                        tManP.telefono,
+                                        t1.nombre_tipificacion AS envio,
+                                        u1.username AS userCrea,
+                                        tManP.nombres_usuario,
+                                        tManP.observaciones,
+                                        tManP.ciudad,
+                                        tManP.asesor_mantenimiento,
+                                        u.username AS user_cierre,
+                                        tManP.fecha_Envio,
+                                        tManP.hora_Envio
+                                        FROM ((( mantenimiento_posventa tManP
+                                        LEFT JOIN tipificaciones t 
+                                            ON tManP.id_tipificacionEstado = t.id_tipificacion)
+                                        LEFT JOIN tipificaciones t1 
+                                            ON tManP.id_tipificacionenviarA = t1.id_tipificacion)
+                                        LEFT JOIN usuarios u1
+                                            ON tManP.id_usercrea = u1.id_usuario)
+                                        LEFT JOIN usuarios u
+                                            ON tManP.id_userCierre = u.id_usuario
+                                        where tManP.fechaRegistro BETWEEN '$fecha1' AND '$fecha2' ORDER BY id_registro");
+
+	foreach ($traerDatos as $filaR) {
+				
+
+        $filaR['observaciones'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['observaciones']);
+	
+		
+		fputcsv($salida, array($filaR['id_registro'], 
+								$filaR['fecha_registro'],
+								$filaR['horaRegistro'],
+								$filaR['documento'],
+								$filaR['contrato'],
+                                $filaR['telefono'],
+                                $filaR['correo'],
+                                $filaR['nombres_usuario'],
+                                $filaR['ciudad'],
+                                $filaR['asesor_mantenimiento'],
+                                $filaR['observaciones'],
+                                $filaR['envio'],
+                                $filaR['estado'],
+                                $filaR['userCrea'],
+                                $filaR['user_cierre'],
+                                $filaR['fecha_Envio'],
+								$filaR['hora_Envio']));
     }
 							
     }

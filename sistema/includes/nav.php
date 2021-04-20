@@ -46,6 +46,13 @@
               <li><a href="tabla_envioDocumentos.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
             </ul>
           </li>
+          <li><a href="#">Mantenimiento Pos <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
+            <ul>
+              <li><a href="mantenimientoPos_consultor.php"> <span class="icon-user-plus"> </span> Crear Registro </a></li>
+              <li><a href="consulta-mantenimientoPos.php"> <span class="icon-user-plus"> </span> Consultar Registro</a></li>
+              <li><a href="tabla_mantenimientoPosventa.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
+            </ul>
+          </li>
       </ul>
     </li>
    <?php if($reporte == 1){?>
@@ -81,6 +88,7 @@
                       <li><a> <button name="generar_reportes_preparaciones"  class="btn btn-primary"  value="Descargar Reporte Preparaciones" onclick='alerta();'><span class="icon-download2"></span> Reporte Preparaciones</button></a></li>
                       <li><a><button name="generar_reportes_fonoplus"  class="btn btn-primary "  value="Descargar Reporte Fonoplus" onclick='alerta();'><span class="icon-download2"></span> Reporte Fonoplus</button></a></li>
                       <li><a><button name="generar_reportes_documentos"  class="btn btn-primary "  value="Descargar Reporte Documentos" onclick='alerta();'><span class="icon-download2"></span> Reporte Documentos</button></a></li>
+                      <li><a><button name="generar_reportes_mantenimientoPos"  class="btn btn-primary "  value="Descargar Reporte Mantenimiento Pos" onclick='alerta();'><span class="icon-download2"></span> Reporte Mantenimiento Pos</button></a></li>
 
                       </ul>
 
