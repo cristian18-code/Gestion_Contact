@@ -17,7 +17,7 @@
     }
 
     /* Trae el ultimo registro creado */
-    $traerDatos = "SELECT max(id_registro) FROM envio_documentos";
+    $traerDatos = "SELECT max(id_registro) FROM inf_investigar_citas";
     $ver = $con->query($traerDatos) or die ("No se obtuvieron datos en la consulta");
 
     if ($row = mysqli_fetch_row($ver)) {
