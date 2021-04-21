@@ -74,7 +74,7 @@
         $copia = 'dianasa@medcontactcenter.com.co; katherinerc@medcontactcenter.com.co';
         $cuerpo = 'Cordial Saludo, 
         %0D%0DDe la manera más atenta, solicitamos su colaboración con la siguiente solicitud:
-        %0D%0D<b>•	No de documento: </b>'.$documento.
+        %0D%0D•	No de documento:'.$documento.
         '%0D•	Nombre usuario: '.$nombreUsuario.
         '%0D•	Correo electrónico: '.$correElectronico.
         '%0D•	Nombre profesional/servicio: '.$nombreProfesional.

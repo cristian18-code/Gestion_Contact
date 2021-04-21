@@ -27,12 +27,19 @@
               <li><a href="tabla_envioPreparaciones.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
             </ul>
           </li>
+        <li><a href="#"> Inf a Investigar C <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
+            <ul>
+              <li><a href="infInvestigarCitas_consultor.php"> <span class="icon-user-plus"> </span> Crear Registro </a></li>
+              <li><a href="consulta-inf-investigar_citas.php"> <span class="icon-user-plus"> </span> Consultar Registro</a></li>
+              <li><a href="tabla_infInvestigar_Citas.php"><span class="icon-clipboard"> </span> Gestión Backoffice </a></li>
+            </ul>
+          </li>
       </ul>
     </li>
 
     <li class="principal"> <a href="#" > <span class="icon-user-tie"></span> Fonoplus </a>
       <ul>
-      <li><a href="#"> Inf a Investigar <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
+      <li><a href="#"> Inf a Investigar F <span style="font-size: 14px;" class="icon-circle-right"></span> </a>
             <ul>
               <li><a href="infInvestigar_Consultor.php"> <span class="icon-user-plus"> </span> Crear Registro </a></li>
               <li><a href="consulta-inf-investigar.php"> <span class="icon-user-plus"> </span> Consultar Registro</a></li>

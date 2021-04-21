@@ -38,7 +38,7 @@
                             t3.nombre_tipificacion AS centro_medico,
                             tCitas.tipificacionOrdResPed,
                             t4.nombre_tipificacion AS centroMedico_back,
-                            t5.nombre_tipificacion AS servicios_complementarios,
+                            tCitas.id_tipificacionServiciosCom,
                             t6.nombre_tipificacion AS centro_costo,
                             tCitas.Nombre_Profesional,
                             tCitas.FechaServicio,

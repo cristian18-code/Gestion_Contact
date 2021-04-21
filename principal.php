@@ -141,9 +141,9 @@
     <h1> Gestión Citas </h1>
     <div class="container-boxes">
 
-            <a href="#" target="_top">
+            <a href="infInvestigarCitas_consultor.php" target="_top">
 
-                <div class="boxes boxes1" data-swal-template="#my-template">
+                <div class="boxes boxes1">
 
                     <img src="media/img/infoInvestigar.png" alt="usuario-reportar" class="icon" >
 
@@ -201,7 +201,7 @@
                 </div>  
 
             </a>
-            <a href="tabla_envioPreparaciones.php" target="_top">
+            <a href="#" data-pushbar-target="pushbar-menu-citas-backoffice">
 
                 <div class="boxes boxes1">
 
@@ -236,11 +236,56 @@
         <button data-pushbar-close><span class="icon-cancel-circle" id="close"></span></button>
        
 </div>
+
+<!-- Opciones desplegables de Citas - Backoffice-->
+<div data-pushbar-id="pushbar-menu-citas-backoffice" data-pushbar-direction="top" class="pusbar-fono-consultar">
+    <h1> Gestión Citas BackOffice</h1>
+
+    <div class="container-boxes">
+                        <a href="tabla_envioPreparaciones.php" target="_top">
+
+                            <div class="boxes boxes1">
+
+                                <img src="media/img/examenes.png" alt="usuario-reportar" class="icon" >
+
+                                <h4 class="title">Examenes</h4>
+
+                                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                                <div class="background-hover"></div>
+
+                            </div>  
+
+                        </a>
+                        <a href="tabla_infInvestigar_Citas.php" target="_top">
+
+                        <div class="boxes boxes1">
+
+                            <img src="media/img/datos_citas.png" alt="usuario-reportar" class="icon" >
+
+                            <h4 class="title">Inf a Investigar</h4>
+
+                            <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                            <div class="background-hover"></div>
+
+                        </div>  
+
+                        </a>
+                       
+                   
+    </div>
+    
+        <button data-pushbar-close><span class="icon-cancel-circle" id="close"></span></button>
+        <span class="icon-circle-down"  data-pushbar-target="pushbar-menu-fonoplus"></span>
+</div>
+
+
 <!-- Opciones desplegables de Citas - Consultar-->
 <div data-pushbar-id="pushbar-menu-citas-consulta" data-pushbar-direction="top" class="pusbar-fono-bitacora">
     <h1> Gestión Citas - Consulta</h1>
     <div class="container-boxes">
-        <a href="#" target="_top" data-swal-template="#my-template">
+        <a href="consulta-inf-investigar_citas.php" target="_top">
 
             <div class="boxes boxes1">
 
@@ -487,6 +532,7 @@
 </div>  
 </div>
 
+<!-- Opciones desplegables de Fono - Backoffice-->
 <div data-pushbar-id="pushbar-menu-fonoplus-backoffice" data-pushbar-direction="top" class="pusbar-fono-consultar">
     <h1> Gestión Fono Plus BackOffice</h1>
 

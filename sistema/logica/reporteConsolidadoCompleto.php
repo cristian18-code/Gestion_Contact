@@ -77,7 +77,7 @@ if(isset($_POST['generar_reportes_preparaciones']))
 								$filaR['examen'],
 								$filaR['correo'],
 								$filaR['celular'],
-                                $filaR['user_crea'], 
+                                $filaR['user_crea'],
                                 $filaR['fecha_envio'],
                                 $filaR['hora_envio'],
                                 $filaR['solicitud'],
@@ -86,7 +86,6 @@ if(isset($_POST['generar_reportes_preparaciones']))
                                 $filaR['paciente'],
                                 $filaR['user_cierre'],
 								$filaR['cmdBackoffice']));
-							
     }
 }
 
@@ -317,7 +316,7 @@ if(isset($_POST['generar_reportes_documentos']))
 	// ENCABEZADOS
 	fputcsv($salida, array('ID Registro','Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 'Nombres Usuario',
                             'Centro Medico','Servicio', 'Centro de Costo', 'Servicio Solicitado','Email', 'Tipo de Solicitud', 'Persona A preguntar',  
-                            'Telefono Fijo', 'Celular', 'Ciudad', 'Agente Registra', 'Backoffice', 'Observaciones Gestión', 'Tipo de Usuario', 
+                            'Telefono Fijo', 'Celular', 'Ciudad', 'Agente Registra', 'Backoffice', 'Respuesta Backoffice', 'Observaciones Gestion', 'Tipo de Usuario', 
                             'Ordenes/Resultados/Pendientes', 'Fecha Servicio', 'Nombre Profesional','Fecha Cierre', 'Hora Cierre'));
 	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
 	$traerDatos=$con->query("SELECT     tCitas.id_registro,
