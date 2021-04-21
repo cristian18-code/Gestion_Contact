@@ -304,4 +304,89 @@ if(isset($_POST['generar_reportes_documentos']))
     }
 							
     }
+
+    if(isset($_POST['generar_reportes_Inf_Investigar_Citas']))
+    {
+    // NOMBRE DEL ARCHIVO Y CHARSET
+    
+	header('Content-Type:text/csv; charset=UTF-8');
+	header('Content-Disposition: attachment; filename="Reporte_Consolidado_Inf_Inv_Citas.csv"');
+
+	// SALIDA DEL ARCHIVO
+	$salida=fopen('php://output', 'b');
+	// ENCABEZADOS
+	fputcsv($salida, array('ID Registro','Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
+						    'Telefono', 'Correo', 'Nombre Usuario', 'Ciudad', 'Asesor Mantenimiento', 'Observaciones', 
+                            'Enviado A', 'Estado', 'Consultor', 'Backoffice', 'Fecha Cierre', 'Hora Cierre'));
+	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
+	$traerDatos=$con->query("SELECT     tCitas.id_registro,
+                                        t.nombre_tipificacion AS estado,
+                                        DATE_FORMAT(tCitas.fecha_registro, '%d/%m/%Y') AS fecha_registro,
+                                        tCitas.hora_registro,
+                                        t1.nombre_tipificacion AS tipo_solicitud,
+                                        t2.nombre_tipificacion AS tipo_usuario,
+                                        tCitas.documento,
+                                        tCitas.contrato,
+                                        tCitas.nombres_usuario,
+                                        tCitas.correo,
+                                        tCitas.nomPersona_preguntar,
+                                        tCitas.telefono,
+                                        tCitas.celular,
+                                        tCitas.ciudad,
+                                        t3.nombre_tipificacion AS centro_medico,
+                                        tCitas.tipificacionOrdResPed,
+                                        t4.nombre_tipificacion AS centroMedico_back,
+                                        t5.nombre_tipificacion AS servicios_complementarios,
+                                        t6.nombre_tipificacion AS centro_costo,
+                                        tCitas.Nombre_Profesional,
+                                        tCitas.FechaServicio,
+                                        tCitas.ServicioSolicitado,
+                                        tCitas.respuesta,
+                                        tCitas.gestion_llamada,
+                                        u.username AS user_crea
+                                        FROM (((((((( inf_investigar_citas tCitas
+                                        LEFT JOIN tipificaciones t 
+                                            ON tCitas.id_tipificacionEstado = t.id_tipificacion)
+                                        LEFT JOIN tipificaciones t1 
+                                            ON tCitas.id_tipificacionTipoSol = t1.id_tipificacion)
+                                        LEFT JOIN tipificaciones t2
+                                            ON tCitas.id_tipificacionTipoUsu = t2.id_tipificacion)
+                                        LEFT JOIN tipificaciones t3
+                                            ON tCitas.Id_tipificacioncentroMedico = t3.id_tipificacion)
+                                        LEFT JOIN tipificaciones t4
+                                            ON tCitas.Id_tipificacioncentroMedicoBack = t4.id_tipificacion)
+                                            LEFT JOIN tipificaciones t5
+                                            ON tCitas.id_tipificacionServiciosCom = t5.id_tipificacion)
+                                        LEFT JOIN tipificaciones t6
+                                            ON tCitas.id_tipificacionCentroCosto  = t6.id_tipificacion)                           
+                                        LEFT JOIN usuarios u
+                                            ON tCitas.id_userCrea = u.id_usuario)
+                                        where tCitas.fecha_registro BETWEEN '$fecha1' AND '$fecha2' ORDER BY id_registro");
+
+	foreach ($traerDatos as $filaR) {
+				
+
+        $filaR['observaciones'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['observaciones']);
+	
+		
+		fputcsv($salida, array($filaR['id_registro'], 
+								$filaR['fecha_registro'],
+								$filaR['horaRegistro'],
+								$filaR['documento'],
+								$filaR['contrato'],
+                                $filaR['telefono'],
+                                $filaR['correo'],
+                                $filaR['nombres_usuario'],
+                                $filaR['ciudad'],
+                                $filaR['asesor_mantenimiento'],
+                                $filaR['observaciones'],
+                                $filaR['envio'],
+                                $filaR['estado'],
+                                $filaR['userCrea'],
+                                $filaR['user_cierre'],
+                                $filaR['fecha_Envio'],
+								$filaR['hora_Envio']));
+    }
+							
+    }
 ?>

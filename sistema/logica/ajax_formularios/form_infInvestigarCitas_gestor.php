@@ -20,7 +20,7 @@
         </script>";
     }
 
-    else if (empty($_POST['estado']) || empty($_POST['respuesta']) || empty($_POST['observaciones'])) {                
+    else if (empty($_POST['estado']) || empty($_POST['gestion']) || empty($_POST['respuesta'])) {                
                     $alert="<script>
                     Swal.fire({
                         icon: 'error',
@@ -39,13 +39,19 @@
         $registro = $_POST['registro'];
         $estado = $_POST['estado'];
         $respuesta = $_POST['respuesta'];
-        $observaciones = $_POST['observaciones'];
+        $gestion = $_POST['gestion'];
+        $cmd = $_POST['cmd'];
+        $centroCosto = $_POST['centroCosto'];
+        $servicio = $_POST['servicio'];
 
         $insertSsql = "UPDATE inf_investigar_citas SET  fechaCierre = STR_TO_DATE('$fechaGestion', '%d/%m/%Y'),
                                                         horaCierre = '$horaGestion',
-                                                        Observaciones = CONCAT(Observaciones, '$observaciones //'),
+                                                        gestion_llamada = CONCAT(gestion_llamada, '$gestion //'),
                                                         id_tipificacionEstado = '$estado',
-                                                        respuestaCierre = CONCAT(respuestaCierre, '$respuesta //'),
+                                                        Id_tipificacioncentroMedicoBack = '$cmd',
+                                                        id_tipificacionCentroCosto = '$centroCosto',
+                                                        id_tipificacionServiciosCom = '$servicio',
+                                                        respuesta = CONCAT(respuesta, '$respuesta //'),
                                                         id_userCierre = '$userGestion'
                                                         WHERE id_registro = '$registro'";
 

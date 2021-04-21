@@ -21,7 +21,7 @@
     }
 
 
-    $traerDatos = "SELECT tCitas.id_registro,
+    $traerDatos = "SELECT   tCitas.id_registro,
                             t.nombre_tipificacion AS estado,
                             DATE_FORMAT(tCitas.fecha_registro, '%d/%m/%Y') AS fecha_registro,
                             tCitas.hora_registro,
@@ -227,8 +227,8 @@
                 <?php } ?>
                 </form>
                 <hr>
-                <?php if($permiso == 1){ ?>
-                <form method="post" name="form_infInvestigar_gestor" id="form_infInvestigar_gestor">
+                <?php if($permiso == 1 && $filaR[1] != "GESTIONADO" && $filaR[1] != "ANULADO"){ ?>
+                <form method="post" name="form_infInvestigarCitas_gestor" id="form_infInvestigarCitas_gestor">
                     <h1 style="text-align: center;">Datos<b> BACK OFFICE </b></h1>
                     <hr>
 
@@ -244,15 +244,15 @@
                     <div id="cont-enviarCorreo">
                         <center><a href="<?php echo $correos; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
                     </div>
-                    <?php if($filaR[14] != '' || $filaR[15] != '') { ?>
+                    <?php if($filaR[22] != '' || $filaR[23] != '') { ?>
                     <div class="rows">
-                    <?php if ($filaR[14] != '') { ?>     
+                    <?php if ($filaR[22] != '') { ?>     
                     <h4>Respuesta Anterior</h4>
-                        <textarea class="left form-control" readonly> <?php echo $filaR[14] ?></textarea>
+                        <textarea class="left form-control" readonly> <?php echo $filaR[22] ?></textarea>
                     <?php } ?>
-                    <?php if ($filaR[15] != '') { ?>    
-                    <h4>Observación Anterior</h4>
-                        <textarea class="right form-control" readonly> <?php echo $filaR[15] ?></textarea>
+                    <?php if ($filaR[23] != '') { ?>    
+                    <h4>Gestion de llamada anterior</h4>
+                        <textarea class="right form-control" readonly> <?php echo $filaR[23] ?></textarea>
                     <?php } ?>        
                     </div>
                     <?php } ?>
@@ -261,39 +261,84 @@
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-respuesta">
                             <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
                             <div class="col-sm-9">
-                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;"> </textarea>
+                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" autofocus> </textarea>
                             </div>
                         </div>
                         
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-gestion">
-                            <label for="observaciones" class="col-sm-3 col-form-label">Observaciones</label>
+                            <label for="gestion" class="col-sm-3 col-form-label">Gestión llamada</label>
                             <div class="col-sm-9">
-                                <textarea name="observaciones" id="observaciones" class="form-control" cols="30" rows="5" style="resize: none;" ></textarea>
+                                <textarea name="gestion" id="gestion" class="form-control" cols="30" rows="5" style="resize: none;" ></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group row col-6" id="cont-estado" style="margin-left:auto; margin-right:auto; margin-top: 1%;">
-                    <label for="estado" class="col-sm-4 col-form-label">Estado</label>
-                    <div class="col-sm-8">
-                        <select name="estado" id="estado" class="form-control" autofocus>
-                            <option value="" hidden>Selecciona una opcion</option>
-                            <!-- consulta traer datos de la base -->
-                    
-                            <?php $estadoSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado' AND grupo_tipificacion2 = 'fono' ORDER BY nombre_tipificacion ASC";
-                                $estadoQsql = $con->query($estadoSsql);
-                            ?>
-                            <!-- ciclo para mostrar las areas -->
-                            <?php foreach ($estadoQsql as $row) { ?>
-                            
-                                <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
-                            
-                            <?php } ?>                        
-                        </select>
-                    </div>
+                    <div class="row" style="justify-content: center;">
+                        <div class="form-group row col-5" id="cont-cmd">
+                            <label for="cmd" class="col-sm-3 col-form-label">Centro Medico</label>
+                            <div class="col-sm-9">
+                                <select name="cmd" id="cmd" class="form-control">
+                                    <option value="" hidden>Selecciona una opcion</option>
+                                    <!-- consulta traer datos de la base -->
+                                    <?php $cmdSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'centro medico' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
+                                        $cmdQsql = $con -> query($cmdSsql);
+                                    ?>
+                                    <!-- ciclo para mostrar las areas -->
+                                    <?php foreach ($cmdQsql as $row) { ?>
+                                    
+                                        <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
+                                    
+                                    <?php } ?>                        
+                                </select>
+                            </div>
+                        </div>    
+
+                        <div class="form-group row col-5" id="cont-estado">
+                            <label for="estado" class="col-sm-3 col-form-label">Estado</label>
+                            <div class="col-sm-9">
+                                <select name="estado" id="estado" class="form-control">
+                                    <option value="" hidden>Selecciona una opcion</option>
+                                    <!-- consulta traer datos de la base -->
+                                    <?php $tipolSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Estado Cierre InfInvCitas' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
+                                        $tipoQsql = $con -> query($tipolSsql);
+                                    ?>
+                                    <!-- ciclo para mostrar las areas -->
+                                    <?php foreach ($tipoQsql as $row) { ?>
+                                    
+                                        <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
+                                    
+                                    <?php } ?>                        
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
-                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarGestor" name="btnEnviar_infInvestigarGestor" value="Guardar"></center>
+                    <div class="row" style="justify-content: center;">
+
+                        <div class="form-group row col-5" id="cont-centroCosto">
+                            <label for="centroCosto" class="col-sm-3 col-form-label">Centro de costo</label>
+                            <div class="col-sm-9">
+                                <select name="centroCosto" id="centroCosto" class="form-control" onchange="selectNuevo(this)">
+                                    <option value="" hidden>Selecciona una opcion</option>
+                                    <!-- consulta traer datos de la base -->
+                                    <?php $cmdSsql = "SELECT id_tipificacion, nombre_tipificacion FROM tipificaciones WHERE grupo_tipificacion = 'Centro Costos' AND grupo_tipificacion2 = 'citas' ORDER BY nombre_tipificacion ASC";
+                                        $cmdQsql = $con -> query($cmdSsql);
+                                    ?>
+                                    <!-- ciclo para mostrar las areas -->
+                                    <?php foreach ($cmdQsql as $row) { ?>
+                                    
+                                        <option value="<?php echo $row['id_tipificacion']; ?>"> <?php echo $row['nombre_tipificacion']; ?></option>
+                                    
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="cont-servicio">
+                        </div>
+                    </div>
+
+                    <center><input type="submit" class="btn btn-primary" id="btnEnviar_infInvestigarCitas_gestor" name="btnEnviar_infInvestigarCitas_gestor" value="Guardar"></center>
 
                 </form>
                 <?php } ?>
@@ -310,6 +355,6 @@
         });
 </script>
     <script src="sistema/js/libs/sweetalert2.js"></script>
-    <script src="sistema/js/ajax_formularios/form_infInvestigar_gestor.js"></script>
+    <script src="sistema/js/ajax_formularios/form_infInvestigarCitas_gestor.js"></script>
     <script src="sistema/js/libs/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>                
