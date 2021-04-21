@@ -32,7 +32,7 @@ $(document).ready(function(){
         }
           // valida que el campo contrato no este vacio ni contenga letras
           var contrato = $("#contrato").val();
-          if (isNaN(contrato) || /^\s+$/.test(contrato) ||contrato == null || contrato == 0) {
+          if (isNaN(contrato) || /^\s+$/.test(contrato) ||contrato == null) {
               Swal.fire({
                   icon: 'warning',
                   title: 'Oops...',
