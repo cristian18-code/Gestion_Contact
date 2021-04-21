@@ -21,7 +21,7 @@
         %0D%0DPensando en tu salud y bienestar te recomendamos que sigas las siguientes indicaciones, para garantizar
         %0Dque tu examen de '.$examen.' se pueda realizar exitosamente.
         %0DSi presentas alguna inquietud referente a estas indicaciones, no dudes en comunicarte a través de nuestros canales www.bluecare.com.co, línea BlueCare 7420222 en Bogotá o Medellin al 6041445 opción 1.
-                ';
+        ';
 
         $envioCorreo = 'mailto:'.$correo.'&bcc='.$copiaOculta.'&subject='.$asunto.'&body='.$cuerpo;
         return $envioCorreo;
@@ -66,6 +66,23 @@
         ';
 
         $envioCorreo = 'mailto:'.$correo.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    }
+
+    function correo_infInvCitas($documento, $nombreUsuario, $correElectronico, $nombreProfesional, $fechaServicio, $servicioSolicitado) {
+
+        $copia = 'dianasa@medcontactcenter.com.co; katherinerc@medcontactcenter.com.co';
+        $cuerpo = 'Cordial Saludo, 
+        %0D%0DDe la manera más atenta, solicitamos su colaboración con la siguiente solicitud:
+        %0D%0D<b>•	No de documento: </b>'.$documento.
+        '%0D•	Nombre usuario: '.$nombreUsuario.
+        '%0D•	Correo electrónico: '.$correElectronico.
+        '%0D•	Nombre profesional/servicio: '.$nombreProfesional.
+        '%0D•	Fecha servicio: '.$fechaServicio.
+        '%0D•	Servicio solicitado: '.$servicioSolicitado;
+
+
+        $envioCorreo = 'mailto: ?cc='.$copia.'&subject=VALIDAR INFORMACION&body='.$cuerpo;
         return $envioCorreo;
     }
 ?>

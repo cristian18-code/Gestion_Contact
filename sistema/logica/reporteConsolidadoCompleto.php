@@ -315,9 +315,10 @@ if(isset($_POST['generar_reportes_documentos']))
 	// SALIDA DEL ARCHIVO
 	$salida=fopen('php://output', 'b');
 	// ENCABEZADOS
-	fputcsv($salida, array('ID Registro','Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
-						    'Telefono', 'Correo', 'Nombre Usuario', 'Ciudad', 'Asesor Mantenimiento', 'Observaciones', 
-                            'Enviado A', 'Estado', 'Consultor', 'Backoffice', 'Fecha Cierre', 'Hora Cierre'));
+	fputcsv($salida, array('ID Registro','Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 'Nombres Usuario',
+                            'Centro Medico','Servicio', 'Centro de Costo', 'Servicio Solicitado','Email', 'Tipo de Solicitud', 'Persona A preguntar',  
+                            'Telefono Fijo', 'Celular', 'Ciudad', 'Agente Registra', 'Backoffice', 'Observaciones Gestión', 'Tipo de Usuario', 
+                            'Ordenes/Resultados/Pendientes', 'Fecha Servicio', 'Nombre Profesional','Fecha Cierre', 'Hora Cierre'));
 	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
 	$traerDatos=$con->query("SELECT     tCitas.id_registro,
                                         t.nombre_tipificacion AS estado,
@@ -343,7 +344,8 @@ if(isset($_POST['generar_reportes_documentos']))
                                         tCitas.ServicioSolicitado,
                                         tCitas.respuesta,
                                         tCitas.gestion_llamada,
-                                        u.username AS user_crea
+                                        u.username AS user_crea,
+                                        u.username AS user_cierre
                                         FROM (((((((( inf_investigar_citas tCitas
                                         LEFT JOIN tipificaciones t 
                                             ON tCitas.id_tipificacionEstado = t.id_tipificacion)
@@ -361,6 +363,8 @@ if(isset($_POST['generar_reportes_documentos']))
                                             ON tCitas.id_tipificacionCentroCosto  = t6.id_tipificacion)                           
                                         LEFT JOIN usuarios u
                                             ON tCitas.id_userCrea = u.id_usuario)
+                                        LEFT JOIN usuarios u1
+                                            ON tCitas.id_userCierre = u1.id_usuario)
                                         where tCitas.fecha_registro BETWEEN '$fecha1' AND '$fecha2' ORDER BY id_registro");
 
 	foreach ($traerDatos as $filaR) {
@@ -370,20 +374,30 @@ if(isset($_POST['generar_reportes_documentos']))
 	
 		
 		fputcsv($salida, array($filaR['id_registro'], 
-								$filaR['fecha_registro'],
-								$filaR['horaRegistro'],
-								$filaR['documento'],
-								$filaR['contrato'],
-                                $filaR['telefono'],
-                                $filaR['correo'],
-                                $filaR['nombres_usuario'],
-                                $filaR['ciudad'],
-                                $filaR['asesor_mantenimiento'],
-                                $filaR['observaciones'],
-                                $filaR['envio'],
                                 $filaR['estado'],
-                                $filaR['userCrea'],
+								$filaR['fecha_registro'],
+								$filaR['hora_registro'],
+                                $filaR['documento'],
+								$filaR['contrato'],
+								$filaR['nombres_usuario'],
+                                $filaR['centro_medico'],
+                                $filaR['servicios_complementarios'],
+                                $filaR['centro_costo'],
+                                $filaR['ServicioSolicitado'],
+                                $filaR['correo'],
+                                $filaR['tipo_solicitud'],
+                                $filaR['nomPersona_preguntar'],
+                                $filaR['telefono'],
+                                $filaR['celular'],
+                                $filaR['ciudad'],
+                                $filaR['user_crea'],
                                 $filaR['user_cierre'],
+                                $filaR['respuesta'],
+                                $filaR['gestion_llamada'],
+                                $filaR['tipo_usuario'],
+                                $filaR['tipificacionOrdResPed'],
+                                $filaR['FechaServicio'],
+                                $filaR['Nombre_Profesional'],
                                 $filaR['fecha_Envio'],
 								$filaR['hora_Envio']));
     }

@@ -69,11 +69,8 @@
     $ver = $con ->query($traerDatos) or die ('Ocurrio un problema al traer los registros');    
 
     if ($filaR = mysqli_fetch_row($ver)) {
-        $estado = $filaR[5];
-        if ($filaR[5] = 'NONE') {
-            $correos = EnvioCorreo($filaR[6], $filaR[5], $filaR[4], $filaR[8], $filaR[7]);
-        }
-    } 
+        $correo = correo_infInvCitas($filaR[6], $filaR[8], $filaR[9], $filaR[19], $filaR[20], $filaR[21]);
+    }
     
 ?>
 
@@ -242,7 +239,7 @@
 
                     
                     <div id="cont-enviarCorreo">
-                        <center><a href="<?php echo $correos; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
+                        <center><a href="<?php echo $correo; ?>"><img src="media/img/gmail.png" title="enviar correo" alt="enviar correo" width="50px"></a></center>
                     </div>
                     <?php if($filaR[22] != '' || $filaR[23] != '') { ?>
                     <div class="rows">
