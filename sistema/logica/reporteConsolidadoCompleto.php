@@ -95,7 +95,7 @@ if(isset($_POST['generar_reportes_fonoplus']))
     // NOMBRE DEL ARCHIVO Y CHARSET
     
 	header('Content-Type:text/csv; charset=UTF-8');
-	header('Content-Disposition: attachment; filename="Reporte_Consolidado_infInvestigar.csv"');
+	header('Content-Disposition: attachment; filename="Reporte_informacionAInvestigarFono.csv"');
 
 	// SALIDA DEL ARCHIVO
 	$salida=fopen('php://output', 'b');
@@ -310,7 +310,7 @@ if(isset($_POST['generar_reportes_documentos']))
     // NOMBRE DEL ARCHIVO Y CHARSET
     
 	header('Content-Type:text/csv; charset=UTF-8');
-	header('Content-Disposition: attachment; filename="Reporte_Consolidado_Inf_Inv_Citas.csv"');
+	header('Content-Disposition: attachment; filename="Reporte_informacionInvestigar_Citas.csv"');
 
 	// SALIDA DEL ARCHIVO
 	$salida=fopen('php://output', 'b');
@@ -337,7 +337,7 @@ if(isset($_POST['generar_reportes_documentos']))
                                         t3.nombre_tipificacion AS centro_medico,
                                         tCitas.tipificacionOrdResPed,
                                         t4.nombre_tipificacion AS centroMedico_back,
-                                        t5.nombre_tipificacion AS servicios_complementarios,
+                                        tCitas.id_tipificacionServiciosCom,
                                         t6.nombre_tipificacion AS centro_costo,
                                         tCitas.Nombre_Profesional,
                                         tCitas.FechaServicio,
@@ -345,8 +345,10 @@ if(isset($_POST['generar_reportes_documentos']))
                                         tCitas.respuesta,
                                         tCitas.gestion_llamada,
                                         u.username AS user_crea,
-                                        u.username AS user_cierre
-                                        FROM (((((((( inf_investigar_citas tCitas
+                                        u.username AS user_cierre,
+                                        tCitas.fechaCierre,
+                                        tCitas.horaCierre
+                                        FROM ((((((( inf_investigar_citas tCitas
                                         LEFT JOIN tipificaciones t 
                                             ON tCitas.id_tipificacionEstado = t.id_tipificacion)
                                         LEFT JOIN tipificaciones t1 
@@ -357,20 +359,22 @@ if(isset($_POST['generar_reportes_documentos']))
                                             ON tCitas.Id_tipificacioncentroMedico = t3.id_tipificacion)
                                         LEFT JOIN tipificaciones t4
                                             ON tCitas.Id_tipificacioncentroMedicoBack = t4.id_tipificacion)
-                                            LEFT JOIN tipificaciones t5
-                                            ON tCitas.id_tipificacionServiciosCom = t5.id_tipificacion)
                                         LEFT JOIN tipificaciones t6
                                             ON tCitas.id_tipificacionCentroCosto  = t6.id_tipificacion)                           
                                         LEFT JOIN usuarios u
                                             ON tCitas.id_userCrea = u.id_usuario)
                                         LEFT JOIN usuarios u1
-                                            ON tCitas.id_userCierre = u1.id_usuario)
+                                            ON tCitas.id_userCierre = u1.id_usuario
                                         where tCitas.fecha_registro BETWEEN '$fecha1' AND '$fecha2' ORDER BY id_registro");
 
 	foreach ($traerDatos as $filaR) {
 				
 
-        $filaR['observaciones'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['observaciones']);
+    	$cadena = $filaR['ServicioSolicitado'];
+
+		$filaR['ServicioSolicitado'] = preg_replace("[\n|\r|\n\r]", "", $cadena);
+        $filaR['respuesta'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['respuesta']);
+        $filaR['gestion_llamada'] = preg_replace("[\n|\r|\n\r]", "",  $filaR['gestion_llamada']);
 	
 		
 		fputcsv($salida, array($filaR['id_registro'], 
@@ -381,7 +385,7 @@ if(isset($_POST['generar_reportes_documentos']))
 								$filaR['contrato'],
 								$filaR['nombres_usuario'],
                                 $filaR['centro_medico'],
-                                $filaR['servicios_complementarios'],
+                                $filaR['id_tipificacionServiciosCom'],
                                 $filaR['centro_costo'],
                                 $filaR['ServicioSolicitado'],
                                 $filaR['correo'],
@@ -398,8 +402,8 @@ if(isset($_POST['generar_reportes_documentos']))
                                 $filaR['tipificacionOrdResPed'],
                                 $filaR['FechaServicio'],
                                 $filaR['Nombre_Profesional'],
-                                $filaR['fecha_Envio'],
-								$filaR['hora_Envio']));
+                                $filaR['fechaCierre'],
+								$filaR['horaCierre']));
     }
 							
     }

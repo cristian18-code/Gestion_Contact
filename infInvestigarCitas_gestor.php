@@ -46,7 +46,7 @@
                             tCitas.respuesta,
                             tCitas.gestion_llamada,
                             u.username AS user_crea
-                            FROM (((((((( inf_investigar_citas tCitas
+                            FROM ((((((( inf_investigar_citas tCitas
                             LEFT JOIN tipificaciones t 
                                 ON tCitas.id_tipificacionEstado = t.id_tipificacion)
                             LEFT JOIN tipificaciones t1 
@@ -57,8 +57,6 @@
                                 ON tCitas.Id_tipificacioncentroMedico = t3.id_tipificacion)
                             LEFT JOIN tipificaciones t4
                                 ON tCitas.Id_tipificacioncentroMedicoBack = t4.id_tipificacion)
-                                LEFT JOIN tipificaciones t5
-                                ON tCitas.id_tipificacionServiciosCom = t5.id_tipificacion)
                             LEFT JOIN tipificaciones t6
                                 ON tCitas.id_tipificacionCentroCosto  = t6.id_tipificacion)                           
                             LEFT JOIN usuarios u
