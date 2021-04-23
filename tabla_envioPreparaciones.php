@@ -4,14 +4,18 @@
 
     /* Traer los tickets pendientes */
     $ssql = "SELECT preparaciones.id_registro,
+                    t1.nombre_tipificacion AS estado,
                     DATE_FORMAT(preparaciones.fecha_registro, '%d/%m/%Y') AS fecha_registro,
                     preparaciones.hora_registro,
                     preparaciones.documento,
                     preparaciones.contrato,
                     preparaciones.nombres_usuario,
                     t.nombre_tipificacion AS solicitud
-                    FROM (envio_preparaciones preparaciones 
-                    INNER JOIN tipificaciones t ON preparaciones.id_tipificacionSolicitud = t.id_tipificacion)
+                    FROM ((envio_preparaciones preparaciones 
+                    INNER JOIN tipificaciones t 
+                                ON preparaciones.id_tipificacionSolicitud = t.id_tipificacion)
+                    LEFT JOIN  tipificaciones t1 
+                                ON preparaciones.id_tipificacionEstado = t1.id_tipificacion)
                     WHERE id_tipificacionEstado != '30' AND id_tipificacionEstado !='33' OR id_tipificacionEstado IS NULL";
 
     $qsqlDatos = $con->query($ssql);
@@ -69,6 +73,7 @@
                     <th>Registro</th>
                     <th>Fecha registro</th>
                     <th>Hora registro</th>
+                    <th>Estado</th>
                     <th>documento</th>
                     <th>contrato</th>
                     <th>nombres usuario</th>
@@ -83,6 +88,7 @@
                             <td><?php echo $dato['id_registro']; ?></td>
                             <td><?php echo $dato['fecha_registro']?></td>
                             <td><?php echo $dato["hora_registro"]; ?></td>
+                            <td><?php echo $dato["estado"]; ?></td>
                             <td><?php echo $dato["documento"]; ?></td>
                             <td><?php echo $dato['contrato']?></td>
                             <td><?php echo $dato['nombres_usuario']?></td>
@@ -102,6 +108,7 @@
                 <th>Registro</th>
                 <th>Fecha registro</th>
                 <th>Hora registro</th>
+                <th>Estado</th>
                 <th>documento</th>
                 <th>contrato</th>
                 <th>nombres usuario</th>

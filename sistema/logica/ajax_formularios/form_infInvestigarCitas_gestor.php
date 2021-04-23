@@ -20,7 +20,7 @@
         </script>";
     }
 
-    else if (empty($_POST['estado']) || empty($_POST['gestion']) || empty($_POST['respuesta'])) {                
+    else if (empty($_POST['estado']) || empty($_POST['respuesta'])) {                
                     $alert="<script>
                     Swal.fire({
                         icon: 'error',

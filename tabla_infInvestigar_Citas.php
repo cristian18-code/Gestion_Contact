@@ -9,10 +9,13 @@
                     InfInvCitas.hora_registro,
                     InfInvCitas.documento,
                     InfInvCitas.contrato,
+                    t1.nombre_tipificacion AS TipoSolicitud,
                     InfInvCitas.nombres_usuario
-                    FROM (inf_investigar_citas InfInvCitas 
+                    FROM ((inf_investigar_citas InfInvCitas 
                     LEFT JOIN tipificaciones t
                     ON InfInvCitas.id_tipificacionEstado = t.id_tipificacion)
+                    LEFT JOIN tipificaciones t1
+                    ON InfInvCitas.id_tipificacionTipoSol = t1.id_tipificacion)
                     WHERE id_tipificacionEstado != '47' AND id_tipificacionEstado != '52' OR id_tipificacionEstado IS NULL";
 
     $qsqlDatos = $con->query($ssql);
@@ -72,6 +75,7 @@
                     <th>Hora registro</th>
                     <th>Estado</th>
                     <th>documento</th>
+                    <th>Tipo solicitud</th>
                     <th>contrato</th>
                     <th>Nombres Usuario</th>
                     <th>Editar</th>
@@ -86,9 +90,10 @@
                             <td><?php echo $dato["hora_registro"]; ?></td>
                             <td><?php echo $dato["estado"]; ?></td>
                             <td><?php echo $dato["documento"]; ?></td>
+                            <td><?php echo $dato["TipoSolicitud"]; ?></td>
                             <td><?php echo $dato['contrato']?></td>
                             <td><?php echo $dato['nombres_usuario']?></td>
-                            <input type="hidden" id="estado" value="<?php echo $dato['solicitud']; ?>"> <!-- para dar color a la fila-->
+                            <input type="hidden" id="estado" value="<?php echo $dato['TipoSolicitud']; ?>"> <!-- para dar color a la fila-->
                             <input type="hidden" name="registro" id="registro" value="<?php echo $dato['id_registro'];?>"> <!-- numero de registro -->
                             <input type="hidden" name="tabla" id="tabla" value="<?php echo $tabla;?>"> <!-- numero de registro -->
                             <td><input type="submit" value="Editar" class="btn btn-light"></td> <!-- Envia los tres datos anteriores -->
@@ -104,6 +109,7 @@
                 <th>Hora registro</th>
                 <th>Estado</th>
                 <th>documento</th>
+                <th>Tipo solicitud</th>
                 <th>contrato</th>
                 <th>Nombres Usuario</th>
                 <th>Editar</th>

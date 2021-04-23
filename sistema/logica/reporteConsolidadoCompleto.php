@@ -181,7 +181,7 @@ if(isset($_POST['generar_reportes_documentos']))
 	fputcsv($salida, array('ID Registro', 'Estado', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
 						    'Servicio Solicitado', 'Correo', 'Ciudad', 'Observaciones', 'Observaciones Backoffice','Consultor', 'Backoffice', 
 						   'Fecha Cierre', 'Hora Cierre'));
-	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
+	// QUERY PARA CREAR EL REPORTE ENVIO DE DOCUMENTOS
 	$traerDatos=$con->query("SELECT     tDoc.id_registro,
                                         t.nombre_tipificacion AS estado,
                                         DATE_FORMAT(tDoc.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
@@ -248,7 +248,7 @@ if(isset($_POST['generar_reportes_documentos']))
 	fputcsv($salida, array('ID Registro', 'Fecha Registro', 'Hora Registro', 'Documento', ' Contrato', 
 						    'Telefono', 'Correo', 'Nombre Usuario', 'Ciudad', 'Asesor Mantenimiento', 'Observaciones', 
                             'Enviado A', 'Estado', 'Consultor', 'Backoffice', 'Fecha Cierre', 'Hora Cierre'));
-	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
+	// QUERY PARA CREAR EL REPORTE DE MANTENIMIENTO POSVENTA
 	$traerDatos=$con->query("SELECT     tManP.id_registro,
                                         t.nombre_tipificacion AS estado,
                                         DATE_FORMAT(tManP.fechaRegistro, '%d/%m/%Y') AS fecha_registro,
@@ -318,7 +318,7 @@ if(isset($_POST['generar_reportes_documentos']))
                             'Centro Medico','Servicio', 'Centro de Costo', 'Servicio Solicitado','Email', 'Tipo de Solicitud', 'Persona A preguntar',  
                             'Telefono Fijo', 'Celular', 'Ciudad', 'Agente Registra', 'Backoffice', 'Respuesta Backoffice', 'Observaciones Gestion', 'Tipo de Usuario', 
                             'Ordenes/Resultados/Pendientes', 'Fecha Servicio', 'Nombre Profesional','Fecha Cierre', 'Hora Cierre'));
-	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR
+	// QUERY PARA CREAR EL REPORTE INFORMACIÓN INVESTIGAR CITAS
 	$traerDatos=$con->query("SELECT     tCitas.id_registro,
                                         t.nombre_tipificacion AS estado,
                                         DATE_FORMAT(tCitas.fecha_registro, '%d/%m/%Y') AS fecha_registro,
@@ -344,7 +344,7 @@ if(isset($_POST['generar_reportes_documentos']))
                                         tCitas.respuesta,
                                         tCitas.gestion_llamada,
                                         u.username AS user_crea,
-                                        u.username AS user_cierre,
+                                        u1.username AS user_cierre,
                                         tCitas.fechaCierre,
                                         tCitas.horaCierre
                                         FROM ((((((( inf_investigar_citas tCitas

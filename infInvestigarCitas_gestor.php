@@ -78,7 +78,6 @@
 <!-- Estilos css -->
     <link rel="stylesheet" href="media/css/libs/pushbar.css">	
     <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
-    <link rel="stylesheet" href="media/css/libs/bootstrap5.min.css">
     <link rel="stylesheet" href="media/css/libs/reset.css">
     <link rel="stylesheet" href="media/css/header.css">
     <link rel="stylesheet" href="media/icons/style.css">
@@ -185,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <br>
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-5" id="cont-persona">
                             <label for="persona" class="col-sm-3 col-form-label">Persona a preguntar</label>
@@ -203,10 +202,30 @@
                     </div>
 
                     <div class="row" style="justify-content: center;">
-                        <div id="cont-estado" class="form-group row col-8">
+                        <div id="cont-estado" class="form-group row col-5">
                             <label for="estado1" class="col-sm-3 col-form-label">Estado</label>
                             <div class="col-sm-9">
                                 <input type="text" name="estado1" id="estado1" class="form-control" value="<?php echo $dato['estado']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div id="cont-estado" class="form-group row col-5">
+                            <label for="estado1" class="col-sm-3 col-form-label">Centro Medico</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="estado1" id="estado1" class="form-control" value="<?php echo $dato['centro_medico']; ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="justify-content: center;">
+                        <div id="cont-estado" class="form-group row col-5">
+                            <label for="estado1" class="col-sm-3 col-form-label">Profesional</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="estado1" id="estado1" class="form-control" value="<?php echo $dato['Nombre_Profesional']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div id="cont-estado" class="form-group row col-5">
+                            <label for="estado1" class="col-sm-3 col-form-label">Fecha Servicio</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="estado1" id="estado1" class="form-control" value="<?php echo $dato['FechaServicio']; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -251,12 +270,36 @@
                     <?php } ?>        
                     </div>
                     <?php } ?>
+
+                    <?php if(!is_null($filaR[16]) || !is_null($filaR[16])) { ?>
+                    <div class="row">
+                    <?php if(!is_null($filaR[16])) { ?>     
+                        <div class="form-group row col-6" style="justify-content: center;" id="cont-CentroMedicoB">
+                            <label for="CentroMedicoB" class="col-sm-3 col-form-label">Centro Medico A</label>
+                            <div class="col-sm-9">
+                                 <input class="form-control" readonly value="<?php echo $filaR[16] ?>">
+                            </div>
+                        </div>
+        
+                    <?php } ?>
+                    <?php if(!is_null($filaR[18])) { ?>    
+                        <div class="form-group row col-6" style="justify-content: center;" id="cont-CentroCosto">
+                            <label for="CentroCosto" class="col-sm-3 col-form-label">Centro Costo A</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" readonly value="<?php echo $filaR[18] ?>"> 
+                            </div>
+                        </div>
+
+                    <?php } ?>        
+                    </div>
+                    <?php } ?>
+                    <br>
                     
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-6" style="justify-content: center;" id="cont-respuesta">
                             <label for="respuesta" class="col-sm-3 col-form-label">Respuesta</label>
                             <div class="col-sm-9">
-                                <textarea name="respuesta" id="respuesta" class="form-control" cols="30" rows="5" style="resize: none;" autofocus> </textarea>
+                                <textarea name="respuesta" id="respuesta" class="form-control"  rows="5" style="resize: none;" autofocus> </textarea>
                             </div>
                         </div>
                         

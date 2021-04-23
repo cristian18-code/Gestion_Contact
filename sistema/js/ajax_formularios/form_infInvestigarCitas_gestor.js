@@ -45,16 +45,6 @@ $(document).ready(function(){
             return
         }
         
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var gestion = $("#gestion").val();
-        if (gestion == null || /^\s+$/.test(gestion) || gestion.length == 0) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Debe escribir algun texto en GESTION LLAMADA, no puede estar vacio'
-              });
-            return
-        }
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var cmd = $("#cmd").val();

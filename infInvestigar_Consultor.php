@@ -31,7 +31,6 @@
 <!-- Estilos css -->
      <link rel="stylesheet" href="media/css/libs/pushbar.css">	
     <link rel="stylesheet" href="media/css/libs/bootstrap.min.css">
-
     <link rel="stylesheet" href="media/css/libs/reset.css">
     <link rel="stylesheet" href="media/css/header.css">
     <link rel="stylesheet" href="media/icons/style.css">
