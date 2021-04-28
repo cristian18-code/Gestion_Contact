@@ -91,7 +91,7 @@ $(document).ready(function(){
             return
         }
 
-        var expresionEmail = /^[A-Za-z0-9._-]+@[A-Za-z]+\.[\w.-]*[A-Za-z][A-Za-z]+$/;
+        var expresionEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var correo = $("#correo").val();
         if (correo.length == 0 || correo == null || !expresionEmail.test(correo)) {

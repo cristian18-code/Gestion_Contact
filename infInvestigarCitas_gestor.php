@@ -229,6 +229,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" style="justify-content: center;">
+                        <div id="cont-estado" class="form-group row col-10">
+                            <label for="tipoPaciente" class="col-sm-3 col-form-label">Tipo Paciente</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="tipoPaciente" id="tipoPaciente" class="form-control" value="<?php echo $dato['tipo_usuario']; ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row" style="justify-content: center;">
                         <div class="form-group row col-10" style="justify-content: center;" id="cont-detalle">

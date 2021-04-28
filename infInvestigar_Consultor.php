@@ -137,7 +137,7 @@
                 <div class="form-group row" id="cont-correo">
                     <label for="correo" class="col-sm-4 col-form-label">Correo electronico</label>
                     <div class="col-sm-8">
-                        <input type="email" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario">
+                        <input type="text" name="correo" id="correo" class="form-control" autocomplete="off" placeholder="Correo Usuario">
                     </div>
                 </div>
 
