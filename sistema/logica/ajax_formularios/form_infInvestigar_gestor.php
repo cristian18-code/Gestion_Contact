@@ -42,7 +42,7 @@
         $observaciones = $_POST['observaciones'];
 
         $insertSsql = "UPDATE inf_investigar_fono SET   fechaCierre = STR_TO_DATE('$fechaGestion', '%d/%m/%Y'),
-                                                        horaRegistro = '$horaGestion',
+                                                        horaCierre = '$horaGestion',
                                                         Observaciones = CONCAT(Observaciones, '$observaciones //'),
                                                         id_tipificacionEstado = '$estado',
                                                         respuestaCierre = CONCAT(respuestaCierre, '$respuesta //'),
