@@ -78,13 +78,13 @@
     </div> 
 
 <!-- Opcion de Descargar Reportes en General-->
-    <?php if ($_SESSION['roles'] == 'Administrador') { ?>
+    <?php if ($_SESSION['roles'] == 'Administrador' || $_SESSION['roles'] == 'Supervisor' || $_SESSION['roles'] == 'Back Office') { ?>
     <a href="#" data-pushbar-target="pushbar-menu-informe">
 
         <div class="box box3">
 
         <img src="media/img/informes.png" alt="documento" class="icon">
-
+       
         <h4 class="title">Informes</h4>
 
         <p><strong>Descargar informes</strong></p>
@@ -186,6 +186,21 @@
                 </div>  
 
             </a>
+            <a href="laboratorioCitas_consultor.php" target="_top">
+
+                <div class="boxes boxes1">
+
+                    <img src="media/img/laboratorios.png" alt="usuario-reportar" class="icon" >
+
+                    <h4 class="title">Laboratorios</h4>
+
+                    <p><strong>A Domicilio</strong></p>
+
+                    <div class="background-hover"></div>
+
+                </div>  
+
+            </a>
             <a href="#" target="_top" data-pushbar-target="pushbar-menu-citas-consulta">
 
                 <div class="boxes boxes1">
@@ -272,6 +287,21 @@
                         </div>  
 
                         </a>
+                        <a href="tabla_laboratorioCitas.php" target="_top">
+
+                        <div class="boxes boxes1">
+
+                            <img src="media/img/laboratorios.png" alt="usuario-reportar" class="icon" >
+
+                            <h4 class="title">Laboratorios</h4>
+
+                            <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                            <div class="background-hover"></div>
+
+                        </div>  
+
+                        </a>
                        
                    
     </div>
@@ -317,6 +347,21 @@
 
             </a>
            
+            <a href="consulta-laboratorios.php" target="_top" >
+
+            <div class="boxes boxes1">
+
+                <img src="media/img/laboratorios.png" alt="usuario-reportar" class="icon">
+
+                <h4 class="title">Laboratorios</h4>
+
+                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                <div class="background-hover"></div>
+
+            </div>  
+
+            </a>
             <a href="consulta-examenes.php" target="_top" >
 
             <div class="boxes boxes1">
@@ -360,7 +405,7 @@
                 </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="reversiones_consultor.php" target="_top">
 
                 <div class="boxes boxes1">
 
@@ -465,13 +510,13 @@
                         </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="autorizaciones_consultor.php" target="_top">
 
                         <div class="boxes boxes1">
 
-                            <img src="media/img/contingencia.png" alt="usuario-reportar" class="icon">
+                            <img src="media/img/autorizaciones.png" alt="usuario-reportar" class="icon">
 
-                            <h4 class="title">Contingencia</h4>
+                            <h4 class="title">Autorizaciones</h4>
 
                             <p><strong>Info Investigar</strong></p>
 
@@ -495,7 +540,7 @@
                         </div>  
 
             </a>
-            <a href="#" target="_top" data-swal-template="#my-template">
+            <a href="negaciones_consultor.php" target="_top">
 
                         <div class="boxes boxes1">
 
@@ -580,8 +625,36 @@
                                 <div class="background-hover"></div>
 
                         </div>  
+                        <a href="tabla_reversiones.php" target="_top">
 
-        </a>
+                            <div class="boxes boxes1">
+
+                                <img src="media/img/reversiones.png" alt="usuario-reportar" class="icon" >
+
+                                <h4 class="title">Reversiones</h4>
+
+                                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                                <div class="background-hover"></div>
+
+                            </div>  
+
+                        </a>
+                        <a href="tabla_autorizaciones.php" target="_top">
+
+                            <div class="boxes boxes1">
+
+                                <img src="media/img/autorizaciones.png" alt="usuario-reportar" class="icon">
+
+                                <h4 class="title">Autorizaciones</h4>
+
+                                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                                <div class="background-hover"></div>
+
+                            </div>  
+
+                        </a>
     </div>
     
         <button data-pushbar-close><span class="icon-cancel-circle" id="close"></span></button>
@@ -593,7 +666,7 @@
     <h1> Gestión Fono Plus - Consulta Fono</h1>
 <div class="container-boxes">
 
-            <a href="#" target="_top">
+            <a href="consulta-reversiones.php" target="_top">
 
                 <div class="boxes boxes1" data-swal-template="#my-template">
 
@@ -645,6 +718,36 @@
                 <img src="media/img/posventa.png" alt="usuario-reportar" class="icon">
 
                 <h4 class="title">Posventa</h4>
+
+                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                <div class="background-hover"></div>
+
+            </div>  
+
+            </a>
+            <a href="consulta-negaciones.php" target="_top">
+
+            <div class="boxes boxes1">
+
+                <img src="media/img/negaciones.png" alt="usuario-reportar" class="icon">
+
+                <h4 class="title">Negaciones</h4>
+
+                <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
+
+                <div class="background-hover"></div>
+
+            </div>  
+
+            </a>
+            <a href="consulta-autorizaciones.php" target="_top">
+
+            <div class="boxes boxes1">
+
+                <img src="media/img/autorizaciones.png" alt="usuario-reportar" class="icon">
+
+                <h4 class="title">Autorizaciones</h4>
 
                 <p><strong><?php echo strtoupper($_SESSION["roles"])?></strong></p>
 
