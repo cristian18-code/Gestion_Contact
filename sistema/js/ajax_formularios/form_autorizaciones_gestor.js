@@ -4,35 +4,14 @@
 $(document).ready(function(){
 
     /* Envio de formulario para crear ticket*/
-    $("#form_infInvestigarCitas_gestor").on("submit",function(e){
+    $("#form_autorizaciones_gestor").on("submit",function(e){
         e.preventDefault();
 
 
-        var parametros = new FormData($("#form_infInvestigarCitas_gestor")[0]);
-        var btnEnviar = $("#btnEnviar_infInvestigarCitas_gestor");
+        var parametros = new FormData($("#form_autorizaciones_gestor")[0]);
+        var btnEnviar = $("#btnEnviar_autorizaciones_gestor");
 
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var respuesta = $("#respuesta").val();
-        if (/^\s+$/.test(respuesta) || respuesta == null) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Debe escribir algun texto en RESPUESTA, no puede estar vacio'
-              });
-            return
-        }
-        
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var cmd = $("#cmd").val();
-        if (cmd == null || cmd == 0) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Debe seleccionar alguna opcion en CENTRO MEDICO, no puede estar vacio'
-              });
-            return
-        }
+     
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
         var estado = $("#estado").val();
@@ -44,18 +23,18 @@ $(document).ready(function(){
               });
             return
         }
-
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var centroCosto = $("#centroCosto").val();
-        if (centroCosto == null || centroCosto == 0) {
+        var observacionBack= $("#observacionBack").val();
+        if (/^\s+$/.test(observacionBack) || observacionBack == null) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Debe seleccionar alguna opcion en CENTRO DE COSTO, no puede estar vacio'
-            });
+                text: 'Debe escribir algun texto en OBSERVACIONES GESTIÓN, no puede estar vacio'
+                });
             return
         }
-
+   
+      
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',
@@ -78,7 +57,7 @@ $(document).ready(function(){
 
             $.ajax({
                 data:parametros,
-                url:"././sistema/logica/ajax_formularios/form_infInvestigarCitas_gestor.php",
+                url:"././sistema/logica/ajax_formularios/form_autorizaciones_gestor.php",
                 type:"POST",
                 contentType:false,
                 processData:false,
@@ -88,7 +67,7 @@ $(document).ready(function(){
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
                     setTimeout(function () {
-                      window.location.href = "./././tabla_infInvestigar_Citas.php";
+                      window.location.href = "./././tabla_autorizaciones.php";
                     }, 4000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 

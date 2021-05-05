@@ -1,61 +1,78 @@
 
-
-
 $(document).ready(function(){
 
     /* Envio de formulario para crear ticket*/
-    $("#form_infInvestigarCitas_gestor").on("submit",function(e){
+    $("#form_reversiones_consultor").on("submit",function(e){
         e.preventDefault();
 
 
-        var parametros = new FormData($("#form_infInvestigarCitas_gestor")[0]);
-        var btnEnviar = $("#btnEnviar_infInvestigarCitas_gestor");
+        var parametros = new FormData($("#form_reversiones_consultor")[0]);
+        var btnEnviar = $("#btnEnviar_reversiones_consultor");
+           // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
 
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var respuesta = $("#respuesta").val();
-        if (/^\s+$/.test(respuesta) || respuesta == null) {
+           var usuario = $("#usuario").val();
+           if (usuario.length == 0 || usuario == null || /^\s+$/.test(usuario)) {
+               Swal.fire({
+                   icon: 'warning',
+                   title: 'Oops...',
+                   text: 'El campo Usuario no puede estar vacio'
+                 });
+               return
+           }
+
+        // valida que el campo documento no este vacio ni contenga letras
+        var documento = $("#documento").val();
+        if (isNaN(documento) || /^\s+$/.test(documento) || documento == null || documento == 0) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Debe escribir algun texto en RESPUESTA, no puede estar vacio'
+                text: 'El campo DOCUMENTO no puede estar vacio ni contener letras'
               });
             return
         }
-        
+          // valida que el campo contrato no este vacio ni contenga letras
+          var contrato = $("#contrato").val();
+          if (isNaN(contrato) || /^\s+$/.test(contrato) ||contrato == null) {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'El campo CONTRATO no puede estar vacio ni contener letras'
+                });
+              return
+          }
+                 // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
+          var napReversar = $("#napReversar").val();
+          if (napReversar.length == 0 || napReversar == null || /^\s+$/.test(napReversar)) {
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'El campo NAP A REVERSAR no puede estar vacio'
+                });
+              return
+          }
+
+          var motReversion = $("#motReversion").val();
+          if (motReversion == null || motReversion == 0) {
+                   Swal.fire({
+                   icon: 'warning',
+                   title: 'Oops...',
+                   text: 'Debes seleccionar una opción en el campo MOTIVO REVERSION'
+                });
+             return
+          }
+     
 
         // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var cmd = $("#cmd").val();
-        if (cmd == null || cmd == 0) {
+        var observaciones = $("#observaciones").val();
+        if (observaciones.length == 0 || observaciones == null || /^\s+$/.test(observaciones)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'Debe seleccionar alguna opcion en CENTRO MEDICO, no puede estar vacio'
-              });
+                text: 'El campo OBSERVACIONES no puede estar vacio'
+                });
             return
         }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var estado = $("#estado").val();
-        if (estado == null || estado == 0) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Debe seleccionar alguna opcion en ESTADO, no puede estar vacio'
-              });
-            return
-        }
-
-        // valida si esta vacio, si lo esta envia una alerta y retorna a la pagina del formulario
-        var centroCosto = $("#centroCosto").val();
-        if (centroCosto == null || centroCosto == 0) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Debe seleccionar alguna opcion en CENTRO DE COSTO, no puede estar vacio'
-            });
-            return
-        }
-
+  
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',
@@ -78,7 +95,7 @@ $(document).ready(function(){
 
             $.ajax({
                 data:parametros,
-                url:"././sistema/logica/ajax_formularios/form_infInvestigarCitas_gestor.php",
+                url:"././sistema/logica/ajax_formularios/form_reversiones_consultor.php",
                 type:"POST",
                 contentType:false,
                 processData:false,
@@ -88,8 +105,8 @@ $(document).ready(function(){
                     btnEnviar.val("Enviado"); // Para input de tipo button
                     $("body").append(data);
                     setTimeout(function () {
-                      window.location.href = "./././tabla_infInvestigar_Citas.php";
-                    }, 4000); //hace redireccion despues de 3 segundos
+                      location.reload("./././reversiones_consultor.php");
+                    }, 5000); //hace redireccion despues de 3 segundos
                 },
                 error: function( jqXHR, textStatus, errorThrown) { // Si el servidor no envia una respuesta se 
                   // ejecutara alguna de las siguientes alertas de acuerdo error
@@ -166,27 +183,3 @@ $(document).ready(function(){
         });
     });
 });
-function selectNuevo(valor) {
-
-  var valor = valor.value;
-  $('#cont-servicio').empty(); // Limpia las opciones anteriores
-  $('#cont-servicio').removeClass("form-group row col-5");
-  if (valor == 54) {
-    // campo nombre profesional
-      $('#cont-servicio').empty(); // Limpia las opciones anteriores
-      $('#cont-servicio').addClass("form-group row col-5");
-      $('#cont-servicio').append(
-        "<label for='servicio' class='col-sm-3 col-form-label'>Servicio</label>"+
-            "<div class='col-sm-9'>"+
-            "<select name='servicio' id='servicio' class='form-control' required>"+
-              "<option value='' hidden>Selecciona una opcion</option>"+
-              "<option value='ODONTOLOGIA'>ODONTOLOGIA</option>"+
-              "<option value='OPTOMETRIA'>OPTOMETRIA</option>"+
-              "<option value='IMAGENOLOGIA'>IMAGENOLOGIA</option>"+
-            "</select>"+
-        "</div>");
-  } else {
-      $('#cont-servicio').append(
-        "<input type='hidden' name='servicio' id='servicio' value='N/A'/>");
-  }
-} 

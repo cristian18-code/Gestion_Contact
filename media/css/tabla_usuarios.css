@@ -105,6 +105,19 @@ a{
     color: #fff;
     text-align: center;
 }
+.-webkit-appearance{
+    width: 100%;
+    background: rgb(0, 0, 0);
+    height: 20%;
+    color: #fff;
+    text-align: center;
+}
+.pusbar-fono-consultar2{
+    width: 100%;
+    background: rgb(0, 0, 0,0.0);
+    height: 100vh;
+    text-align: center;
+}
 .pusbar-fono-consultar1{
     width: 100%;
     background: rgb(0, 0, 0);
@@ -127,6 +140,7 @@ a{
 .respuestas{
     width: 100%;
     display: flex;
+    background: rgb(0, 0, 0);
 }
 .respuestas h1{
     width: 40%;

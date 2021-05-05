@@ -19,6 +19,7 @@
   height: 30%;
   color: #fff;
   text-align: center;
+  justify-content: center;
 }
 .icon-circle-down{
   font-size: 20pt;

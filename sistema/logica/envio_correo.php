@@ -85,4 +85,101 @@
         $envioCorreo = 'mailto: ?cc='.$copia.'&subject=VALIDAR INFORMACION&body='.$cuerpo;
         return $envioCorreo;
     }
+
+    function correo_laboratorioCitas_programacion($fechaSolcitud, $nombrePaciente, $documento, $direccion, $barrio,
+        $localidad, $celular, $telefono, $correo, $modalidadPago, $tipoPaciente, $plan, $posibleCovid, $observaciones)
+    {
+        $para = "TomaMuestraDomicilio@medcri.com.co; MariaCM@medcri.com.co";
+        $copia = "SupervisionCC@medcontactcenter.com.co; AgendaLabDomicilio@medcontactcenter.com.co";
+        $asunto = "Programación Toma de Muestra de Laboratorio Domiciliaria";
+        $cuerpo = 'Cordial Saludo,
+        %0D%0DAdjunto información de paciente que requiere toma de muestra de laboratorio a domicilio:
+        %0D%0Do	Fecha de ingreso de la solicitud: '.$fechaSolcitud.
+        '%0Do	Nombre del paciente: '.$nombrePaciente.
+        '%0Do	Documento: '.$documento.
+        '%0Do	Dirección: '.$direccion.
+        '%0Do	Barrio: '.$barrio.
+        '%0Do	localidad: '.$localidad.
+        '%0Do	Celular: '.$celular.
+        '%0Do	Telefono: '.$telefono.
+        '%0Do	Correo Electronico: '.$correo.
+        '%0Do	Modalidad de pago: '.$modalidadPago.
+        '%0Do	Tipo de paciente: '.$tipoPaciente.
+        '%0Do	Plan: '.$plan.
+        '%0Do	Posible caso COVID: '.$posibleCovid.
+        '%0Do	Observaciones: '.$observaciones;
+
+        $envioCorreo = 'mailto:'.$para.'?cc='.$copia.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    }
+
+    function correo_laboratorioCitas_demoraProgramacion($fechaSolcitud, $nombrePaciente, $documento, $observaciones)
+    {
+        $para = "MariaCM@medcri.com.co";
+        $copia = "TomaMuestraDomicilio@medcri.com.co; AgendaLabDomicilio@medcontactcenter.com.co; SupervisionCC@medcontactcenter.com.co";
+        $asunto = "Demora en Toma de Muestras a Domicilio";
+        $cuerpo = 'Cordial Saludo,
+        %0D%0DAdjunto se encuentran datos de paciente que está a la espera del llamado por parte del laboratorio para programar el servicio domiciliario.
+        %0D%0Do	Fecha de ingreso de la solicitud: '.$fechaSolcitud.
+        '%0Do	Nombre del paciente: '.$nombrePaciente.
+        '%0Do	Documento: '.$documento.
+        '%0Do	Observaciones: '.$observaciones;
+
+        $envioCorreo = 'mailto:'.$para.'?cc='.$copia.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    }
+
+    function correo_laboratorioCitas_demoraResultados($fechaSolcitud, $nombrePaciente, $documento, $correo, $FechaServicio, $cmd, $observaciones)
+    {
+        $para = "MariaCM@medcri.com.co; laboratorioclinico@medplus.com.co";
+        $copia = "AgendaLabDomicilio@medcontactcenter.com.co; SupervisionCC@medcontactcenter.com.co";
+        $asunto = "Demora Entrega de Resultados";
+        $cuerpo = 'Cordial Saludo,
+        %0D%0DAdjunto datos de paciente que está a la espera de la entrega de resultados a su correo electrónico: 
+        %0D%0Do	Fecha de ingreso de la solicitud: '.$fechaSolcitud.
+        '%0Do	Nombre del paciente: '.$nombrePaciente.
+        '%0Do	Documento: '.$documento.
+        '%0Do	Correo electrónico: '.$correo.
+        '%0Do	Fecha servicio: '.$FechaServicio.
+        '%0Do	Centro medico: '.$cmd.
+        '%0Do	Observaciones: '.$observaciones;
+
+        $envioCorreo = 'mailto:'.$para.'?cc='.$copia.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    } 
+
+    function correo_laboratorioCitas_cancelacionServicio($fechaSolcitud, $nombrePaciente, $documento, $correo, $FechaServicio, $observaciones)
+    {
+        $para = "TomaMuestraDomicilio@medcri.com.co; MariaCM@medcri.com.co";
+        $copia = "AgendaLabDomicilio@medcontactcenter.com.co; SupervisionCC@medcontactcenter.com.co";
+        $asunto = "Cancelación Servicio Toma de Muestras a Domicilio";
+        $cuerpo = 'Cordial Saludo,
+        %0D%0DAdjunto datos de paciente que está a la espera de la entrega de resultados a su correo electrónico:
+        %0D%0Do	Fecha de ingreso de la solicitud: '.$fechaSolcitud.
+        '%0Do	Nombre del paciente: '.$nombrePaciente.
+        '%0Do	Documento: '.$documento.
+        '%0Do	Correo electrónico: '.$correo.
+        '%0Do	Fecha servicio: '.$FechaServicio.
+        '%0Do	Observaciones: '.$observaciones;
+
+        $envioCorreo = 'mailto:'.$para.'?cc='.$copia.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    } 
+
+    function correo_laboratorioCitas_otros($fechaSolcitud, $nombrePaciente, $documento, $correo, $FechaServicio, $observaciones)
+    {
+        $para = "MariaCM@medcri.com.co; laboratorioclinico@medplus.com.co";
+        $copia = "AgendaLabDomicilio@medcontactcenter.com.co; SupervisionCC@medcontactcenter.com.co";
+        $asunto = "Validar informacion";
+        $cuerpo = 'Cordial Saludo,
+        %0D%0DAdjunto datos de paciente que está a la espera de la entrega de resultados a su correo electrónico:
+        %0D%0Do	Fecha de ingreso de la solicitud: '.$fechaSolcitud.
+        '%0Do	Nombre del paciente: '.$nombrePaciente.
+        '%0Do	Documento: '.$documento.
+        '%0Do	Correo electrónico: '.$correo.
+        '%0Do	Observaciones: '.$observaciones;
+
+        $envioCorreo = 'mailto:'.$para.'?cc='.$copia.'&subject='.$asunto.'&body='.$cuerpo;
+        return $envioCorreo;
+    } 
 ?>

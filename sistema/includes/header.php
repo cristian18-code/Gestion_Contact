@@ -1,6 +1,6 @@
 
 	<div class="header">
-		<img src="media/img/favicon.png" class="logo" width="40px"><h1>Gestion Contact Center</h1>
+		<img src="media/img/favicon.png" class="logo" width="40px"><h1>Gestión Contact Center</h1>
 		<img src="media/img/logo_header.png" alt="medplus MP" width="140px">
 		<div class="optionsBar">
 			<span class="user" style="font-size:15pt;"><?php echo $_SESSION['roles']?></span>
